@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Vue Code ###
+/client/node_modules
