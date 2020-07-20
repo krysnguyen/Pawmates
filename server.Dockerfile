@@ -10,6 +10,6 @@ RUN mvn -f /home/app/pom.xml clean install -DskipTests
 # Package stage
 #
 FROM adoptopenjdk/openjdk11 as finalApp
-COPY --from=build /home/app/target/dogmates-0.0.1-SNAPSHOT.jar /usr/local/lib/dogmates.jar
+COPY --from=build /home/app/target/pawmates-0.0.1-SNAPSHOT.jar /usr/local/lib/pawmates.jar
 EXPOSE 8090
-ENTRYPOINT ["java","-jar","/usr/local/lib/dogmates.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/pawmates.jar"]
