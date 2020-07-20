@@ -19,15 +19,15 @@ import java.util.Collections;
 @RestController
 @Slf4j
 @SpringBootApplication
-public class DogmatesApplication {
+public class PawMatesApplication {
 
 	@RequestMapping("/")
 	public String home() {
-		return "Hello World";
+		return "Hello Docker";
 	}
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(DogmatesApplication.class);
+		SpringApplication app = new SpringApplication(PawMatesApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		val protocol = "http";
 
