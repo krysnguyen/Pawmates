@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
+import Secure from '../views/Secure.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,17 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/',
+    redirect: {
+        name: "login"
+    }
+  },
+  {
+    path: "/secure",
+    name: "secure",
+    component: Secure
   }
 ]
 

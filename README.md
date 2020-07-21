@@ -1,6 +1,6 @@
 # PawMates Application
 
-## For development setup: 
+## For development setup:
 
 1. Clone project: `git clone https://csil-git1.cs.surrey.sfu.ca/cmalla/dogmates.git`
 
@@ -16,7 +16,7 @@
 
 1. Have docker installed
 
-1. Keep port `8080`, `8090` and `5432` available 
+1. Keep port `8080`, `8090` and `5432` available
 
 1. Project uses `Java 8` (subject to change)
 
@@ -26,8 +26,15 @@
 1. Home page for client is default starter Vue app
 1. Home page for server displays `Hello World`
 
-## TODO: 
+## TODO:
 
 1. Set-up `AWS Cognito` or `Google Firebase` for identity management (sign-up/logging in/out users)
 
 1. Clean up default files from Vue project and set up file structure
+
+
+
+## Vue.JS Log In Credentials:
+
+username = admin
+password = admin
