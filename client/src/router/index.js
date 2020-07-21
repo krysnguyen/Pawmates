@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
 import Secure from '../views/Secure.vue'
+import SignUp from '../views/SignUp.vue'
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,11 @@ Vue.use(VueRouter)
     path: "/secure",
     name: "secure",
     component: Secure
+  },
+  {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp
   }
 ]
 
