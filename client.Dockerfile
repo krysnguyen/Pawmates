@@ -15,6 +15,9 @@ COPY client/package.json /app/package.json
 RUN npm install
 RUN npm install @vue/cli@3.7.0 -g
 
+#install firebase
+RUN npm install --save firebase
+
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY /client .
 

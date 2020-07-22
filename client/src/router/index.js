@@ -33,12 +33,6 @@ Vue.use(VueRouter)
     component: Login
   },
   {
-    path: '/',
-    redirect: {
-        name: "login"
-    }
-  },
-  {
     path: "/secure",
     name: "secure",
     component: Secure

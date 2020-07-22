@@ -1,47 +1,41 @@
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
 <template>
-    <div id="login">
+    <div class="login">
         <h1>Login</h1>
-        <input type="text" name="username" v-model="input.username" placeholder="Username" />
-        <input type="password" name="password" v-model="input.password" placeholder="Password" />
-        <button type="button" v-on:click="login()">Login</button>
+        <input type="text" v-model="email" placeholder="Username"><br>
+        <input type="password" v-model="password" placeholder="Password"><br>
+        <button @click = "login">Connection</button>
+        <p> You don't have an account? You can create one</p>
     </div>
 </template>
 
 <script>
+    import firebase from 'firebase';
+
     export default {
-        name: 'Login',
+        name: 'login',
         data() {
             return {
-                input: {
-                    username: "",
-                    password: ""
-                }
-            }
+                email: '',
+                password: '' 
+            };  
         },
         methods: {
-            login() {
-                if(this.input.username != "" && this.input.password != "") {
-                    if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                        this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
-                    } else {
-                        console.log("The username and / or password is incorrect");
+            login: function() {
+                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+                    function(user){
+                    alert('You are now connected')
+                    },
+                    function(err){
+                        alert('oops' + err.message)
                     }
-                } else {
-                    console.log("A username and password must be present");
-                }
+                );
             }
         }
     }
 </script>
 
 <style scoped>
-    #login {
-        width: 500px;
-        border: 1px solid #CCCCCC;
-        background-color: #FFFFFF;
-        margin: auto;
-        margin-top: 200px;
-        padding: 20px;
-    }
-</style>
+
+</style>    
+
