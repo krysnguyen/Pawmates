@@ -36,5 +36,7 @@
 
 ## Vue.JS Log In Credentials:
 
-username = admin
-password = admin
+email = hello@world.com
+password = password
+
+Login screen and Sign Up screen redirects the user with authentication to a secured page.

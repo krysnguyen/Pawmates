@@ -6,14 +6,24 @@
         <p>
             Congrats!! You have successfully logged in
         </p>
+        <button @click="logout">Logout</button>
     </div>
 </template>
 
 <script>
+    import firebase from 'firebase';
+
     export default {
         name: 'Secure',
         data() {
             return {};
+        },
+        methods: {
+            logout: function() {
+                firebase.auth().signOut().then(() => {
+                    this.$router.replace('login')
+                })
+            }
         }
     }
 </script>

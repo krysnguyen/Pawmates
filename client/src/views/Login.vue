@@ -22,12 +22,12 @@
         },
         methods: {
             login: function() {
-                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                    function(user){
-                        alert('You are now connected')
+                firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
+                    (user) => {
+                        this.$router.replace('secure')
                     },
-                    function(err){
-                        alert('oops' + err.message)
+                    (err) => {
+                        alert('Login not successful. ' + err.message)
                     }
                 );
             }

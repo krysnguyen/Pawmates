@@ -22,11 +22,11 @@
         methods: {
             SignUp: function() {
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                    function(user){
-                        alert('successfully created account')
+                    (user) => {
+                        this.$router.replace('secure')
                     },
                     function(err){
-                        alert('oops' + err.message)
+                        alert('Sign up not successful' + err.message)
                     }
                 );
         }             

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import firebase from 'firebase'
+
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
@@ -47,7 +49,7 @@ Vue.use(VueRouter)
   },
   {
 	path: '/secure',
-	name: 'secure',
+	name: 'Secure',
     component: Secure,
     meta:{
 		requiresAuth: true
@@ -60,5 +62,14 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to,from,next) => {
+	const currentUser = firebase.auth().currentUser;
+	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+	if (requiresAuth && !currentUser) next('login');
+	else if (!requiresAuth && currentUser) next('secure');
+	else next();
+});
 
 export default router
