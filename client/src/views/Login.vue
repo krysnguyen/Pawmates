@@ -24,7 +24,7 @@
             login: function() {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     function(user){
-                    alert('You are now connected')
+                        alert('You are now connected')
                     },
                     function(err){
                         alert('oops' + err.message)

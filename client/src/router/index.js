@@ -28,19 +28,30 @@ Vue.use(VueRouter)
     component: Profile
   },
   {
+    path: '*',
+    redirect: '/login'
+  },
+  {
+    path: '/',
+    redirect: '/login'
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
   },
   {
-    path: "/secure",
-    name: "secure",
-    component: Secure
-  },
-  {
     path: '/sign-up',
     name: 'SignUp',
     component: SignUp
+  },
+  {
+	path: '/secure',
+	name: 'secure',
+    component: Secure,
+    meta:{
+		requiresAuth: true
+    }
   }
 ]
 
