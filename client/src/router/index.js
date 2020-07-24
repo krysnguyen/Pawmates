@@ -27,7 +27,10 @@ Vue.use(VueRouter)
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '*',
@@ -48,11 +51,11 @@ Vue.use(VueRouter)
     component: SignUp
   },
   {
-	path: '/secure',
-	name: 'Secure',
+    path: '/secure',
+    name: 'Secure',
     component: Secure,
-    meta:{
-		requiresAuth: true
+    meta: {
+      requiresAuth: true
     }
   }
 ]
