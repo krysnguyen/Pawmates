@@ -40,3 +40,8 @@ email = hello@world.com
 password = password
 
 Login screen and Sign Up screen redirects the user with authentication to a secured page.
+
+## Project Mockups:
+
+This is the link to our project mockups and ideas.
+https://xd.adobe.com/view/a80ad18b-0783-464b-9eae-38fa800c634b-fd59/
