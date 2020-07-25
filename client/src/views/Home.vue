@@ -1,18 +1,158 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header class="masthead mb-3">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Pawmates</h1>
+              <span class="subheading">Where your best friend can make you another best friend.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+<!--
+    <b-container fluid>
+      <b-row align-v="start">
+          <b-img src="../assets/dogs-home.jpg" fluid></b-img>
+      </b-row>
+    </b-container>
+-->
+    <b-container class="home-cards">
+      <b-row align-h="start">
+        <b-col cols="7">
+          <b-card no-body class="overflow-hidden mb-3" style="max-width: 540px;">
+            <b-row no-gutters>
+              <b-col md="6">
+                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+              </b-col>
+              <b-col md="6">
+                <b-card-body title="Horizontal Card">
+                  <b-card-text>
+                    This is a wider card with supporting text as a natural lead-in to additional content.
+                    This content is a little bit longer.
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row align-h="end">
+        <b-col cols="7">
+          <b-card no-body class="overflow-hidden mb-3" style="max-width: 540px;">
+            <b-row no-gutters>
+              <b-col md="6">
+                <b-card-body title="Horizontal Card">
+                  <b-card-text>
+                    This is a wider card with supporting text as a natural lead-in to additional content.
+                    This content is a little bit longer.
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+              <b-col md="6">
+                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row align-h="start">
+        <b-col cols="7">
+          <b-card no-body class="overflow-hidden mb-3" style="max-width: 540px;">
+            <b-row no-gutters>
+              <b-col md="6">
+                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+              </b-col>
+              <b-col md="6">
+                <b-card-body title="Horizontal Card">
+                  <b-card-text>
+                    This is a wider card with supporting text as a natural lead-in to additional content.
+                    This content is a little bit longer.
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+//import AboutCard from '@/components/AboutCard.vue';
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
+  components: {}
 }
 </script>
+
+<style lang="scss" scoped>
+
+/*  the font used by Pawmates title text:
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+  
+  header.masthead {
+/*    margin-bottom: 50px;*/
+    background: no-repeat center center;
+    background-color: #868e96;
+    background-attachment: scroll;
+    position: relative;
+    background-size: cover;
+    background-image: url('../assets/dogs-home.jpg')
+  }
+  
+  header.masthead .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #212529;
+    opacity: 0.5;
+  }
+  
+  header.masthead .site-heading {
+    padding: 200px 0 150px;
+    color: white;
+  }
+
+  @media only screen and (min-width: 768px) {
+    header.masthead .site-heading {
+      padding: 200px 0;
+    }
+  }
+
+  header.masthead .site-heading {
+    text-align: center;
+  }
+
+  header.masthead .site-heading h1 {
+    font-weight: 800;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 50px;
+    margin-top: 0;
+  }
+
+  header.masthead .site-heading .subheading {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.1;
+    display: block;
+    margin: 10px 0 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  @media only screen and (min-width: 768px) {
+    header.masthead .site-heading h1 {
+      font-size: 80px;
+    }
+  }
+  
+
+  
+</style>

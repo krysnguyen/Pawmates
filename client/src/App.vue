@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <top-header></top-header>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/profile">Profile</router-link> |
@@ -13,12 +14,16 @@
 </template>
 
 <script>
-    export default {
-        name: 'App'     
-    }
+import TopHeader from '@/components/TopHeader.vue'
+export default {
+  name: 'App',
+  components: {
+    'top-header': TopHeader
+  }
+}
 </script>
 
-<style>
+<style lang="scss">
 
 body {
     background-color: #F0F0F0;
@@ -30,12 +35,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 1024px;
-  margin: auto;
+/*  width: 1024px;*/
+/*  margin: auto;*/
 }
 
 #nav {
-  padding: 30px;
+/*  padding: 30px;*/
 }
 
 h1 {
