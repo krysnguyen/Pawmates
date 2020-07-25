@@ -9,6 +9,7 @@
               <h1>Pawmates</h1>
               <span class="subheading">Where your best friend can make you another best friend.</span>
             </div>
+            <span class="scroll-down">Scroll down to see how things works around here.</span>
           </div>
         </div>
       </div>
@@ -22,8 +23,8 @@
 -->
     <b-container class="home-cards">
       <b-row align-h="start">
-        <b-col cols="7">
-          <b-card no-body class="overflow-hidden mb-3" style="max-width: 540px;">
+        <b-col sm="12" md="8">
+          <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right">
             <b-row no-gutters>
               <b-col md="6">
                 <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
@@ -41,8 +42,8 @@
         </b-col>
       </b-row>
       <b-row align-h="end">
-        <b-col cols="7">
-          <b-card no-body class="overflow-hidden mb-3" style="max-width: 540px;">
+        <b-col sm="12" md="8">
+          <b-card no-body class="overflow-hidden mb-3 float-right" style="max-width: 565px;" data-aos="fade-left">
             <b-row no-gutters>
               <b-col md="6">
                 <b-card-body title="Horizontal Card">
@@ -60,8 +61,8 @@
         </b-col>
       </b-row>
       <b-row align-h="start">
-        <b-col cols="7">
-          <b-card no-body class="overflow-hidden mb-3" style="max-width: 540px;">
+        <b-col sm="12" md="8">
+          <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right">
             <b-row no-gutters>
               <b-col md="6">
                 <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
@@ -120,6 +121,10 @@ export default {
     padding: 200px 0 150px;
     color: white;
   }
+  
+  .scroll-down {
+    color: white;
+  }
 
   @media only screen and (min-width: 768px) {
     header.masthead .site-heading {
@@ -138,7 +143,7 @@ export default {
     margin-top: 0;
   }
 
-  header.masthead .site-heading .subheading {
+  header.masthead .site-heading .subheading, .scroll-down {
     font-size: 24px;
     font-weight: 300;
     line-height: 1.1;
