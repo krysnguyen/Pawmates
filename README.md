@@ -23,7 +23,7 @@
 ## What state is project at?
 
 1. A dockerized Spring Boot backend application and Vue frontend application with a database connection to a PostgreSQL docker container
-1. Home page for client is default starter Vue app
+1. Home page for client has several links that direct to different pages (Eg: authentication, signup, profile) 
 1. Home page for server displays `Hello World`
 
 ## TODO:
