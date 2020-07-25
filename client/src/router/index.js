@@ -27,10 +27,7 @@ Vue.use(VueRouter)
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile,
-    meta: {
-      requiresAuth: true
-    }
+    component: Profile
   },
   {
     path: '*',
