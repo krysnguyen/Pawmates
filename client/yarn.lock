@@ -1619,6 +1619,107 @@
   resolved "https://registry.yarnpkg.com/@soda/get-current-script/-/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha512-T7VNNlYVM1SgQ+VsMYhnDkcGmWhQdL0bDyGm5TlQ3GBXnJscEClUUOKduWTmm2zCnvNLC1hc3JpuXjs/nFOc5w==
 
+"@syncfusion/ej2-base@~18.2.44":
+  version "18.2.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-18.2.44.tgz#27f03ee405b7774e35dc727ead71d2204ed36e94"
+  integrity sha512-q1aHQr9DXpCQh1iqWsYcIg2eGzsQZXBCu6XvFzMIXp6aWFu6fmW/2WYceg+F5B3cVfo1xCivthdrhlHzxiicGg==
+  dependencies:
+    "@syncfusion/ej2-icons" "~18.2.44"
+
+"@syncfusion/ej2-buttons@~18.2.44":
+  version "18.2.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-buttons/-/ej2-buttons-18.2.44.tgz#eceb0cb45be05a3db7665ace35104c698b9a46c6"
+  integrity sha512-mKhZ8DJEiRHyGdfQgti72Ul0UmTxVgPYzBnpB80/iif67tWsxLnqVJ53CWgxkXJq0fm6fAneIFSXztMffN2fmw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+
+"@syncfusion/ej2-data@~18.2.44":
+  version "18.2.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-data/-/ej2-data-18.2.44.tgz#76f4ea1c1cb25df7413750b1f8bbf509756c7ad8"
+  integrity sha512-iwaEJsLErI+kUB7w79ENoX2dJWxqj7BQaqWZALrIFBoIJ0dEsq3AjEY2F1aJBCVJqCsDIaM+sfRBZbPLJPu3Mw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+
+"@syncfusion/ej2-dropdowns@18.2.46":
+  version "18.2.46"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-dropdowns/-/ej2-dropdowns-18.2.46.tgz#fa7b5e904a5030d37a9b45782bfc21838f143cd5"
+  integrity sha512-/u56LzLPTgcPt1GwKjkqo0E46++Ditj2jAB/fHOF9OV3HDrVtYWs/cga6udYq7OMM5EogNy3uADoV+FE/gH9gw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-data" "~18.2.44"
+    "@syncfusion/ej2-inputs" "~18.2.45"
+    "@syncfusion/ej2-lists" "~18.2.46"
+    "@syncfusion/ej2-navigations" "~18.2.46"
+    "@syncfusion/ej2-popups" "~18.2.46"
+
+"@syncfusion/ej2-icons@~18.2.44":
+  version "18.2.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-18.2.44.tgz#edea5d94567485117dbf9cbe13417ec43d955d08"
+  integrity sha512-4jOb0RtpTU+s+IXbaQxxcWhFpXXn9aYyakGmrF7A6smbpndM7do28mDybJMFIns/IoRsQokOnrDhqqAIaoDRVQ==
+
+"@syncfusion/ej2-inputs@~18.2.45":
+  version "18.2.45"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-inputs/-/ej2-inputs-18.2.45.tgz#6aaec5318a3b7774d924ae916ec85502d0cf5b18"
+  integrity sha512-1lyunOQFT77PXB2gZuJjmgRfyQqFcsTBmj9fGA5PIm5dwipsq4fy6IKOhTMcGCO64q7NZieNXcWOWdSws0lqAQ==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-buttons" "~18.2.44"
+    "@syncfusion/ej2-popups" "~18.2.44"
+    "@syncfusion/ej2-splitbuttons" "~18.2.44"
+
+"@syncfusion/ej2-lists@~18.2.46":
+  version "18.2.46"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-lists/-/ej2-lists-18.2.46.tgz#c43c32da7b4a8e7a519e5d12113bc9ad74b3e3e0"
+  integrity sha512-dcS2zRavD7w40nIPrBuew4veBFVstiQmOT1ZxlSIm6GMGKPtf38mYRzhiHi8G/z0BQ7loc/6wXziccvhWp8moQ==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-buttons" "~18.2.44"
+    "@syncfusion/ej2-data" "~18.2.44"
+
+"@syncfusion/ej2-navigations@~18.2.46":
+  version "18.2.46"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-navigations/-/ej2-navigations-18.2.46.tgz#7ea432c9be3a7b3a84eb35abcef2efd1dbc41588"
+  integrity sha512-Avs2AsbKVf3H1r7gWcRmalLjat6URGFbuSpV4A/7E69vTnKKDBFI6QEXBCGfljmEBIIERN9k2OJKUS9sTy/evg==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-buttons" "~18.2.44"
+    "@syncfusion/ej2-data" "~18.2.44"
+    "@syncfusion/ej2-inputs" "~18.2.45"
+    "@syncfusion/ej2-lists" "~18.2.46"
+    "@syncfusion/ej2-popups" "~18.2.46"
+
+"@syncfusion/ej2-popups@~18.2.44", "@syncfusion/ej2-popups@~18.2.46":
+  version "18.2.46"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-popups/-/ej2-popups-18.2.46.tgz#7bfd0d64ccd0fa8c7f6ca3ac77ae827b5d8841a3"
+  integrity sha512-bDYUcapsvUCbnzRSyAdphp1WYSbkyDKhBSbArMpofIPag5Jq0vtj0YjBWGAQCf/o247tohpnHy1G8DvfK2SlQA==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-buttons" "~18.2.44"
+
+"@syncfusion/ej2-splitbuttons@~18.2.44":
+  version "18.2.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-18.2.44.tgz#329132e2bb539a7aaa3fea14bf56e39bb0882227"
+  integrity sha512-zR/q7OTow5CtV3ZJ2mTHdOhkYr6TeWTg3I4I47lee+6H9EFrryURmi3iyhVHaLQEG/RHW7o53kr9d7qqQwyFyQ==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-popups" "~18.2.44"
+
+"@syncfusion/ej2-vue-base@~18.2.45":
+  version "18.2.45"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-vue-base/-/ej2-vue-base-18.2.45.tgz#184b71be9079fadeda821b7e274f9480a0d02763"
+  integrity sha512-1rMMvezirijwKEU9mal9TaiYELhtS8vgAoXc/ZeASSRzcJAdjTWcnncn5Gfmp2IKvLOLE8BZ6/Xce0z0Dm7pYw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+
+"@syncfusion/ej2-vue-dropdowns@^18.2.46":
+  version "18.2.46"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-vue-dropdowns/-/ej2-vue-dropdowns-18.2.46.tgz#33ce8af872baacda2b8e481217043a5c06e3ab8e"
+  integrity sha512-4YEAYa5oIqmJIivRMY4r/wQ4aYrbbGIeMfA/ijvY8EY8vAW2Qs/S57QQOg6LqBj/C3HNG5Gd+aopXQuUXbSrxw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.2.44"
+    "@syncfusion/ej2-dropdowns" "18.2.46"
+    "@syncfusion/ej2-vue-base" "~18.2.45"
+
 "@types/accepts@*", "@types/accepts@^1.3.5":
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@types/accepts/-/accepts-1.3.5.tgz#c34bec115cfc746e04fe5a059df4ce7e7b391575"
@@ -11875,6 +11976,11 @@ vue-cli-plugin-apollo@^0.21.3:
     nodemon "^1.19.4"
     subscriptions-transport-ws "^0.9.16"
     ts-node "^8.4.1"
+
+vue-dropdowns@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vue-dropdowns/-/vue-dropdowns-1.1.1.tgz#378cdd1f708430c946480bfce730117d3abc424a"
+  integrity sha512-QrdW52Kf/i9FLNk0b7Kussw3BO4anMkLEdzwaXgNWssegFvHKGyn/gYV0srHsjE/OxZ4xGa1lqU8bYysww4HQQ==
 
 vue-eslint-parser@^7.0.0:
   version "7.1.0"
