@@ -23,14 +23,13 @@
 ## What state is project at?
 
 1. A dockerized Spring Boot backend application and Vue frontend application with a database connection to a PostgreSQL docker container
-1. Home page for client has several links that direct to different pages (Eg: authentication, signup, profile) 
+1. Home page for client has several links that direct to different pages (Eg: authentication, signup, profile)
+1. Firebase is already set up for authentication and storing data
 1. Home page for server displays `Hello World`
 
 ## TODO:
 
-1. Set-up `AWS Cognito` or `Google Firebase` for identity management (sign-up/logging in/out users)
 
-1. Clean up default files from Vue project and set up file structure
 
 
 
