@@ -1,17 +1,5 @@
 version: '3.6'
 services:
-  # database
-  db:
-    image: postgres
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=pawmates
-    networks:
-      - serverdb
-
   # backend server
   server:
     build:
@@ -22,10 +10,7 @@ services:
     image: pawmates-server
     ports:
       - 8090:8090
-    depends_on:
-      - db
     networks:
-      - serverdb
       - serverclient
 
   # frontend client
@@ -43,7 +28,5 @@ services:
       - serverclient
 
 networks:
-  serverdb:
-    driver: bridge
   serverclient:
     driver: bridge
