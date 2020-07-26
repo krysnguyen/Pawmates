@@ -53,3 +53,6 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Configuration files
+**/service_acc_firebase.json
