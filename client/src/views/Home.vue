@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <header class="masthead mb-3">
+<!--     https://unsplash.com/photos/T-0EW-SEbsE-->
+     
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -14,26 +16,20 @@
         </div>
       </div>
     </header>
-<!--
-    <b-container fluid>
-      <b-row align-v="start">
-          <b-img src="../assets/dogs-home.jpg" fluid></b-img>
-      </b-row>
-    </b-container>
--->
+
     <b-container class="home-cards">
       <b-row align-h="start">
         <b-col sm="12" md="8">
           <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right">
             <b-row no-gutters>
               <b-col md="6">
-                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+                <b-card-img src="../assets/dog1.jpg" alt="Image" class="rounded-0"></b-card-img>
+<!--                https://unsplash.com/photos/NqNa_ZlYTHM-->
               </b-col>
               <b-col md="6">
-                <b-card-body title="Horizontal Card">
+                <b-card-body title="Upload and share photos of your dog">
                   <b-card-text>
-                    This is a wider card with supporting text as a natural lead-in to additional content.
-                    This content is a little bit longer.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima at quae rerum aspernatur fugit, laboriosam.
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -46,15 +42,15 @@
           <b-card no-body class="overflow-hidden mb-3 float-right" style="max-width: 565px;" data-aos="fade-left">
             <b-row no-gutters>
               <b-col md="6">
-                <b-card-body title="Horizontal Card">
+                <b-card-body title="Find other dog owners who want to hang out">
                   <b-card-text>
-                    This is a wider card with supporting text as a natural lead-in to additional content.
-                    This content is a little bit longer.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto quibusdam culpa dolorem molestias laudantium modi.
                   </b-card-text>
                 </b-card-body>
               </b-col>
               <b-col md="6">
-                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+                <b-card-img src="../assets/dog2.jpg" alt="Image" class="rounded-0"></b-card-img>
+<!--                https://unsplash.com/photos/qmT4p4gnLmg-->
               </b-col>
             </b-row>
           </b-card>
@@ -65,13 +61,13 @@
           <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right">
             <b-row no-gutters>
               <b-col md="6">
-                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+                <b-card-img src="../assets/dog3.jpg" alt="Image" class="rounded-0"></b-card-img>
+<!--                https://unsplash.com/photos/1tlUy6TBHW0-->
               </b-col>
               <b-col md="6">
-                <b-card-body title="Horizontal Card">
+                <b-card-body title="Go on walks together!">
                   <b-card-text>
-                    This is a wider card with supporting text as a natural lead-in to additional content.
-                    This content is a little bit longer.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quaerat ea laborum et incidunt ducimus.
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -105,6 +101,7 @@ export default {
     position: relative;
     background-size: cover;
     background-image: url('../assets/dogs-home.jpg')
+/*      https://unsplash.com/photos/T-0EW-SEbsE*/
   }
   
   header.masthead .overlay {
@@ -121,14 +118,10 @@ export default {
     padding: 200px 0 150px;
     color: white;
   }
-  
-  .scroll-down {
-    color: white;
-  }
 
   @media only screen and (min-width: 768px) {
     header.masthead .site-heading {
-      padding: 200px 0;
+      padding: 200px 0 175px;
     }
   }
 
@@ -150,6 +143,12 @@ export default {
     display: block;
     margin: 10px 0 0;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  .scroll-down {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: white;
   }
 
   @media only screen and (min-width: 768px) {
