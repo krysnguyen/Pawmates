@@ -1,5 +1,10 @@
+import '@babel/polyfill'
+import 'mutationobserver-shim'
 import Vue from 'vue'
+import './plugins/bootstrap-vue'
 import firebase from 'firebase'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 import App from './App.vue'
 import router from './router'
@@ -28,6 +33,9 @@ export default db;
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {  
     new Vue({
+      created () {
+        AOS.init()
+      },
       router,
       template: '<App/>',
       components: { App }
