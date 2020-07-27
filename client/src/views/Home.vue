@@ -11,7 +11,7 @@
               <h1>Pawmates</h1>
               <span class="subheading">Where your best friend can make you another best friend.</span>
             </div>
-            <span class="scroll-down">Scroll down to see how things works around here.</span>
+            <span class="scroll-down">Scroll down to see what you can do with Pawmates.</span>
           </div>
         </div>
       </div>
@@ -26,10 +26,10 @@
                 <b-card-img src="../assets/dog1.jpg" alt="Image" class="rounded-0"></b-card-img>
 <!--                https://unsplash.com/photos/NqNa_ZlYTHM-->
               </b-col>
-              <b-col md="6">
+              <b-col align-self="center" md="6">
                 <b-card-body title="Upload and share photos of your dog">
                   <b-card-text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima at quae rerum aspernatur fugit, laboriosam.
+                    Lorem ipsum dolor sit amet, consectetur.
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -39,12 +39,12 @@
       </b-row>
       <b-row align-h="end">
         <b-col sm="12" md="8">
-          <b-card no-body class="overflow-hidden mb-3 float-right" style="max-width: 565px;" data-aos="fade-left">
+          <b-card no-body class="overflow-hidden mb-3 float-right" style="max-width: 565px;" data-aos="fade-left" data-aos-offset="155">
             <b-row no-gutters>
-              <b-col md="6">
+              <b-col align-self="center" md="6">
                 <b-card-body title="Find other dog owners who want to hang out">
                   <b-card-text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto quibusdam culpa dolorem molestias laudantium modi.
+                    Lorem ipsum dolor sit amet.
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -58,16 +58,16 @@
       </b-row>
       <b-row align-h="start">
         <b-col sm="12" md="8">
-          <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right">
+          <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right" data-aos-offset="170">
             <b-row no-gutters>
               <b-col md="6">
                 <b-card-img src="../assets/dog3.jpg" alt="Image" class="rounded-0"></b-card-img>
 <!--                https://unsplash.com/photos/1tlUy6TBHW0-->
               </b-col>
-              <b-col md="6">
+              <b-col align-self="center" md="6">
                 <b-card-body title="Go on walks together!">
                   <b-card-text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quaerat ea laborum et incidunt ducimus.
+                    Lorem ipsum dolor sit amet, consectetur.
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -149,6 +149,10 @@ export default {
     margin-bottom: 15px;
     font-size: 22px;
     color: white;
+  }
+  
+  .home-cards .card-text {
+    padding-top: 1em;
   }
 
   @media only screen and (min-width: 768px) {
