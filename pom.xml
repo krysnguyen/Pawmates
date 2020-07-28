@@ -20,6 +20,7 @@
 		<mapstruct.version>1.3.1.Final</mapstruct.version>
 		<lombok.version>1.18.12</lombok.version>
 		<firebase.admin.version>6.15.0</firebase.admin.version>
+		<google.services.version>4.2.0</google.services.version>
 		<javax.validation.version>2.0.1.Final</javax.validation.version>
 	</properties>
 
