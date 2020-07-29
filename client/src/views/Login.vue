@@ -4,7 +4,7 @@
         <h1>Login</h1>
         <input type="text" v-model="email" placeholder="Email"><br>
         <input type="password" v-model="password" placeholder="Password"><br>
-        <button @click = "login">Connection</button>
+        <button @click = "login">Login</button>
         <p> You don't have an account? You can create one</p>
     </div>
 </template>
