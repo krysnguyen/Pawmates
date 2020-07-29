@@ -1,16 +1,16 @@
 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
 <template>
-    <div class="sign-up">
-        <p>create new account</p>
-        <input type="text" v-model="email" placeholder="email"><br>
-        <input type="password" v-model="password" placeholder="password"><br>
+    <div class="SignUp">
+        <h1>Sign-Up</h1>
+        <input type="text" v-model="email" placeholder="Email"><br>
+        <input type="password" v-model="password" placeholder="Password"><br>
         <button @click="SignUp">Sign Up</button>
     </div>
 </template>
 
 <script>
     import firebase from 'firebase';
-    
+
     export default {
         name: 'SignUp',
         data() {
@@ -29,7 +29,7 @@
                         alert('Sign up not successful' + err.message)
                     }
                 );
-        }             
+        }
     }
 }
 </script>
