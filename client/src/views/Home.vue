@@ -95,13 +95,10 @@ export default {
   
   header.masthead {
 /*    margin-bottom: 50px;*/
-    background: no-repeat center center;
-    background-color: #868e96;
-    background-attachment: scroll;
     position: relative;
     background-size: cover;
-    background-image: url('../assets/dogs-home.jpg')
-/*      https://unsplash.com/photos/T-0EW-SEbsE*/
+    background: #868e96 url('../assets/dogs-home.jpg') no-repeat scroll center center;
+    /*      https://unsplash.com/photos/T-0EW-SEbsE*/
   }
   
   header.masthead .overlay {
