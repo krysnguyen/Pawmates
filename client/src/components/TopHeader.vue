@@ -43,11 +43,6 @@
     </div>
 </template>
 
-<script>
-    export default {}
-</script>
-
-
 <style lang="scss" scoped>
     #nav a.router-link-exact-active {
         color: white;
