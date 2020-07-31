@@ -11976,6 +11976,13 @@ vue-cli-plugin-bootstrap-vue@~0.6.0:
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-bootstrap-vue/-/vue-cli-plugin-bootstrap-vue-0.6.0.tgz#cc500263b2ffd2c3d7ca1c3e5436860b0b20bb74"
   integrity sha512-sgW3hPlD26AHGJSCoPmEeF1l3KeB/r18nfOAq9RkhIZx5hEwV4jZuiBCxdiyOsha0L5PiegKoofA4gn4c0eLcQ==
 
+vue-collage@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/vue-collage/-/vue-collage-0.1.6.tgz#74737083099ce7ad56c781f919bfdd43dc102b5c"
+  integrity sha512-L1vK0O/lEmIbfkSfjjK53Pa7hWuQpg4hKgDIA2EUFrry63CSSLsdlYf98Fvf6mou8np4XrBCXm8QsnkF56agYA==
+  dependencies:
+    vue "^2.5.17"
+
 vue-dropdowns@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vue-dropdowns/-/vue-dropdowns-1.1.1.tgz#378cdd1f708430c946480bfce730117d3abc424a"
@@ -12058,7 +12065,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@2.6.11, vue@^2.6.11:
+vue@2.6.11, vue@^2.5.17, vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==

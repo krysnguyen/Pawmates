@@ -32,8 +32,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-// eslint-disable-next-line no-unused-vars
-var storage = firebase.storage();
+
 export default db;
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {  
