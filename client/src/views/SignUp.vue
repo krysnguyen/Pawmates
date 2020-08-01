@@ -24,7 +24,7 @@
             SignUp: function() {
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                     (user) => {
-                        this.$router.replace('secure')
+                        this.$router.replace('match')
                     },
                     function(err){
                         alert('Sign up not successful' + err.message)

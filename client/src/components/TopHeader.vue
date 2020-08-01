@@ -13,9 +13,7 @@
                     <b-nav-item to="/about">
                         <router-link to="/about">About</router-link>
                     </b-nav-item>
-                    <b-nav-item to="/profile">
-                        <router-link to="/profile">Profile</router-link>
-                    </b-nav-item>
+                    
                     <b-nav-item to="/match">
                         <router-link to="/match">Match</router-link>
                     </b-nav-item>
@@ -35,13 +33,32 @@
                             <em>User</em>
                         </template>
                         <b-dropdown-item to="/profile">Profile</b-dropdown-item>
-                        <b-dropdown-item href="#">Sign Out (doesn't work)</b-dropdown-item>
+                        <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
     </div>
 </template>
+
+<script>
+  import firebase from 'firebase/app';
+  import 'firebase/auth';
+
+  export default {
+      name: 'Secure',
+      data() {
+          return {};
+      },
+      methods: {
+          logout: function() {
+              firebase.auth().signOut().then(() => {
+                  this.$router.replace('login')
+              })
+          }
+      }
+  }
+</script>
 
 <style lang="scss" scoped>
     #nav a.router-link-exact-active {

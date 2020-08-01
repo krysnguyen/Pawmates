@@ -30,12 +30,18 @@ const routes = [
     {
         path: '/profile',
         name: 'Profile',
-        component: Profile
+        component: Profile,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/match',
         name: 'Match',
-        component: Match
+        component: Match,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '*',
@@ -54,6 +60,7 @@ const routes = [
         path: '/sign-up',
         name: 'SignUp',
         component: SignUp
+
     },
     {
         path: '/secure',
@@ -76,7 +83,7 @@ router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
     if (requiresAuth && !currentUser) next('login');
-    else if (!requiresAuth && currentUser) next('secure');
+    else if (!requiresAuth && currentUser) next('match');
     else next();
 });
 
