@@ -5,8 +5,8 @@
                 <Sidebar/>
             </b-col>
             <b-col cols="6" md="4">
-                <b-button>Like</b-button>
-                <b-button>Dislike</b-button>
+                <b-button v-on:click="like()">Like</b-button>
+                <b-button v-on:click="dislike()">Dislike</b-button>
             </b-col>
             <b-col cols="10" md="5">
                 <MainArea/>
@@ -18,15 +18,49 @@
 <script>
     import Sidebar from "../components/Sidebar";
     import MainArea from "../components/MainArea";
+    import axios from 'axios';
 
     export default {
-        components: {MainArea, Sidebar}
+        name: 'Match',
+        components: {MainArea, Sidebar},
+        data() {
+            return {
+                potential_matches: [],
+                user_id: ''
+            };
+        },
+        created() {
+            serverGetPotentialMatches();
+        },
+        methods: {
+            like: function () {
+                serverLikeUser(this.user_id);
+            },
+
+            dislike: function () {
+                serverDislikeUser(this.user_id)
+            }
+        }
+    }
+
+    function serverGetPotentialMatches() {
+        axios.get('http://localhost:8090/api/v1/users/potential')
+            .then(response => this.potential_matches = response)
+            .catch(err => console.log(err))
+    }
+
+    function serverLikeUser(likedUserId) {
+        axios.post('http://localhost:8090/api/v1/users/{userId}/likes', {
+            likedUserId: likedUserId
+        })
+    }
+
+    function serverDislikeUser(dislikedUserId) {
+        axios.post("http://localhost:8090/api/v1/users/{userId}/dislikes", {
+            dislikedUserId: dislikedUserId
+        })
     }
 </script>
 
 <style>
-    .wrapper {
-        display: grid;
-        grid-template-columns: 200px 200px;
-    }
 </style>

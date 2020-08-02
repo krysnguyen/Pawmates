@@ -10,11 +10,7 @@
                     <b-nav-item to="/">
                         <router-link to="/">Home</router-link>
                     </b-nav-item>
-                    <b-nav-item to="/about">
-                        <router-link to="/about">About</router-link>
-                    </b-nav-item>
-                    
-                    <b-nav-item to="/match">
+                    <b-nav-item v-if="this.user !== null" to="/match">
                         <router-link to="/match">Match</router-link>
                     </b-nav-item>
                     <b-nav-item to="/login">
@@ -42,22 +38,29 @@
 </template>
 
 <script>
-  import firebase from 'firebase/app';
-  import 'firebase/auth';
+    import firebase from 'firebase/app';
+    import 'firebase/auth';
 
-  export default {
-      name: 'Secure',
-      data() {
-          return {};
-      },
-      methods: {
-          logout: function() {
-              firebase.auth().signOut().then(() => {
-                  this.$router.replace('login')
-              })
-          }
-      }
-  }
+    export default {
+        name: 'Secure',
+        data() {
+            return {
+                user: null
+            };
+        },
+        methods: {
+            logout: function () {
+                firebase.auth().signOut().then(() => {
+                    this.$router.replace('login')
+                })
+            }
+        },
+        created: function () {
+            firebase.auth().onAuthStateChanged(user => {
+                this.user = user ? user : null;
+            });
+        }
+    }
 </script>
 
 <style lang="scss" scoped>

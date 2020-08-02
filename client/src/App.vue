@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import TopHeader from '@/components/TopHeader.vue'
+    import TopHeader from './components/TopHeader.vue'
 
     export default {
         name: 'App',
