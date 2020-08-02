@@ -23,7 +23,7 @@
 
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
-                    <b-nav-item-dropdown right>
+                    <b-nav-item-dropdown v-if="this.user !== null" right>
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
                             <em>User</em>
