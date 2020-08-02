@@ -1,12 +1,13 @@
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
 <template>
     <div class="login">
         <h1>Login</h1>
-        <input type="text" v-model="email" placeholder="Email"><br>
-        <input type="password" v-model="password" placeholder="Password"><br>
-        <button @click = "login">Login</button>
+            <input type="text" v-model="email" placeholder="Email"><br>
+            <input type="password" v-model="password" placeholder="Password"><br>
+            <b-button @click="login">Login</b-button>
         <p><br> You don't have an account? You can
-            <b-link to="/sign-up">create</b-link> one</p>
+            <b-link to="/sign-up">create</b-link>
+            one
+        </p>
     </div>
 </template>
 
@@ -23,15 +24,11 @@
             };
         },
         methods: {
-            login: function() {
-                firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
-                    () => {
-                        this.$router.replace('profile')
-                    },
-                    (err) => {
-                        alert('Login not successful. ' + err.message)
-                    }
-                );
+            login: function () {
+                firebase.auth()
+                    .signInWithEmailAndPassword(this.email, this.password)
+                    .then(() => this.$router.replace('match'))
+                    .catch(err => alert('Login not successful. ' + err.message));
             }
         }
     }
@@ -41,16 +38,19 @@
     .login {
         margin-top: 40px;
     }
+
     input {
         margin: 10px 0;
         width: 20%;
         padding: 15px;
     }
+
     button {
         margin-top: 10px;
         width: 10%;
         cursor: pointer;
     }
+
     span {
         display: block;
         margin-top: 20px;
