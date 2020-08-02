@@ -5,7 +5,8 @@
         <input type="text" v-model="email" placeholder="Email"><br>
         <input type="password" v-model="password" placeholder="Password"><br>
         <button @click = "login">Login</button>
-        <p><br> You don't have an account? You can create one</p>
+        <p><br> You don't have an account? You can
+            <b-link to="/sign-up">create</b-link> one</p>
     </div>
 </template>
 
@@ -24,8 +25,8 @@
         methods: {
             login: function() {
                 firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
-                    (user) => {
-                        this.$router.replace('match')
+                    () => {
+                        this.$router.replace('profile')
                     },
                     (err) => {
                         alert('Login not successful. ' + err.message)

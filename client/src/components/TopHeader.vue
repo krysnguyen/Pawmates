@@ -13,10 +13,10 @@
                     <b-nav-item v-if="this.user !== null" to="/match">
                         <router-link to="/match">Match</router-link>
                     </b-nav-item>
-                    <b-nav-item to="/login">
+                    <b-nav-item v-if="this.user == null" to="/login">
                         <router-link to="/login">Login</router-link>
                     </b-nav-item>
-                    <b-nav-item to="/sign-up">
+                    <b-nav-item v-if="this.user == null" to="/sign-up">
                         <router-link to="/sign-up">Sign-Up</router-link>
                     </b-nav-item>
                 </b-navbar-nav>

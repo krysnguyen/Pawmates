@@ -5,6 +5,8 @@
         <input type="text" v-model="email" placeholder="Email"><br>
         <input type="password" v-model="password" placeholder="Password"><br>
         <button @click="SignUp">Sign Up</button>
+        <p><br> Already have an account? You can
+            <b-link to="/login">login</b-link> here</p>
     </div>
 </template>
 
