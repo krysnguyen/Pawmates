@@ -19,6 +19,7 @@
     import Sidebar from "../components/Sidebar";
     import MainArea from "../components/MainArea";
     import axios from 'axios';
+    import firebase from "firebase";
 
     export default {
         name: 'Match',
@@ -30,6 +31,9 @@
             };
         },
         created() {
+            firebase.auth().onAuthStateChanged(user => {
+                this.user_id = user ? user.uid : null;
+            });
             serverGetPotentialMatches();
         },
         methods: {
