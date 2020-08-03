@@ -2,12 +2,8 @@ import '@babel/polyfill'
 import 'mutationobserver-shim'
 import Vue from 'vue'
 import './plugins/bootstrap-vue'
-
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import 'firebase/storage'
-
+import './plugins/bootstrap-vue'
+import firebase from 'firebase'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -30,10 +26,11 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const fb = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
-export default db;
+// eslint-disable-next-line no-unused-vars
+var storage = firebase.storage();
+export {fb,db};
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {  
     new Vue({

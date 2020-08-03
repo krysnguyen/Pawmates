@@ -12,7 +12,7 @@
 <script>
     import firebase from 'firebase/app';
     import 'firebase/auth';
-
+    
     export default {
         name: 'login',
         data() {
@@ -25,7 +25,10 @@
             login: function() {
                 firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
                     (user) => {
-                        this.$router.replace('match')
+                        this.$router.replace('match');
+                        // firebase.firestore().collection('users').doc(user.user.uid).set({
+                        //     name
+                        // })
                     },
                     (err) => {
                         alert('Login not successful. ' + err.message)

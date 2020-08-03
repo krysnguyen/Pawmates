@@ -18,9 +18,17 @@
 <script>
     import Sidebar from "../components/Sidebar";
     import MainArea from "../components/MainArea";
+    import firebase from 'firebase/app'
+    import 'firebase/auth'
+    import 'firebase/firestore'
+    import 'firebase/storage'
 
     export default {
-        components: {MainArea, Sidebar}
+        components: {MainArea, Sidebar},
+        created(){
+            var user = firebase.auth().currentUser;
+            this.name = user.uid;
+        }
     }
 </script>
 
