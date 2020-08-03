@@ -1,10 +1,13 @@
 package com.dogmates.dogmates.rest;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
-public class UserModel {
-    private String id;
+@EqualsAndHashCode(callSuper = true)
+public class UserModel extends RepresentationModel<UserModel> {
+    private String userId;
 
     private String firstName;
 

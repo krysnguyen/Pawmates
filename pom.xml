@@ -22,6 +22,7 @@
 		<firebase.admin.version>6.15.0</firebase.admin.version>
 		<google.services.version>4.2.0</google.services.version>
 		<javax.validation.version>2.0.1.Final</javax.validation.version>
+		<hateoas.version>1.0.4.RELEASE</hateoas.version>
 	</properties>
 
 	<dependencies>
@@ -81,7 +82,12 @@
 			<artifactId>validation-api</artifactId>
 			<version>${javax.validation.version}</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>${hateoas.version}</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

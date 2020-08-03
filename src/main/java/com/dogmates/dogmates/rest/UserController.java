@@ -2,15 +2,16 @@ package com.dogmates.dogmates.rest;
 
 import com.dogmates.dogmates.core.user.usecase.create.CreateUserCmd;
 import com.dogmates.dogmates.core.user.usecase.create.CreateUserUseCase;
+import com.dogmates.dogmates.core.user.usecase.read.GetUserUseCase;
+import com.dogmates.dogmates.core.user.usecase.read.GetUsersUseCase;
+import com.dogmates.dogmates.core.user.usecase.update.IdCmd;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static org.springframework.http.HttpStatus.OK;
@@ -22,6 +23,8 @@ public class UserController {
     static final String API_USER_PATH = "/api/v1/users";
 
     private final CreateUserUseCase createUserUseCase;
+    private final GetUsersUseCase getUsersUseCase;
+    private final GetUserUseCase getUserUseCase;
 
     private final UserModelAssembler userModelAssembler;
 
@@ -31,6 +34,26 @@ public class UserController {
         val model = userModelAssembler.toModel(user);
 
         return new ResponseEntity<>(model, OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserModel>> getUsers() throws ExecutionException, InterruptedException {
+        val users = getUsersUseCase.getUsers();
+        val models = userModelAssembler.toModelsWithLinks(users);
+
+        return new ResponseEntity<>(models, OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserModel> getUser(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
+        val user = getUserUseCase.getUser(userId);
+        val model = userModelAssembler.toModelWithLinks(user);
+        return new ResponseEntity<>(model, OK);
+    }
+
+    @PutMapping("/{userId}/likes")
+    public ResponseEntity<UserModel> likeUser(@PathVariable("userId") String userId, @RequestBody @Valid IdCmd cmd) {
+        return null;
     }
 
 }
