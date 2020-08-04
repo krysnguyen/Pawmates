@@ -9,11 +9,11 @@
                 class="mb-2"
         >
             <b-card-title>
-                {{this.potential_matches[0].firstName + ' ' + this.potential_matches[0].lastName}}
+                {{this.potential_match.firstName + ' ' + this.potential_match.lastName}}
             </b-card-title>
 
             <b-card-text>
-                Has {{this.potential_matches[0].numberOfDogs}} dogs and looking for people to walk their dogs with.
+                Has {{this.potential_match.numberOfDogs}} dogs and looking for people to walk their dogs with.
             </b-card-text>
             <b-button v-on:click="viewProfile()">View Profile</b-button>
             <b-button v-on:click="like()">Like</b-button>
@@ -31,6 +31,7 @@
         data() {
             return {
                 potential_matches: [],
+                potential_match: {},
                 user_id: ''
             };
         },
@@ -43,15 +44,20 @@
         methods: {
             viewProfile: function () {
                 const path = 'user/' + this.potential_matches[0].userId;
-                console.log(path);
                 this.$router.push(path)
+            },
+            updateNextMatch: function () {
+                this.potential_matches.shift();
+                this.potential_match = this.potential_matches[0];
             },
             like: function () {
                 serverLikeUser(this.user_id, this.potential_matches[0].userId);
+                this.updateNextMatch();
             },
 
             dislike: function () {
                 serverDislikeUser(this.user_id, this.potential_matches[0].userId)
+                this.updateNextMatch();
             }
         }
     }
@@ -60,20 +66,21 @@
         axios.get('http://localhost:8090/api/v1/users')
             .then(response => {
                 that.potential_matches = response.data;
+                that.potential_match = that.potential_matches[0];
             })
             .catch(err => console.log(err))
     }
 
     function serverLikeUser(userId, likedUserId) {
         const path = 'http://localhost:8090/api/v1/users/' + userId + '/likes';
-        axios.post(path, {
+        axios.put(path, {
             id: likedUserId
         })
     }
 
     function serverDislikeUser(userId, dislikedUserId) {
         const path = 'http://localhost:8090/api/v1/users/' + userId + '/dislikes';
-        axios.post(path, {
+        axios.put(path, {
             id: dislikedUserId
         })
     }

@@ -27,7 +27,7 @@
             login: function () {
                 firebase.auth()
                     .signInWithEmailAndPassword(this.email, this.password)
-                    .then(() => this.$router.replace('match'))
+                    .then(() => this.$router.push('match'))
                     .catch(err => alert('Login not successful. ' + err.message));
             }
         }

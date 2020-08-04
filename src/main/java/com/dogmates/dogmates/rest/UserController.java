@@ -4,7 +4,9 @@ import com.dogmates.dogmates.core.user.usecase.create.CreateUserCmd;
 import com.dogmates.dogmates.core.user.usecase.create.CreateUserUseCase;
 import com.dogmates.dogmates.core.user.usecase.read.GetUserUseCase;
 import com.dogmates.dogmates.core.user.usecase.read.GetUsersUseCase;
+import com.dogmates.dogmates.core.user.usecase.update.DislikeUserUseCase;
 import com.dogmates.dogmates.core.user.usecase.update.IdCmd;
+import com.dogmates.dogmates.core.user.usecase.update.LikeUserUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ public class UserController {
     private final CreateUserUseCase createUserUseCase;
     private final GetUsersUseCase getUsersUseCase;
     private final GetUserUseCase getUserUseCase;
+    private final LikeUserUseCase likeUserUseCase;
+    private final DislikeUserUseCase dislikeUserUseCase;
 
     private final UserModelAssembler userModelAssembler;
 
@@ -52,8 +56,17 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/likes")
-    public ResponseEntity<UserModel> likeUser(@PathVariable("userId") String userId, @RequestBody @Valid IdCmd cmd) {
-        return null;
+    public ResponseEntity<UserModel> likeUser(@PathVariable("userId") String userId, @RequestBody @Valid IdCmd cmd) throws ExecutionException, InterruptedException {
+        val user = likeUserUseCase.like(userId, cmd);
+        val model = userModelAssembler.toModelWithLinks(user);
+        return new ResponseEntity<>(model, OK);
+    }
+
+    @PutMapping("/{userId}/dislikes")
+    public ResponseEntity<UserModel> dislikeUser(@PathVariable("userId") String userId, @RequestBody @Valid IdCmd cmd) throws ExecutionException, InterruptedException {
+        val user = dislikeUserUseCase.dislike(userId, cmd);
+        val model = userModelAssembler.toModelWithLinks(user);
+        return new ResponseEntity<>(model, OK);
     }
 
 }

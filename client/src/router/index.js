@@ -7,7 +7,6 @@ import 'firebase/auth'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
-import Secure from '../views/Secure.vue'
 import SignUp from '../views/SignUp.vue'
 import Match from '../views/Match.vue'
 import User from "../views/User";
@@ -62,14 +61,6 @@ const routes = [
         name: 'SignUp',
         component: SignUp
 
-    },
-    {
-        path: '/secure',
-        name: 'Secure',
-        component: Secure,
-        meta: {
-            requiresAuth: true
-        }
     }
 ]
 
