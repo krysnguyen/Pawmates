@@ -1,11 +1,37 @@
 <template>
     <div>
-        <h1>{{this.first_name + ' ' + this.last_name}}</h1>
-        <p>{{this.bio}}</p>
-        <p>{{this.number_of_dogs}}</p>
-        <p>{{this.dog_types}}</p>
-        <p>{{this.walk_types}}</p>
-    </div>
+		<b-card
+		img-src="https://picsum.photos/600/300/?image=25"
+		img-alt="Image"
+		img-top
+		tag="article"
+		style="max-width: 40rem;"
+
+		bg-variant="light" 
+		class="text-center">
+
+			<b-card-title>
+			{{this.first_name + ' ' + this.last_name}}
+			</b-card-title>
+
+			<b-card-text>
+			Has {{this.number_of_dogs}} dogs
+			</b-card-text>
+
+			<b-card-text>
+			{{this.dog_types}}
+			</b-card-text>
+
+			<b-card-text>
+			Likes walking on {{this.walk_types}}s
+			</b-card-text>
+
+			<b-card-text>
+			Bio: {{this.bio}}
+			</b-card-text>
+
+		</b-card>
+	</div>
 </template>
 
 <script>
@@ -41,3 +67,15 @@
             })
     }
 </script>
+
+<style>
+	.card{
+	margin: 0 auto; /* Added */
+	float: none; /* Added */
+	margin-bottom: 10px; /* Added */
+	padding: 10px;
+	border: 10px;
+	box-shadow: 0px 0px 15px #666
+	}
+
+</style>
