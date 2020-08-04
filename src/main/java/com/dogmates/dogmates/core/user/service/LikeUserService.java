@@ -20,6 +20,7 @@ public class LikeUserService implements LikeUserUseCase {
     @Override
     public User like(String userId, IdCmd cmd) throws ExecutionException, InterruptedException {
         val user = getUserPort.getUser(userId);
-        return likeUserPort.like(user, cmd.getId());
+        val likedUser = getUserPort.getUser(cmd.getId());
+        return likeUserPort.like(user, likedUser);
     }
 }

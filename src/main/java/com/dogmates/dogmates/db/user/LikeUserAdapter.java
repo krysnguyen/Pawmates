@@ -20,8 +20,15 @@ public class LikeUserAdapter implements LikeUserPort {
     private static String USER_PATH = "users/%s";
 
     @Override
-    public User like(User user, String likedUserId) throws ExecutionException, InterruptedException {
-        user.getLiked().add(likedUserId);
+    public User like(User user, User likedUser) throws ExecutionException, InterruptedException {
+        if (user.getLikedBy().contains(likedUser.getId())) {
+            user.getMatches().add(likedUser.getId());
+            likedUser.getLiked().remove(user.getId());
+        } else {
+            user.getLiked().add(likedUser.getId());
+            likedUser.getLikedBy().add(user.getId());
+        }
+
         val path = format(USER_PATH, user.getId());
 
         firestore.document(path)
