@@ -7,11 +7,11 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item to="/">
+                    <b-nav-item v-if="this.user == null" to="/">
                         <router-link to="/">Home</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/match">
-                        <router-link to="/match">Match</router-link>
+                        <router-link to="/match">Sniff</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user == null" to="/login">
                         <router-link to="/login">Login</router-link>
@@ -42,7 +42,7 @@
     import 'firebase/auth';
 
     export default {
-        name: 'Secure',
+        name: 'TopHeader',
         data() {
             return {
                 user: null
