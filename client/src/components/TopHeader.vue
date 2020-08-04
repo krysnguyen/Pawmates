@@ -19,6 +19,9 @@
                     <b-nav-item v-if="this.user == null" to="/sign-up">
                         <router-link to="/sign-up">Sign-Up</router-link>
                     </b-nav-item>
+                    <b-nav-item v-if="this.user !== null" to="/mymatches">
+                        <router-link to="/mymatches">My-Matches</router-link>
+                    </b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->

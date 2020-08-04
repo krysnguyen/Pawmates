@@ -9,6 +9,7 @@ import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import Match from '../views/Match.vue'
+import myMatches from '../views/myMatches.vue'
 import User from "../views/User";
 
 Vue.use(VueRouter)
@@ -18,6 +19,14 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/mymatches',
+        name: 'myMatches',
+        component: myMatches,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/profile',
