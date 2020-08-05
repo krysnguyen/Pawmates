@@ -13,6 +13,9 @@
                     <b-nav-item v-if="this.user !== null" to="/match">
                         <router-link to="/match">Sniff</router-link>
                     </b-nav-item>
+                    <b-nav-item v-if="this.user !== null" to="/walk">
+                        <router-link to="/walk">Walk</router-link>
+                    </b-nav-item>
                     <b-nav-item v-if="this.user == null" to="/login">
                         <router-link to="/login">Login</router-link>
                     </b-nav-item>
