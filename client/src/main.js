@@ -30,10 +30,10 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const fb = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-export default db;
+export {fb,db};
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {  
     new Vue({
