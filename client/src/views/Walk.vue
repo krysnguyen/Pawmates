@@ -5,6 +5,7 @@
       <WalkListing 
         v-for="walk in walks"
         v-bind:key="walk.id"
+        v-bind:id="walk.id"
         v-bind:title="walk.title"
         v-bind:date="walk.date"
         v-bind:time="walk.time"

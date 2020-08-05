@@ -1,7 +1,7 @@
 <template>
   <div class="listing-card">
     <b-card no-body class="overflow-hidden mb-3" style="max-height: 150px;">
-      <b-link to="/walk/123" class="stretched-link card-link">
+      <b-link :to="'/walk/' + id" class="stretched-link card-link">
         <b-row class="row-in-card" no-gutters>
           <b-col cols="2" align-self="center">
             <b-card-img src="https://placedog.net/150/150?id=5" alt="Profile image" class="rounded-circle" style="max-height: 120px; max-width: 120px"></b-card-img>
@@ -27,8 +27,10 @@
 <script>
   export default {
     name: 'WalkListing',
-    props: ['title', 'date', 'time', 'duration', 'location', 'description']
+    props: ['id', 'title', 'date', 'time', 'duration', 'location', 'description']
   }
+  
+  
 </script>
 
 <style lang="scss" scoped>
