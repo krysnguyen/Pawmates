@@ -1,14 +1,22 @@
 <template>
-    <div class="container-fluid h-100 ">
-        <div class="row h-100">
+    <div class="container h-100 ">
+        <!-- <div class="row h-100">
             <div class="col-md-9 h-100 d-flex justify-content-center align-items-center">
-                <div class="col-md-8 rounded px-5 py-4 shadow bg-white text-left">
+                <div class="col-md-8 rounded px-5 py-4 shadow bg-white text-left"> -->
                     <div id="profile">
                         <h1><b>Profile</b></h1>
                         <div class="row">
                             <div class="form-group">
                                 <img src="../assets/puppy.jpg" height="150px" width="150px"/>
                             </div>
+                            <div class="col-12 form-group">
+                                <label class="col-form-label-lg">First Name</label>
+                                <input type="text" v-model="first_name" name="firstName"/>
+                            </div>
+                            <div class="col-12 form-group">
+                                <label class="col-form-label-lg">Email Address</label>
+                                <input type="text" v-model="email" name="userEmail"/>
+                            </div> 
                             <div class="col-12 form-group">
                                 <label class="col-form-label-lg">How many dog(s) do you have ?</label>
                                 <input type="text" v-model="number_of_dogs" name="dognumber"/>
@@ -41,9 +49,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -72,6 +80,7 @@
                 dog_type_options: dog_data['dogs'],
                 first_name: 'Chad',
                 last_name: 'Malla',
+                email: '',
                 number_of_dogs: '',
                 dog_types: [],
                 walk_types: [],
