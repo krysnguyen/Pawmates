@@ -7,9 +7,13 @@ import 'firebase/auth'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
-import Secure from '../views/Secure.vue'
 import SignUp from '../views/SignUp.vue'
 import Match from '../views/Match.vue'
+import MyMatches from '../views/MyMatches.vue'
+import Walk from '../views/Walk.vue'
+import CreateWalk from '../views/CreateWalk.vue'
+import User from "../views/User";
+import WalkPage from "../views/WalkPage.vue"
 
 Vue.use(VueRouter)
 
@@ -20,12 +24,12 @@ const routes = [
         component: Home
     },
     {
-        path: '/about',
-        name: 'About',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        path: '/my-matches',
+        name: 'MyMatches',
+        component: MyMatches,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/profile',
@@ -36,9 +40,41 @@ const routes = [
         }
     },
     {
+        path: '/user/:id',
+        name: 'User',
+        component: User,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/match',
         name: 'Match',
         component: Match,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/walk',
+        name: 'Walk',
+        component: Walk,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/walk/:id',
+        name: 'Walk Page',
+        component: WalkPage,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/createwalk',
+        name: 'CreateWalk',
+        component: CreateWalk,
         meta: {
             requiresAuth: true
         }
@@ -61,14 +97,6 @@ const routes = [
         name: 'SignUp',
         component: SignUp
 
-    },
-    {
-        path: '/secure',
-        name: 'Secure',
-        component: Secure,
-        meta: {
-            requiresAuth: true
-        }
     }
 ]
 

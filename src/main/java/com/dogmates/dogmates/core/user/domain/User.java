@@ -2,6 +2,9 @@ package com.dogmates.dogmates.core.user.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class User {
     private String id;
@@ -17,4 +20,12 @@ public class User {
     private String dogTypes;
 
     private String walkTypes;
+
+    private List<String> liked = new ArrayList<>();
+
+    private List<String> disliked = new ArrayList<>();
+
+    private List<String> likedBy = new ArrayList<>();
+
+    private List<String> matches = new ArrayList<>();
 }

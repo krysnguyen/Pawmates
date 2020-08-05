@@ -23,4 +23,7 @@ public class CreateUserCmd {
     private String dogTypes;
 
     private String walkTypes;
+
+    @NotBlank
+    private String userId;
 }

@@ -7,17 +7,23 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item to="/">
+                    <b-nav-item v-if="this.user == null" to="/">
                         <router-link to="/">Home</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/match">
-                        <router-link to="/match">Match</router-link>
+                        <router-link to="/match">Sniff</router-link>
+                    </b-nav-item>
+                    <b-nav-item v-if="this.user !== null" to="/walk">
+                        <router-link to="/walk">Walk</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user == null" to="/login">
                         <router-link to="/login">Login</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user == null" to="/sign-up">
                         <router-link to="/sign-up">Sign-Up</router-link>
+                    </b-nav-item>
+                    <b-nav-item v-if="this.user !== null" to="/mymatches">
+                        <router-link to="/my-matches">My-Matches</router-link>
                     </b-nav-item>
                 </b-navbar-nav>
 
@@ -26,7 +32,7 @@
                     <b-nav-item-dropdown v-if="this.user !== null" right>
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
-                            <em>User</em>
+                            {{first_name}}
                         </template>
                         <b-dropdown-item to="/profile">Profile</b-dropdown-item>
                         <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
@@ -40,12 +46,15 @@
 <script>
     import firebase from 'firebase/app';
     import 'firebase/auth';
+    import axios from "axios";
 
     export default {
-        name: 'Secure',
+        name: 'TopHeader',
         data() {
             return {
-                user: null
+                user: null,
+                first_name: '',
+                last_name: ''
             };
         },
         methods: {
@@ -58,8 +67,17 @@
         created: function () {
             firebase.auth().onAuthStateChanged(user => {
                 this.user = user ? user : null;
+                serverGetUser(this.user.uid, this);
             });
         }
+    }
+
+    function serverGetUser(userId, that) {
+        axios.get('http://localhost:8090/api/v1/users/' + userId)
+            .then(res => {
+                that.first_name = res.data.firstName;
+                that.last_name = res.data.lastName;
+            })
     }
 </script>
 
