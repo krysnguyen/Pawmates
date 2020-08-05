@@ -29,7 +29,7 @@
                     <b-nav-item-dropdown v-if="this.user !== null" right>
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
-                            <em>User</em>
+                            {{first_name}}
                         </template>
                         <b-dropdown-item to="/profile">Profile</b-dropdown-item>
                         <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
@@ -43,12 +43,15 @@
 <script>
     import firebase from 'firebase/app';
     import 'firebase/auth';
+    import axios from "axios";
 
     export default {
         name: 'TopHeader',
         data() {
             return {
-                user: null
+                user: null,
+                first_name: '',
+                last_name: ''
             };
         },
         methods: {
@@ -61,8 +64,17 @@
         created: function () {
             firebase.auth().onAuthStateChanged(user => {
                 this.user = user ? user : null;
+                serverGetUser(this.user.uid, this);
             });
         }
+    }
+
+    function serverGetUser(userId, that) {
+        axios.get('http://localhost:8090/api/v1/users/' + userId)
+            .then(res => {
+                that.first_name = res.data.firstName;
+                that.last_name = res.data.lastName;
+            })
     }
 </script>
 

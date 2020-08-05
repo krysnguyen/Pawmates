@@ -62,7 +62,7 @@
                 this.$router.push(path)
             },
             updateNextMatch: function () {
-                if (this.potential_matches.length > 0) {
+                if (this.potential_matches.length > 1) {
                     this.potential_matches.shift();
                     this.potential_match = this.potential_matches[0];
                 } else {

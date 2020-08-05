@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static java.lang.String.format;
@@ -18,6 +20,7 @@ import static java.util.stream.Collectors.toList;
 public class GetUserAdapter implements GetUserPort {
     private final Firestore firestore;
     private static String USER_PATH = "users/%s";
+
     @Override
     public List<User> getAll() throws ExecutionException, InterruptedException {
         return firestore.collection("users")
@@ -31,7 +34,7 @@ public class GetUserAdapter implements GetUserPort {
 
     @Override
     public User getUser(String id) throws ExecutionException, InterruptedException {
-        return firestore.document(format(USER_PATH,id))
+        return firestore.document(format(USER_PATH, id))
                 .get()
                 .get()
                 .toObject(User.class);
@@ -66,10 +69,15 @@ public class GetUserAdapter implements GetUserPort {
 
         val ids = new ArrayList<>(allIdsSet);
 
-        return firestore.collection("users")
-                .whereIn("id", ids)
-                .get()
-                .get()
-                .toObjects(User.class);
+        if (ids.isEmpty()) {
+            return List.of();
+        } else {
+            return firestore.collection("users")
+                    .whereIn("id", ids)
+                    .get()
+                    .get()
+                    .toObjects(User.class);
+        }
+
     }
 }
