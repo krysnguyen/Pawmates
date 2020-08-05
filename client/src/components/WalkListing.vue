@@ -7,12 +7,12 @@
             <b-card-img src="https://placedog.net/150/150?id=5" alt="Profile image" class="rounded-circle" style="max-height: 120px; max-width: 120px"></b-card-img>
           </b-col>
           <b-col cols="10">
-            <b-card-body :title="title" :sub-title="location">
+            <b-card-body class="pt-2 pb-2" :title="title" :sub-title="location">
               <b-card-text>
-                  <b-row class="pl-2 pr-2">
-                    <b-col>{{date}}</b-col>
-                    <b-col>{{time}}</b-col>
-                    <b-col>{{duration}} minutes</b-col>
+                  <b-row class="pl-2 pr-2" no-gutters>
+                    <b-col sm="4">{{date}}</b-col>
+                    <b-col sm="4">{{time}}</b-col>
+                    <b-col sm="4">{{duration}} minutes</b-col>
                   </b-row>
                   <div class="mt-1 description text-secondary">{{ description }}</div>
               </b-card-text>
