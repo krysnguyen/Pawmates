@@ -1,4 +1,4 @@
-package com.dogmates.dogmates.rest;
+package com.dogmates.dogmates.rest.user;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
