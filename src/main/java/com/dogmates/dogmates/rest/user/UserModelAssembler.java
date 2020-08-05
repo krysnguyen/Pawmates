@@ -1,4 +1,4 @@
-package com.dogmates.dogmates.rest;
+package com.dogmates.dogmates.rest.user;
 
 import com.dogmates.dogmates.core.user.domain.User;
 import lombok.val;
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static java.util.stream.Collectors.toList;
 import static org.mapstruct.factory.Mappers.getMapper;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

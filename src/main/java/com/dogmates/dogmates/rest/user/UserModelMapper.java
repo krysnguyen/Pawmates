@@ -1,4 +1,4 @@
-package com.dogmates.dogmates.rest;
+package com.dogmates.dogmates.rest.user;
 
 import com.dogmates.dogmates.core.user.domain.User;
 import org.mapstruct.Mapper;

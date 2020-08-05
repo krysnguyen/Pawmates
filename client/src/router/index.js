@@ -9,9 +9,9 @@ import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import Match from '../views/Match.vue'
+import MyMatches from '../views/MyMatches.vue'
 import Walk from '../views/Walk.vue'
 import CreateWalk from '../views/CreateWalk.vue'
-import myMatches from '../views/myMatches.vue'
 import User from "../views/User";
 import WalkPage from "../views/WalkPage.vue"
 
@@ -24,9 +24,9 @@ const routes = [
         component: Home
     },
     {
-        path: '/mymatches',
-        name: 'myMatches',
-        component: myMatches,
+        path: '/my-matches',
+        name: 'MyMatches',
+        component: MyMatches,
         meta: {
             requiresAuth: true
         }

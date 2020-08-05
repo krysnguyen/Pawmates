@@ -1,4 +1,4 @@
-package com.dogmates.dogmates.rest;
+package com.dogmates.dogmates.rest.user;
 
 import com.dogmates.dogmates.core.user.usecase.create.CreateUserCmd;
 import com.dogmates.dogmates.core.user.usecase.create.CreateUserUseCase;
@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserModel> getPotentialMatches(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
+    public ResponseEntity<UserModel> getUser(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
         val user = getUserUseCase.getUser(userId);
         val model = userModelAssembler.toModelWithLinks(user);
 
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/potential")
-    public ResponseEntity<List<UserModel>> getUser(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
+    public ResponseEntity<List<UserModel>> getPotentialMatches(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
         val users = getPotentialMatchesUseCase.getPotentialMatches(userId);
         val models = userModelAssembler.toModelsWithLinks(users);
         return new ResponseEntity<>(models, OK);

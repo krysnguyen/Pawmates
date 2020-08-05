@@ -2,6 +2,7 @@ package com.dogmates.dogmates.db.user;
 
 import com.dogmates.dogmates.core.user.domain.User;
 import com.dogmates.dogmates.core.user.port.GetUserPort;
+import com.dogmates.dogmates.db.common.FirestoreQueryHelper;
 import com.google.cloud.firestore.Firestore;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -19,6 +20,8 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class GetUserAdapter implements GetUserPort {
     private final Firestore firestore;
+    private final FirestoreQueryHelper firestoreQueryHelper;
+
     private static String USER_PATH = "users/%s";
 
     @Override
@@ -42,25 +45,11 @@ public class GetUserAdapter implements GetUserPort {
 
     @Override
     public List<User> getPotentialMatches(String userId) throws ExecutionException, InterruptedException {
-        val user = firestore.document(format(USER_PATH, userId))
-                .get()
-                .get()
-                .toObject(User.class);
-
-        val allIds = firestore.collection("users")
-                .get()
-                .get()
-                .getDocuments()
-                .stream()
-                .map(user1 -> user1.toObject(User.class))
-                .map(User::getId)
-                .collect(toList());
+        val user = getUser(userId);
+        val allIds = firestoreQueryHelper.getAllUserIds();
 
         val filterBy = new HashSet<String>();
-        filterBy.addAll(user.getLiked());
-        filterBy.addAll(user.getDisliked());
-        filterBy.addAll(user.getMatches());
-        filterBy.add(userId);
+        makeFilteredIdSet(filterBy, user);
 
         val allIdsSet = new HashSet<String>();
         allIdsSet.addAll(allIds);
@@ -72,12 +61,14 @@ public class GetUserAdapter implements GetUserPort {
         if (ids.isEmpty()) {
             return List.of();
         } else {
-            return firestore.collection("users")
-                    .whereIn("id", ids)
-                    .get()
-                    .get()
-                    .toObjects(User.class);
+            return firestoreQueryHelper.getFilteredListOfUsers(ids);
         }
+    }
 
+    private void makeFilteredIdSet(HashSet<String> filterBy, User user) {
+        filterBy.addAll(user.getLiked());
+        filterBy.addAll(user.getDisliked());
+        filterBy.addAll(user.getMatches());
+        filterBy.add(user.getId());
     }
 }
