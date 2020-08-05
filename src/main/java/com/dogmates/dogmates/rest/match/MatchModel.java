@@ -1,4 +1,4 @@
-package com.dogmates.dogmates.rest;
+package com.dogmates.dogmates.rest.match;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -6,7 +6,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserModel extends RepresentationModel<UserModel> {
+public class MatchModel extends RepresentationModel<MatchModel> {
     private String userId;
 
     private String firstName;
@@ -14,10 +14,4 @@ public class UserModel extends RepresentationModel<UserModel> {
     private String lastName;
 
     private String bio;
-
-    private int numberOfDogs;
-
-    private String dogTypes;
-
-    private String walkTypes;
 }
