@@ -23,6 +23,7 @@ public class LikeUserAdapter implements LikeUserPort {
     public User like(User user, User likedUser) throws ExecutionException, InterruptedException {
         if (user.getLikedBy().contains(likedUser.getId())) {
             user.getMatches().add(likedUser.getId());
+            likedUser.getMatches().add(user.getId());
             likedUser.getLiked().remove(user.getId());
         } else {
             user.getLiked().add(likedUser.getId());
@@ -32,7 +33,10 @@ public class LikeUserAdapter implements LikeUserPort {
         val path = format(USER_PATH, user.getId());
 
         firestore.document(path)
-                .update(FieldPath.of("liked"), user.getLiked());
+                .update(FieldPath.of("liked", "matches"), user.getLiked(), user.getMatches());
+
+        firestore.document(format(USER_PATH, likedUser.getId()))
+                .update(FieldPath.of("liked", "likedBy", "matches"), likedUser.getLiked(), likedUser.getLikedBy(), likedUser.getMatches());
 
         return firestore.document(path)
                 .get()
