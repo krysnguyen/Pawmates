@@ -51,11 +51,11 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<UserModel>> getPotentialMatches(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
-        val users = getPotentialMatchesUseCase.getPotentialMatches(userId);
-        val models = userModelAssembler.toModelsWithLinks(users);
+    public ResponseEntity<UserModel> getPotentialMatches(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
+        val user = getUserUseCase.getUser(userId);
+        val model = userModelAssembler.toModelWithLinks(user);
 
-        return new ResponseEntity<>(models, OK);
+        return new ResponseEntity<>(model, OK);
     }
 
     @GetMapping("/{userId}/potential")

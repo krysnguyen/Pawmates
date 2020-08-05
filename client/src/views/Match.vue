@@ -2,7 +2,7 @@
     <div>
         <b-button v-if="this.loading === true" variant="primary" disabled>
             <b-spinner small type="grow"></b-spinner>
-            Loading...
+            Searching for your next pawmate...
         </b-button>
 
         <b-card
@@ -51,14 +51,29 @@
             });
 
         },
+        mounted: function () {
+            window.setInterval(() => {
+                this.getMatches()
+            }, 3000)
+        },
         methods: {
             viewProfile: function () {
                 const path = 'user/' + this.potential_matches[0].userId;
                 this.$router.push(path)
             },
             updateNextMatch: function () {
-                this.potential_matches.shift();
-                this.potential_match = this.potential_matches[0];
+                if (this.potential_matches.length > 0) {
+                    this.potential_matches.shift();
+                    this.potential_match = this.potential_matches[0];
+                } else {
+                    this.loading = true;
+                }
+
+            },
+            getMatches: function () {
+                if (this.loading === true) {
+                    serverGetPotentialMatches(this);
+                }
             },
             like: function () {
                 serverLikeUser(this.user_id, this.potential_matches[0].userId);
@@ -75,9 +90,11 @@
     function serverGetPotentialMatches(that) {
         axios.get(`http://localhost:8090/api/v1/users/${that.user_id}/potential`)
             .then(response => {
-                that.potential_matches = response.data;
-                that.potential_match = that.potential_matches[0];
-                that.loading = false;
+                if (response.data.length > 0) {
+                    that.potential_matches = response.data;
+                    that.potential_match = that.potential_matches[0];
+                    that.loading = false;
+                }
             })
             .catch(err => console.log(err))
     }

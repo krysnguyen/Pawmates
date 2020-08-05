@@ -1,37 +1,37 @@
 <template>
     <div>
-		<b-card
-		img-src="https://picsum.photos/600/300/?image=25"
-		img-alt="Image"
-		img-top
-		tag="article"
-		style="max-width: 40rem;"
+        <b-card
+                img-src="https://picsum.photos/600/300/?image=25"
+                img-alt="Image"
+                img-top
+                tag="article"
+                style="max-width: 40rem;"
 
-		bg-variant="light" 
-		class="text-center">
+                bg-variant="light"
+                class="text-center">
 
-			<b-card-title>
-			{{this.first_name + ' ' + this.last_name}}
-			</b-card-title>
+            <b-card-title>
+                {{this.first_name + ' ' + this.last_name}}
+            </b-card-title>
 
-			<b-card-text>
-			Has {{this.number_of_dogs}} dogs
-			</b-card-text>
+            <b-card-text>
+                Has {{this.number_of_dogs}} dogs
+            </b-card-text>
 
-			<b-card-text>
-			{{this.dog_types}}
-			</b-card-text>
+            <b-card-text>
+                {{this.dog_types}}
+            </b-card-text>
 
-			<b-card-text>
-			Likes walking on {{this.walk_types}}s
-			</b-card-text>
+            <b-card-text>
+                Likes walking on {{this.walk_types}}s
+            </b-card-text>
 
-			<b-card-text>
-			Bio: {{this.bio}}
-			</b-card-text>
+            <b-card-text>
+                Bio: {{this.bio}}
+            </b-card-text>
 
-		</b-card>
-	</div>
+        </b-card>
+    </div>
 </template>
 
 <script>
@@ -64,18 +64,19 @@
                 that.number_of_dogs = res.data.numberOfDogs;
                 that.dog_types = res.data.dog_types;
                 that.walk_types = res.data.walkTypes;
+                console.log(res);
             })
     }
 </script>
 
 <style>
-	.card{
-	margin: 0 auto; /* Added */
-	float: none; /* Added */
-	margin-bottom: 10px; /* Added */
-	padding: 10px;
-	border: 10px;
-	box-shadow: 0px 0px 15px #666
-	}
+    .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        padding: 10px;
+        border: 10px;
+        box-shadow: 0px 0px 15px #666
+    }
 
 </style>
