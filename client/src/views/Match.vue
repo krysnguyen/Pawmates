@@ -39,7 +39,8 @@
                 potential_matches: [],
                 potential_match: {},
                 user_id: '',
-                loading: true
+                loading: true,
+                getPotentialMatchesInterval: ''
             };
         },
         created() {
@@ -52,9 +53,12 @@
 
         },
         mounted: function () {
-            window.setInterval(() => {
+            this.getPotentialMatchesInterval = window.setInterval(() => {
                 this.getMatches()
             }, 3000)
+        },
+        destroyed() {
+            clearInterval(this.getPotentialMatchesInterval)
         },
         methods: {
             viewProfile: function () {

@@ -30,6 +30,7 @@
                 Bio: {{this.bio}}
             </b-card-text>
 
+            <b-button v-on:click="goBack()" variant="primary">Go Back</b-button>
         </b-card>
     </div>
 </template>
@@ -51,6 +52,11 @@
         },
         created() {
             serverGetUser(this.$route.params.id, this);
+        },
+        methods: {
+            goBack() {
+                this.$router.go(-1);
+            }
         }
     }
 
