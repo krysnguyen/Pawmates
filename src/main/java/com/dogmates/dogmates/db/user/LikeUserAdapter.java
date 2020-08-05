@@ -33,10 +33,19 @@ public class LikeUserAdapter implements LikeUserPort {
         val path = format(USER_PATH, user.getId());
 
         firestore.document(path)
-                .update(FieldPath.of("liked", "matches"), user.getLiked(), user.getMatches());
+                .update(FieldPath.of("liked"), user.getLiked());
+
+        firestore.document(path)
+                .update(FieldPath.of("matches"), user.getMatches());
 
         firestore.document(format(USER_PATH, likedUser.getId()))
-                .update(FieldPath.of("liked", "likedBy", "matches"), likedUser.getLiked(), likedUser.getLikedBy(), likedUser.getMatches());
+                .update(FieldPath.of("liked"), likedUser.getLiked());
+
+        firestore.document(format(USER_PATH, likedUser.getId()))
+                .update(FieldPath.of("likedBy"), likedUser.getLikedBy());
+
+        firestore.document(format(USER_PATH, likedUser.getId()))
+                .update(FieldPath.of("matches"), likedUser.getMatches());
 
         return firestore.document(path)
                 .get()

@@ -41,11 +41,16 @@ public class FirestoreQueryHelper {
     }
 
     public List<Match> getMatches(List<String> ids) throws ExecutionException, InterruptedException {
-        return firestore.collection("users")
-                .whereIn("id", ids)
-                .get()
-                .get()
-                .toObjects(Match.class);
+        if (ids.isEmpty()) {
+            return List.of();
+        } else {
+            return firestore.collection("users")
+                    .whereIn("id", ids)
+                    .get()
+                    .get()
+                    .toObjects(Match.class);
+        }
+
     }
 
     public MatchMap getUserMatchesList(String userId) throws ExecutionException, InterruptedException {
