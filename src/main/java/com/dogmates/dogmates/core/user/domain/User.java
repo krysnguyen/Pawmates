@@ -24,4 +24,8 @@ public class User {
     private List<String> liked = new ArrayList<>();
 
     private List<String> disliked = new ArrayList<>();
+
+    private List<String> likedBy = new ArrayList<>();
+
+    private List<String> matches = new ArrayList<>();
 }

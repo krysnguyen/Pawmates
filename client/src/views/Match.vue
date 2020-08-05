@@ -1,5 +1,10 @@
 <template>
     <div>
+        <b-button v-if="this.loading === true" variant="primary" disabled>
+            <b-spinner small type="grow"></b-spinner>
+            Searching for your next pawmate...
+        </b-button>
+
         <b-card
                 img-src="https://picsum.photos/600/300/?image=25"
                 img-alt="Image"
@@ -7,6 +12,7 @@
                 tag="article"
                 style="max-width: 40rem;"
                 class="mb-2"
+                v-else-if="this.loading === false"
         >
             <b-card-title>
                 {{this.potential_match.firstName + ' ' + this.potential_match.lastName}}
@@ -32,14 +38,23 @@
             return {
                 potential_matches: [],
                 potential_match: {},
-                user_id: ''
+                user_id: '',
+                loading: true
             };
         },
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
+                // setTimeout(serverGetPotentialMatches, 3000, this);
+                serverGetPotentialMatches(this);
+
             });
-            serverGetPotentialMatches(this);
+
+        },
+        mounted: function () {
+            window.setInterval(() => {
+                this.getMatches()
+            }, 3000)
         },
         methods: {
             viewProfile: function () {
@@ -47,8 +62,18 @@
                 this.$router.push(path)
             },
             updateNextMatch: function () {
-                this.potential_matches.shift();
-                this.potential_match = this.potential_matches[0];
+                if (this.potential_matches.length > 1) {
+                    this.potential_matches.shift();
+                    this.potential_match = this.potential_matches[0];
+                } else {
+                    this.loading = true;
+                }
+
+            },
+            getMatches: function () {
+                if (this.loading === true) {
+                    serverGetPotentialMatches(this);
+                }
             },
             like: function () {
                 serverLikeUser(this.user_id, this.potential_matches[0].userId);
@@ -63,23 +88,26 @@
     }
 
     function serverGetPotentialMatches(that) {
-        axios.get('http://localhost:8090/api/v1/users')
+        axios.get(`http://localhost:8090/api/v1/users/${that.user_id}/potential`)
             .then(response => {
-                that.potential_matches = response.data;
-                that.potential_match = that.potential_matches[0];
+                if (response.data.length > 0) {
+                    that.potential_matches = response.data;
+                    that.potential_match = that.potential_matches[0];
+                    that.loading = false;
+                }
             })
             .catch(err => console.log(err))
     }
 
     function serverLikeUser(userId, likedUserId) {
-        const path = 'http://localhost:8090/api/v1/users/' + userId + '/likes';
+        const path = `http://localhost:8090/api/v1/users/${userId}/likes`;
         axios.put(path, {
             id: likedUserId
         })
     }
 
     function serverDislikeUser(userId, dislikedUserId) {
-        const path = 'http://localhost:8090/api/v1/users/' + userId + '/dislikes';
+        const path = `http://localhost:8090/api/v1/users/${userId}/dislikes`;
         axios.put(path, {
             id: dislikedUserId
         })

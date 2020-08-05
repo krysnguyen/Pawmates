@@ -11,6 +11,7 @@ import SignUp from '../views/SignUp.vue'
 import Match from '../views/Match.vue'
 import Walk from '../views/Walk.vue'
 import CreateWalk from '../views/CreateWalk.vue'
+import myMatches from '../views/myMatches.vue'
 import User from "../views/User";
 import WalkPage from "../views/WalkPage.vue"
 
@@ -21,6 +22,14 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/mymatches',
+        name: 'myMatches',
+        component: myMatches,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/profile',
