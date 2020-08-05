@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid class="create-walk">
+  <b-container fluid class="create-walk mb-4">
     <b-container class="mt-4">
       <b-form @submit="onSubmit">
         <b-form-group
