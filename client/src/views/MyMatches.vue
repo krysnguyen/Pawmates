@@ -30,6 +30,7 @@
                 </b-card>
             </b-list-group-item>
         </b-list-group>
+        <b-button v-on:click="loadMatches()">Search for new matches</b-button>
     </div>
 </template>
 
@@ -54,9 +55,16 @@
 
             });
         },
-        viewProfile: function (userId) {
-            this.$router.push(`user/${userId}`)
-        },
+        methods: {
+            viewProfile: function (userId) {
+                this.$router.push(`user/${userId}`)
+            },
+            loadMatches: function () {
+                this.loading = true;
+                serverGetMyMatches(this);
+            }
+        }
+
     }
 
     function serverGetMyMatches(that) {

@@ -25,6 +25,7 @@
             <b-button v-on:click="like()">Like</b-button>
             <b-button v-on:click="dislike()">Dislike</b-button>
         </b-card>
+        <b-button v-if="this.loading === true" v-on:click="loadMatches()">Search for potential matches</b-button>
     </div>
 </template>
 
@@ -54,6 +55,9 @@
             viewProfile: function () {
                 const path = 'user/' + this.potential_matches[0].userId;
                 this.$router.push(path)
+            },
+            loadMatches: function () {
+              serverGetPotentialMatches(this);
             },
             updateNextMatch: function () {
                 if (this.potential_matches.length > 1) {
