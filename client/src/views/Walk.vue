@@ -12,6 +12,9 @@
         v-bind:duration="walk.duration"
         v-bind:location="walk.location"
         v-bind:description="walk.description"
+        v-bind:fname="walk.user.fname"
+        v-bind:lname="walk.user.lname"
+        v-bind:dogname="walk.user.dogname"
       />
     </b-container>
   </div>
@@ -39,21 +42,36 @@
            time: '6:00 PM',
            duration: '30',
            location: 'Burnaby',
-           description: 'I like golden retrievers.'},
+           description: 'I like golden retrievers.',
+           user: {fname: 'Michael',
+             lname: 'Lam',
+             dogname: 'Charlie'
+           }
+          },
           {id: 2,
            title: "Let's walk",
            date: 'August 15, 2020',
            time: '6:00 PM',
            duration: '30',
            location: 'Burnaby',
-           description: 'I like golden retrievers. This is a long description for testing purposes and this sentence makes the description even longer. Wow!'},
+           description: 'I like golden retrievers. This is a long description for testing purposes and this sentence makes the description even longer.',
+           user: {fname: 'Cooper',
+             lname: 'Birks',
+             dogname: 'Buddy'
+           }
+          },
           {id: 3,
            title: "Let's walk",
            date: 'August 15, 2020',
            time: '6:00 PM',
            duration: '30',
            location: 'Burnaby',
-           description: 'I like golden retrievers.'}
+           description: 'I like golden retrievers.',
+           user: {fname: 'Chad',
+           lname: 'Malla',
+           dogname: 'Bella'
+           }
+          }
         ]
       };
     },
