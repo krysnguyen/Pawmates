@@ -39,26 +39,16 @@
                 potential_matches: [],
                 potential_match: {},
                 user_id: '',
-                loading: true,
-                getPotentialMatchesInterval: ''
+                loading: true
             };
         },
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                // setTimeout(serverGetPotentialMatches, 3000, this);
                 serverGetPotentialMatches(this);
 
             });
 
-        },
-        mounted: function () {
-            this.getPotentialMatchesInterval = window.setInterval(() => {
-                this.getMatches()
-            }, 3000)
-        },
-        destroyed() {
-            clearInterval(this.getPotentialMatchesInterval)
         },
         methods: {
             viewProfile: function () {
@@ -73,11 +63,6 @@
                     this.loading = true;
                 }
 
-            },
-            getMatches: function () {
-                if (this.loading === true) {
-                    serverGetPotentialMatches(this);
-                }
             },
             like: function () {
                 serverLikeUser(this.user_id, this.potential_matches[0].userId);
