@@ -54,12 +54,4 @@
     color: inherit;
   }
   
-/*
-  @media only screen and (max-width: 991px) {
-    .listing-card .row-in-card {
-      position: relative;
-      top: -8px;
-    }
-  }
-*/
 </style>

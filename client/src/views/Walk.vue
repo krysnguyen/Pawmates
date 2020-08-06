@@ -87,5 +87,6 @@
 <style scoped>
   .walk >>> .card {
     border-radius: 36px;
+    max-width: 770px;
   }
 </style>
