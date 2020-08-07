@@ -49,10 +49,10 @@
                         <i class="fas fa-dog fa-lg fa-lw"></i>
                     </div>
                 </div>
-                <!-- <div class="form-group col-md-4">
+                <div class="form-group col-md-4">
                     <label class="col-form-label-lg">Profile Photo</label>
                     <input type="file" @change="onFileSelected">
-                </div> -->
+                </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
