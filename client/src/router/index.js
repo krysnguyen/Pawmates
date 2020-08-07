@@ -64,7 +64,7 @@ const routes = [
         }
     },
     {
-        path: '/walk/:id',
+        path: '/walks/:userId/:walkId',
         name: 'Walk Page',
         component: WalkPage,
         meta: {

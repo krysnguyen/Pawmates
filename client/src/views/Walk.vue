@@ -1,92 +1,102 @@
 <template>
-  <div class="walk">
-    <b-container fluid="md" class="mt-4">
-      <CreateWalkCard/>
-      <WalkListing 
-        v-for="walk in walks"
-        v-bind:key="walk.id"
-        v-bind:id="walk.id"
-        v-bind:title="walk.title"
-        v-bind:date="walk.date"
-        v-bind:time="walk.time"
-        v-bind:duration="walk.duration"
-        v-bind:location="walk.location"
-        v-bind:description="walk.description"
-        v-bind:fname="walk.user.fname"
-        v-bind:lname="walk.user.lname"
-        v-bind:dogname="walk.user.dogname"
-      />
-    </b-container>
-  </div>
+    <div class="walk">
+        <b-container fluid="md" class="mt-4">
+            <CreateWalkCard/>
+            <b-card-title>Current Walks</b-card-title>
+            <WalkListing
+                    v-for="walk in current_walks"
+                    v-bind:key="walk.id"
+                    v-bind:walk_id="walk.id"
+                    v-bind:title="walk.title"
+                    v-bind:date="walk.date"
+                    v-bind:time="walk.time"
+                    v-bind:duration="walk.duration"
+                    v-bind:location="walk.location"
+                    v-bind:description="walk.description"
+                    v-bind:user_id="walk.user.userId"
+                    v-bind:first_name="walk.user.firstName"
+                    v-bind:last_name="walk.user.lastName"
+            />
+            <b-card-title>Future Walks I joined</b-card-title>
+            <hr>
+            <WalkListing
+                    v-for="walk in my_future_walks"
+                    v-bind:key="walk.id"
+                    v-bind:walk_id="walk.id"
+                    v-bind:title="walk.title"
+                    v-bind:date="walk.date"
+                    v-bind:time="walk.time"
+                    v-bind:duration="walk.duration"
+                    v-bind:location="walk.location"
+                    v-bind:description="walk.description"
+                    v-bind:user_id="walk.user.userId"
+                    v-bind:first_name="walk.user.firstName"
+                    v-bind:last_name="walk.user.lastName"
+            />
+            <b-card-title>Walks hosted by my matches</b-card-title>
+            <hr>
+            <WalkListing
+                    v-for="walk in my_matches_walks"
+                    v-bind:key="walk.id"
+                    v-bind:walk_id="walk.id"
+                    v-bind:title="walk.title"
+                    v-bind:date="walk.date"
+                    v-bind:time="walk.time"
+                    v-bind:duration="walk.duration"
+                    v-bind:location="walk.location"
+                    v-bind:description="walk.description"
+                    v-bind:user_id="walk.user.userId"
+                    v-bind:first_name="walk.user.firstName"
+                    v-bind:last_name="walk.user.lastName"
+            />
+        </b-container>
+    </div>
 </template>
 
 <script>
-//    import axios from 'axios';
-//    import firebase from "firebase";
-  import WalkListing from '../components/WalkListing.vue'
-  import CreateWalkCard from '../components/CreateWalkCard.vue'
+    import axios from 'axios';
+    import WalkListing from '../components/WalkListing.vue'
+    import CreateWalkCard from '../components/CreateWalkCard.vue'
+    import firebase from "firebase";
 
-  export default {
-    name: 'Walk',
-    components: {
-      WalkListing,
-      CreateWalkCard
-    },
-    data() {
-      return {
-        user_id: '',
-        walks: [
-          {id: 1,
-           title: "Let's walk",
-           date: 'August 15, 2020',
-           time: '6:00 PM',
-           duration: '30',
-           location: 'Burnaby',
-           description: 'I like golden retrievers.',
-           user: {fname: 'Michael',
-             lname: 'Lam',
-             dogname: 'Charlie'
-           }
-          },
-          {id: 2,
-           title: "Let's walk",
-           date: 'August 15, 2020',
-           time: '6:00 PM',
-           duration: '30',
-           location: 'Burnaby',
-           description: 'I like golden retrievers. This is a long description for testing purposes and this sentence makes the description even longer.',
-           user: {fname: 'Cooper',
-             lname: 'Birks',
-             dogname: 'Buddy'
-           }
-          },
-          {id: 3,
-           title: "Let's walk",
-           date: 'August 15, 2020',
-           time: '6:00 PM',
-           duration: '30',
-           location: 'Burnaby',
-           description: 'I like golden retrievers.',
-           user: {fname: 'Chad',
-           lname: 'Malla',
-           dogname: 'Bella'
-           }
-          }
-        ]
-      };
-    },
-    created() {
+    export default {
+        name: 'Walk',
+        components: {
+            WalkListing,
+            CreateWalkCard
+        },
+        data() {
+            return {
+                user_id: '',
+                current_walks: [],
+                my_future_walks: [],
+                my_matches_walks: [],
 
-    },
-    methods: {
-
+            };
+        },
+        created() {
+            firebase.auth().onAuthStateChanged(user => {
+                this.user_id = user ? user.uid : null;
+                serverGetWalks(this);
+            });
+        },
+        methods: {
+        }
     }
-  }
+
+    function serverGetWalks(that) {
+        axios.get(`http://localhost:8090/api/v1/users/${that.user_id}/walks`)
+            .then(res => {
+                if (res.data.currentWalks.length > 0) {
+                    that.current_walks = res.data.currentWalks;
+                }
+            })
+    }
 </script>
 
 <style scoped>
-  .walk >>> .card {
-    border-radius: 36px;
-    max-width: 770px;
-  }
+    .walk >>> .card {
+        border-radius: 36px;
+        max-width: 770px;
+    }
 </style>
