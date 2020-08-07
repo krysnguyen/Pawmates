@@ -1,17 +1,24 @@
 package com.dogmates.dogmates.rest.walk;
 
+import com.dogmates.dogmates.core.user.usecase.update.IdCmd;
+import com.dogmates.dogmates.core.walk.domain.Walk;
 import com.dogmates.dogmates.core.walk.usecase.create.CreateWalkCmd;
 import com.dogmates.dogmates.core.walk.usecase.create.CreateWalkUseCase;
-import com.dogmates.dogmates.core.walk.usecase.read.GetMyWalksUseCase;
+import com.dogmates.dogmates.core.walk.usecase.read.GetMyRelatedWalks;
 import com.dogmates.dogmates.core.walk.usecase.read.GetWalkUseCase;
+import com.dogmates.dogmates.core.walk.usecase.update.JoinWalkUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.concurrent.ExecutionException;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -22,7 +29,9 @@ public class WalkController {
 
     private final CreateWalkUseCase createWalkUseCase;
     private final GetWalkUseCase getWalkUseCase;
-    private final GetMyWalksUseCase getMyWalksUseCase;
+    private final JoinWalkUseCase joinWalkUseCase;
+
+    private final GetMyRelatedWalks getMyRelatedWalks;
     private final WalkModelAssembler walkModelAssembler;
 
     @PostMapping
@@ -43,11 +52,55 @@ public class WalkController {
 
     @GetMapping
     public ResponseEntity<WalksModel> getMyWalks(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
-        val walks = getMyWalksUseCase.getMyWalks(userId);
-        val models = walkModelAssembler.toModelsWithLinks(walks);
+        val allWalks = getMyRelatedWalks.getWalks(userId);
+
+        val myWalks = allWalks.stream()
+                .filter(walk -> walk.getUserId().equals(userId) || walk.getJoinedUsers().contains(userId))
+                .collect(toList());
+
+        val currentWalks = myWalks.stream()
+                .filter(this::filterOutFutureWalks)
+                .collect(toList());
+
+        val futureWalks = myWalks.stream()
+                .filter(this::filterOutCurrentWalks)
+                .collect(toList());
+
+        val myMatchesWalks = allWalks.stream()
+                .filter(walk -> !walk.getUserId().equals(userId) && !walk.getJoinedUsers().contains(userId))
+                .collect(toList());
+
+        val currentWalkModels = walkModelAssembler.toModelsWithLinks(currentWalks);
+        val futureWalkModels = walkModelAssembler.toModelsWithLinks(futureWalks);
+        val myMatchesWalkModels = walkModelAssembler.toModelsWithLinks(myMatchesWalks);
+
+
         val model = WalksModel.builder()
-                .currentWalks(models)
+                .currentWalks(currentWalkModels)
+                .myFutureWalks(futureWalkModels)
+                .myMatchesWalks(myMatchesWalkModels)
                 .build();
+
         return new ResponseEntity<>(model, OK);
+    }
+
+    @PutMapping("/{walkId}/join")
+    public ResponseEntity<WalkModel> joinWalk(@PathVariable("userId") String userId, @PathVariable("walkId") String walkId, @RequestBody @Valid IdCmd cmd) throws ExecutionException, InterruptedException {
+        val walk = joinWalkUseCase.join(userId, walkId, cmd.getId());
+        val model = walkModelAssembler.toModelWithLinks(walk);
+
+        return new ResponseEntity<>(model, OK);
+    }
+
+    private boolean filterOutCurrentWalks(Walk walk) {
+        return LocalDateTime.of(LocalDate.ofEpochDay(walk.getDate()), LocalTime.ofNanoOfDay(walk.getTime())).compareTo(LocalDateTime.now()) > 0;
+    }
+
+    private boolean filterOutFutureWalks(Walk walk) {
+        val localDateTime = LocalDateTime.of(LocalDate.ofEpochDay(walk.getDate()), LocalTime.ofNanoOfDay(walk.getTime()));
+        val nowOrAfter = localDateTime.compareTo(LocalDateTime.now()) <= 0;
+        val durationGreaterThanNow = localDateTime.plusMinutes(walk.getTime()).compareTo(LocalDateTime.now()) > 0;
+        return nowOrAfter && durationGreaterThanNow;
+
     }
 }

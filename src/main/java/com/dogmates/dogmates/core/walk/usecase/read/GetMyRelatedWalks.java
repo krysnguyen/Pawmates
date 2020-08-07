@@ -5,6 +5,6 @@ import com.dogmates.dogmates.core.walk.domain.Walk;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public interface GetMyWalksUseCase {
-    List<Walk> getMyWalks(String userId) throws ExecutionException, InterruptedException;
+public interface GetMyRelatedWalks {
+    List<Walk> getWalks(String userId) throws ExecutionException, InterruptedException;
 }

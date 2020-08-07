@@ -3,6 +3,7 @@
         <b-container fluid="md" class="mt-4">
             <CreateWalkCard/>
             <b-card-title>Current Walks</b-card-title>
+            <hr>
             <WalkListing
                     v-for="walk in current_walks"
                     v-bind:key="walk.id"
@@ -80,15 +81,20 @@
                 serverGetWalks(this);
             });
         },
-        methods: {
-        }
+        methods: {}
     }
 
     function serverGetWalks(that) {
         axios.get(`http://localhost:8090/api/v1/users/${that.user_id}/walks`)
             .then(res => {
-                if (res.data.currentWalks.length > 0) {
+                if (res.data.currentWalks !== null) {
                     that.current_walks = res.data.currentWalks;
+                }
+                if (res.data.myFutureWalks !== null) {
+                    that.my_future_walks = res.data.myFutureWalks;
+                }
+                if (res.data.myMatchesWalks !== null) {
+                    that.my_matches_walks = res.data.myMatchesWalks;
                 }
             })
     }

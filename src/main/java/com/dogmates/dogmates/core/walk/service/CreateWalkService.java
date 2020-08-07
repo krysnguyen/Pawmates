@@ -9,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.ExecutionException;
 
+import static java.time.ZoneOffset.UTC;
 import static org.mapstruct.factory.Mappers.getMapper;
 
 @Service
@@ -20,11 +22,14 @@ public class CreateWalkService implements CreateWalkUseCase {
     private final GetUserPort getUserPort;
 
     private final WalkMapper mapper = getMapper(WalkMapper.class);
+
     @Override
     public Walk create(CreateWalkCmd cmd, String userId) throws ExecutionException, InterruptedException {
         val walk = mapper.toWalk(cmd);
         val date = cmd.getDate().toEpochDay();
         val time = cmd.getTime().toNanoOfDay();
+        val expiryTime = cmd.getTime().plusMinutes(cmd.getDuration());
+        val expiryTimeStamp = LocalDateTime.of(cmd.getDate(), expiryTime);
 
         val user = getUserPort.getUser(userId);
 
@@ -33,6 +38,8 @@ public class CreateWalkService implements CreateWalkUseCase {
         walk.setUserId(userId);
         walk.setFirstName(user.getFirstName());
         walk.setLastName(user.getLastName());
+        walk.setExpiryTimeStamp(expiryTimeStamp.toEpochSecond(UTC));
+
         return createWalkPort.create(walk, userId);
     }
 }

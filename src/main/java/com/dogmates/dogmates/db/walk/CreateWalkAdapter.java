@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static java.lang.String.format;
@@ -23,7 +24,7 @@ public class CreateWalkAdapter implements CreateWalkPort {
     @Override
     public Walk create(Walk walk, String userId) throws ExecutionException, InterruptedException {
         val entity = mapper.toEntity(walk);
-
+        entity.setJoinedUsers(List.of());
         val walkRef = firestore.document(format(USER_PATH, userId))
                 .collection("walks")
                 .add(entity)
