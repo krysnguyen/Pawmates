@@ -77,9 +77,10 @@
 
 <style>
     .card {
-        margin: 0 auto; /* Added */
+        /* Added */
         float: none; /* Added */
-        margin-bottom: 10px; /* Added */
+        /* Added */
+        margin: 0 auto 10px;
         padding: 10px;
         border: 10px;
         box-shadow: 0px 0px 15px #666

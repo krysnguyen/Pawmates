@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static java.lang.String.format;
-import static java.util.stream.Collectors.toList;
 
 @Component
 @RequiredArgsConstructor
@@ -21,20 +20,8 @@ public class FirestoreQueryHelper {
 
     private static String USER_PATH = "users/%s";
 
-    public List<String> getAllUserIds() throws ExecutionException, InterruptedException {
+    public List<User> getAllUsers() throws ExecutionException, InterruptedException {
         return firestore.collection("users")
-                .get()
-                .get()
-                .getDocuments()
-                .stream()
-                .map(user1 -> user1.toObject(User.class))
-                .map(User::getId)
-                .collect(toList());
-    }
-
-    public List<User> getFilteredListOfUsers(List<String> ids) throws ExecutionException, InterruptedException {
-        return firestore.collection("users")
-                .whereIn("id", ids)
                 .get()
                 .get()
                 .toObjects(User.class);
