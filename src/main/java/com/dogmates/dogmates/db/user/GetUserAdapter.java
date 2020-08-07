@@ -29,10 +29,7 @@ public class GetUserAdapter implements GetUserPort {
         return firestore.collection("users")
                 .get()
                 .get()
-                .getDocuments()
-                .stream()
-                .map(user -> user.toObject(User.class))
-                .collect(toList());
+                .toObjects(User.class);
     }
 
     @Override
