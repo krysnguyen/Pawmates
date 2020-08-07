@@ -3,6 +3,9 @@ package com.dogmates.dogmates.core.walk.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Walk {
     private String id;
@@ -24,4 +27,8 @@ public class Walk {
     private String firstName;
 
     private String lastName;
+
+    private long expiryTimeStamp;
+
+    private List<String> joinedUsers;
 }

@@ -8,5 +8,5 @@ import java.util.concurrent.ExecutionException;
 public interface GetWalkPort {
     Walk getWalk(String userId, String walkId) throws ExecutionException, InterruptedException;
 
-    List<Walk> getMyWalks(String userId) throws ExecutionException, InterruptedException;
+    List<Walk> getMyRelatedWalks(String userId) throws ExecutionException, InterruptedException;
 }

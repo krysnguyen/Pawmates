@@ -9,4 +9,8 @@ import java.util.List;
 @Builder
 public class WalksModel {
     private List<WalkModel> currentWalks;
+
+    private List<WalkModel> myFutureWalks;
+
+    private List<WalkModel> myMatchesWalks;
 }

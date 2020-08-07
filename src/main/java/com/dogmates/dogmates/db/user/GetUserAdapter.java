@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -43,23 +42,14 @@ public class GetUserAdapter implements GetUserPort {
     @Override
     public List<User> getPotentialMatches(String userId) throws ExecutionException, InterruptedException {
         val user = getUser(userId);
-        val allIds = firestoreQueryHelper.getAllUserIds();
+        val allUsers = firestoreQueryHelper.getAllUsers();
 
         val filterBy = new HashSet<String>();
         makeFilteredIdSet(filterBy, user);
 
-        val allIdsSet = new HashSet<String>();
-        allIdsSet.addAll(allIds);
-
-        allIdsSet.removeAll(filterBy);
-
-        val ids = new ArrayList<>(allIdsSet);
-
-        if (ids.isEmpty()) {
-            return List.of();
-        } else {
-            return firestoreQueryHelper.getFilteredListOfUsers(ids);
-        }
+        return allUsers.stream()
+                .filter(user1 -> filterBy.stream().noneMatch(userId1 -> user1.getId().equals(userId1)))
+                .collect(toList());
     }
 
     private void makeFilteredIdSet(HashSet<String> filterBy, User user) {

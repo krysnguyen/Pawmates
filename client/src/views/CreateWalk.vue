@@ -33,7 +33,7 @@
                     ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Duration (min)" label-for="input-4">
+                <b-form-group label="Duration (in minutes & minimum 1 minute)" label-for="input-4">
                     <b-form-input
                             id="input-4"
                             v-model="form.duration"
@@ -53,11 +53,12 @@
                     ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Description (optional)" label-for="input-6">
+                <b-form-group label="Description (Provide short description)" label-for="input-6">
                     <b-form-textarea
                             id="input-6"
                             v-model="form.description"
                             placeholder="Let's hang out! My dog is really friendly."
+                            required
                             rows="4"
                     ></b-form-textarea>
                 </b-form-group>

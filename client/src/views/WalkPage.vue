@@ -3,15 +3,16 @@
         <b-container fluid="sm" class="p-4 mt-4 mb-4 bg-light">
             <b-row class="walk-row">
                 <b-col>
-                    <b-card-title
-                            :title="walk.user.firstName + ' ' + walk.user.lastName"
-                            title-tag="h2">
+                    <b-card-title title-tag="h2">
+                        {{walk.user.firstName + ' ' + walk.user.lastName}}
                     </b-card-title>
                 </b-col>
             </b-row>
             <b-row class="walk-row mb-3" align-h="center">
                 <b-col cols="10" sm="7">
-                    <b-button v-if="user_id !== walk.user.userId" v-on:click="joinWalk()" block pill variant="primary">Join Walk!</b-button>
+                    <b-button v-if="user_id !== walk.user.userId" v-on:click="joinWalk()" block pill variant="primary">
+                        Join Walk!
+                    </b-button>
                 </b-col>
             </b-row>
             <b-row class="walk-row">
@@ -67,7 +68,7 @@
         },
         methods: {
             joinWalk: function () {
-                return
+                serverJoinWalk(this.user_id, this.walk.id, this.walk.user.userId, this.$router);
             }
         }
     }
@@ -76,6 +77,14 @@
         axios.get(`http://localhost:8090/api/v1/users/${userId}/walks/${walkId}`)
             .then(res => that.walk = res.data)
             .catch(err => alert(`Can't get walk from the database: ${err}`));
+    }
+
+    function serverJoinWalk(userId, walkId, walkUserId, router) {
+        axios.put(`http://localhost:8090/api/v1/users/${walkUserId}/walks/${walkId}/join`, {
+            id: userId
+        })
+            .then(() => router.push('/walk'))
+            .catch(err => alert("Could not join walk " + err))
     }
 </script>
 

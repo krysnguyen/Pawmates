@@ -2,6 +2,8 @@ package com.dogmates.dogmates.db.walk;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class WalkEntity {
     private String title;
@@ -21,4 +23,8 @@ public class WalkEntity {
     private String firstName;
 
     private String lastName;
+
+    private long expiryTimeStamp;
+
+    private List<String> joinedUsers;
 }
