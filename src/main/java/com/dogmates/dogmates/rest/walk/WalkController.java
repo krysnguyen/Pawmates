@@ -99,7 +99,7 @@ public class WalkController {
     private boolean filterOutFutureWalks(Walk walk) {
         val localDateTime = LocalDateTime.of(LocalDate.ofEpochDay(walk.getDate()), LocalTime.ofNanoOfDay(walk.getTime()));
         val nowOrAfter = localDateTime.compareTo(LocalDateTime.now()) <= 0;
-        val durationGreaterThanNow = localDateTime.plusMinutes(walk.getTime()).compareTo(LocalDateTime.now()) > 0;
+        val durationGreaterThanNow = localDateTime.plusMinutes(walk.getDuration()).compareTo(LocalDateTime.now()) > 0;
         return nowOrAfter && durationGreaterThanNow;
 
     }
