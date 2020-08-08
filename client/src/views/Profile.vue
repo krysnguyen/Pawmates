@@ -87,9 +87,9 @@
                                         placeholder='Select the kind of walk' popupWidth="450px"
                                         popupHeight="200px" sortOrder="Ascending"></ejs-dropdownlist>
                 </div>
-            </div>    
+            </div>
         </div>
-        
+
         <div class="col-12 form-group">
             <label class="col-form-label col-form-label-lg">Something interesting about me and my pet
                 that I would like to share</label>
@@ -126,9 +126,9 @@
 
     export default {
         name: 'Profile',
-        // components: {
-        //     UserCollage
-        // },
+        components: {
+            DatePicker
+        },
         data() {
             return {
                 imagePreview: '../assets/puppy.jpg',
@@ -137,13 +137,12 @@
                     walk_types.NEIGHBORHOOD
                 ],
                 dog_type_options: dog_data['dogs'],
-                first_name: 'Chad',
-                last_name: 'Malla',
-                email: '',
+                first_name: '',
+                last_name: '',
                 number_of_dogs: '',
-                dog_types: [],
-                walk_types: [],
-                bio: '',
+                dog_types: '',
+                walk_types: '',
+                bio: 'test',
                 user_id: ''
             };
 
@@ -151,65 +150,47 @@
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                console.log(this.user_id);
             });
         },
         methods: {
-            createUser: function () {
-                serverCreateUser(
-                    this.first_name,
-                    this.last_name,
-                    this.bio,
-                    this.number_of_dogs,
-                    this.dog_types,
-                    this.walk_types,
-                    this.user_id
-                )
-            },
-            onFileSelected(event){
-                let file = event.target.files[0];
-                var storageRef = fb.storage().ref('users/'+file.name);
-                storageRef.put(file);
+            updateUser: function () {
+                serverUpdateUser(this)
             }
         }
     }
 
-    function serverCreateUser(
-        firstName,
-        lastName,
-        bio,
-        numberOfDogs,
-        dogTypes,
-        walkTypes,
-        userId
-    ) {
-        axios.post('http://localhost:8090/api/v1/users', {
-            firstName: firstName,
-            lastName: lastName,
-            bio: bio,
-            numberOfDogs: numberOfDogs,
-            dogTypes: dogTypes,
-            walkTypes: walkTypes,
-            userId: userId
+    function serverUpdateUser(that) {
+        axios.put(`https://localhost:8090/api/v1/users/${that.user_id}`, {
+            firstName: that.first_name,
+            lastName: that.last_name,
+            birthday: that.birthday,
+            bio: that.bio,
+            dogTypes: [that.dog_types],
+            walkTypes: [that.walk_types],
         })
-            .then(response => console.log(response))
-            .catch(error => window.alert("Error creating user" + error));
+            .then(() => alert("Profile updated"))
+            .catch(err => alert("Failed to update " + err))
     }
 </script>
 <style>
-    @import url(https://cdn.syncfusion.com/ej2/material.css);
-    /* .vue-bg {
-        background: #bce5d0;
-        position: absolute;
-        top:50%;
-        left:50%
-    } */
-    .Profile{
-         margin-top: 10px;
+    .EditProfile {
+        margin-top: 40px;
     }
-    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-    .inputWithIcon input[type=text]{
+
+    .inputWithIcon input[type=text] {
         padding-left: 40px;
+    }
+
+    .inputWithIcon {
+        position: relative;
+    }
+
+    .inputWithIcon i {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        padding: 9px 8px;
+        color: #aaa;
     }
 
     .inputWithIcon{

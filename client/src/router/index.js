@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 import Home from '../views/Home.vue'
-import Profile from '../views/EditProfile.vue'
+import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import Match from '../views/Match.vue'
