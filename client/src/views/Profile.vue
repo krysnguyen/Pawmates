@@ -115,6 +115,7 @@
     import axios from 'axios';
     import * as dog_data from '../dogs.json';
     import firebase from "firebase";
+    import fb from '../main';
 
     Vue.use(DropDownListPlugin);
 
