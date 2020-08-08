@@ -13,13 +13,17 @@ public class User {
 
     private String lastName;
 
+    private String email;
+
+    private long birthday;
+
     private String bio;
 
     private int numberOfDogs;
 
-    private String dogTypes;
+    private List<String> dogTypes;
 
-    private String walkTypes;
+    private List<String> walkTypes;
 
     private List<String> liked = new ArrayList<>();
 
