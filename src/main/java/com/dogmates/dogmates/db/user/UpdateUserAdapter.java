@@ -14,7 +14,7 @@ import static java.lang.String.format;
 @RequiredArgsConstructor
 public class UpdateUserAdapter implements UpdateUserPort {
     private final Firestore firestore;
-    private static String USER_PATH = "/users/%s";
+    private static String USER_PATH = "users/%s";
 
     @Override
     public User update(User user) throws ExecutionException, InterruptedException {
