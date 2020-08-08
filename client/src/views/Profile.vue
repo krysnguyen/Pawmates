@@ -159,6 +159,11 @@
         methods: {
             updateUser: function () {
                 serverUpdateUser(this)
+            },
+            onFileSelected(event){
+                let file = event.target.files[0];
+                var storageRef = fb.storage().ref('users/'+file.name);
+                storageRef.put(file);
             }
         }
     }
