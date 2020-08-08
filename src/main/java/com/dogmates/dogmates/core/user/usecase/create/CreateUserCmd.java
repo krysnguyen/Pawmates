@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,13 +19,13 @@ public class CreateUserCmd {
     @NotBlank
     private String lastName;
 
-    private String bio;
+    @NotBlank
+    private String email;
 
-    private int numberOfDogs;
+    @NotNull
+    private LocalDate birthday;
 
-    private String dogTypes;
-
-    private String walkTypes;
+    private List<String> dogTypes;
 
     @NotBlank
     private String userId;

@@ -5,9 +5,7 @@ import com.dogmates.dogmates.core.user.usecase.create.CreateUserUseCase;
 import com.dogmates.dogmates.core.user.usecase.read.GetPotentialMatchesUseCase;
 import com.dogmates.dogmates.core.user.usecase.read.GetUserUseCase;
 import com.dogmates.dogmates.core.user.usecase.read.GetUsersUseCase;
-import com.dogmates.dogmates.core.user.usecase.update.DislikeUserUseCase;
-import com.dogmates.dogmates.core.user.usecase.update.IdCmd;
-import com.dogmates.dogmates.core.user.usecase.update.LikeUserUseCase;
+import com.dogmates.dogmates.core.user.usecase.update.*;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +26,7 @@ public class UserController {
     private final CreateUserUseCase createUserUseCase;
     private final GetUsersUseCase getUsersUseCase;
     private final GetUserUseCase getUserUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
     private final GetPotentialMatchesUseCase getPotentialMatchesUseCase;
     private final LikeUserUseCase likeUserUseCase;
     private final DislikeUserUseCase dislikeUserUseCase;
@@ -65,6 +64,13 @@ public class UserController {
         return new ResponseEntity<>(models, OK);
     }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserModel> updateUser(@PathVariable("userId") String userId, @RequestBody @Valid UpdateUserCmd cmd) throws ExecutionException, InterruptedException {
+        val user = updateUserUseCase.update(cmd, userId);
+        val model = userModelAssembler.toModelWithLinks(user);
+        return new ResponseEntity<>(model, OK);
+    }
+
     @PutMapping("/{userId}/likes")
     public ResponseEntity<UserModel> likeUser(@PathVariable("userId") String userId, @RequestBody @Valid IdCmd cmd) throws ExecutionException, InterruptedException {
         val user = likeUserUseCase.like(userId, cmd);
@@ -78,5 +84,4 @@ public class UserController {
         val model = userModelAssembler.toModelWithLinks(user);
         return new ResponseEntity<>(model, OK);
     }
-
 }
