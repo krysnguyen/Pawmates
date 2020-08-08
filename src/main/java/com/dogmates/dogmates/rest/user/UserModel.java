@@ -4,6 +4,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.RepresentationModel;
 
+import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
+import java.util.List;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserModel extends RepresentationModel<UserModel> {
@@ -13,11 +17,14 @@ public class UserModel extends RepresentationModel<UserModel> {
 
     private String lastName;
 
+    private String email;
+
+    private LocalDate birthday;
+
     private String bio;
 
-    private int numberOfDogs;
+    @NotEmpty
+    private List<String> dogTypes;
 
-    private String dogTypes;
-
-    private String walkTypes;
+    private List<String> walkTypes;
 }

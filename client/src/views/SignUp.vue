@@ -65,7 +65,7 @@
                 <div class="form-group col-md-4">
                     <label class="col-form-label-lg">Pet's Breed</label>
                     <ejs-dropdownlist
-                        id='dropdownlist1' :dataSource="dog_type_options" v-model='dog_types'
+                        id='dropdownlist1' :dataSource="dog_type_options" v-model='dog_type'
                         placeholder='Select the kind of dogs' popupWidth="450px"
                         popupHeight='500px'>
                     </ejs-dropdownlist> 
@@ -90,6 +90,7 @@
     import {fb} from '../main';
     import {DropDownListPlugin} from '@syncfusion/ej2-vue-dropdowns';
     import * as dog_data from '../dogs.json';
+    import axios from "axios";
 
     Vue.use(DropDownListPlugin);
 
@@ -100,31 +101,43 @@
         },
         data() {
             return {
-                first_name:'',
+                first_name: '',
                 last_name: '',
                 email: '',
                 password: '',
-                birthDate: '',
+                birthday: '',
                 selectedFile: null,
-                dog_types: [],
+                dog_type: '',
                 dog_type_options: dog_data['dogs'],
-                pet_name:''
+                pet_name: ''
             }
         },
         methods: {
             signUp: function () {
-                firebase.auth()
-                    .createUserWithEmailAndPassword(this.email, this.password)
-                    .then(() => this.$router.replace('profile'))
+                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                    .then(res => serverCreateUser(this, res.user.uid))
                     .catch(err => alert('Sign up not successful' + err.message));
             },
-            onFileSelected(event){
+            onFileSelected(event) {
                 let file = event.target.files[0];
-                var storageRef = fb.storage().ref('users/'+file.name);
+                const storageRef = fb.storage().ref('users/' + file.name);
                 storageRef.put(file);
             }
 
         }
+    }
+
+    function serverCreateUser(that, userId) {
+        axios.post('http://localhost:8090/api/v1/users', {
+            firstName: that.first_name,
+            lastName: that.last_name,
+            email: that.email,
+            birthday: that.birthday,
+            dogTypes: [that.dog_type],
+            userId: userId
+        })
+            .then(() => that.$router.replace('/match'))
+            .catch(error => window.alert("Error creating user" + error));
     }
 </script>
 
@@ -133,37 +146,33 @@
         margin-top: 40px;
     }
 
-    .inputWithIcon input[type=text]{
+    .inputWithIcon input[type=text] {
         padding-left: 40px;
     }
 
-    .inputWithIcon{
+    .inputWithIcon {
         position: relative;
     }
 
-    .inputWithIcon i{
-        position:absolute;
-        left:5px;
-        top:5px;
-        padding:9px 8px;
+    .inputWithIcon i {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        padding: 9px 8px;
         color: #aaa;
     }
+
     input {
         width: 60%;
         height: 45px;
         padding-left: 15px;
     }
 
-    date-picker{
+    date-picker {
         width: 80%;
     }
+
     button {
         cursor: pointer;
     }
-
-    // span {
-    //     display: block;
-    //     margin-top: 20px;
-    //     font-size: 11px;
-    // }
 </style>

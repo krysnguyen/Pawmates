@@ -25,6 +25,7 @@
             <b-button v-on:click="like()">Like</b-button>
             <b-button v-on:click="dislike()">Dislike</b-button>
         </b-card>
+        <b-button v-if="this.loading === true" v-on:click="loadMatches()">Search for potential matches</b-button>
     </div>
 </template>
 
@@ -39,31 +40,24 @@
                 potential_matches: [],
                 potential_match: {},
                 user_id: '',
-                loading: true,
-                getPotentialMatchesInterval: ''
+                loading: true
             };
         },
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                // setTimeout(serverGetPotentialMatches, 3000, this);
                 serverGetPotentialMatches(this);
 
             });
 
         },
-        mounted: function () {
-            this.getPotentialMatchesInterval = window.setInterval(() => {
-                this.getMatches()
-            }, 3000)
-        },
-        destroyed() {
-            clearInterval(this.getPotentialMatchesInterval)
-        },
         methods: {
             viewProfile: function () {
                 const path = 'user/' + this.potential_matches[0].userId;
                 this.$router.push(path)
+            },
+            loadMatches: function () {
+              serverGetPotentialMatches(this);
             },
             updateNextMatch: function () {
                 if (this.potential_matches.length > 1) {
@@ -73,11 +67,6 @@
                     this.loading = true;
                 }
 
-            },
-            getMatches: function () {
-                if (this.loading === true) {
-                    serverGetPotentialMatches(this);
-                }
             },
             like: function () {
                 serverLikeUser(this.user_id, this.potential_matches[0].userId);
