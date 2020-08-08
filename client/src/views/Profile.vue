@@ -39,12 +39,13 @@
                         <div class="form-group col-md-6">
                             <label class="col-form-label-lg">Phone number</label>
                             <div class="inputWithIcon">
-                                <input type="text" class="form-control" v-model="phoneNumber" name="phoneNumber"/>
+                                <input type="text" class="form-control" v-model="phone_number" name="phoneNumber"/>
                                 <i class="fas fa-sms fa-lg fa-lw"></i>
                             </div>
                         </div>
                     </div>
                     <div class="row">
+                        <!-- TODO: change to date picker -->
                         <div class="form-group col-md-6">
                             <label class="col-form-label col-form-label-lg">My age </label>
                             <div class="inputWithIcon">
@@ -82,7 +83,7 @@
                         <div class="col-md-6 form-group">
                             <label class="col-form-label col-form-label-lg">The kind of walks I
                                 prefer?</label>
-                            <ejs-dropdownlist id='dropdownlist2' :dataSource="walktype"
+                            <ejs-dropdownlist id='dropdownlist2' :dataSource="walk_type"
                                               v-model='walk_types'
                                               placeholder='Select the kind of walk' popupWidth="450px"
                                               popupHeight="200px" sortOrder="Ascending"></ejs-dropdownlist>
@@ -129,17 +130,22 @@
         data() {
             return {
                 imagePreview: '../assets/puppy.jpg',
-                walktype: [
+                walk_type: [
                     walk_types.TRAIL,
                     walk_types.NEIGHBORHOOD
                 ],
                 dog_type_options: dog_data['dogs'],
                 first_name: '',
                 last_name: '',
+                email: '',
+                age: '',
+                phone_number: '',
                 number_of_dogs: '',
                 dog_types: '',
+                pet_age: '',
+                pet_name: '',
                 walk_types: '',
-                bio: 'test',
+                bio: '',
                 user_id: ''
             };
 
@@ -147,6 +153,7 @@
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
+                serverGetUser(this);
             });
         },
         methods: {
@@ -155,9 +162,23 @@
             }
         }
     }
+    function serverGetUser(that) {
+        axios.get(`http://localhost:8090/api/v1/users/${that.user_id}`)
+            .then(res => {
+                that.first_name = res.data.firstName;
+                that.last_name = res.data.lastName;
+                that.email = res.data.email;
+                that.birthday = res.data.birthday;
+                that.bio = res.data.bio;
+                // TODO: Return the array and have a table of dogs
+                that.dog_types = res.data.dog_types[0];
+                that.walk_types = res.data.walkTypes[0];
+                console.log("first name " + that.first_name)
+            })
+    }
 
     function serverUpdateUser(that) {
-        axios.put(`https://localhost:8090/api/v1/users/${that.user_id}`, {
+        axios.put(`http://localhost:8090/api/v1/users/${that.user_id}`, {
             firstName: that.first_name,
             lastName: that.last_name,
             birthday: that.birthday,

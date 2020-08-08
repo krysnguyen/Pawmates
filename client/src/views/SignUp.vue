@@ -65,7 +65,7 @@
                 <div class="form-group col-md-4">
                     <label class="col-form-label-lg">Pet's Breed</label>
                     <ejs-dropdownlist
-                        id='dropdownlist1' :dataSource="dog_type_options" v-model='dog_types'
+                        id='dropdownlist1' :dataSource="dog_type_options" v-model='dog_type'
                         placeholder='Select the kind of dogs' popupWidth="450px"
                         popupHeight='500px'>
                     </ejs-dropdownlist> 
@@ -133,7 +133,7 @@
             lastName: that.last_name,
             email: that.email,
             birthday: that.birthday,
-            dogType: [that.dog_type],
+            dogTypes: [that.dog_type],
             userId: userId
         })
             .then(() => that.$router.replace('/match'))
