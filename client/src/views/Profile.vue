@@ -243,7 +243,7 @@
 
     .wrapper{
     position: absolute;
-    top: 85%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 950px;
