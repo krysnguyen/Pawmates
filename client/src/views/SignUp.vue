@@ -136,7 +136,7 @@
             dogType: [that.dog_type],
             userId: userId
         })
-            .then(() => this.$router.replace('/match'))
+            .then(() => that.$router.replace('/match'))
             .catch(error => window.alert("Error creating user" + error));
     }
 </script>
