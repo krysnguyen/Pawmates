@@ -10,7 +10,9 @@ import org.mapstruct.MappingTarget;
 @Mapper
 public interface UserMapper {
     @Mapping(source = "userId", target = "id")
+    @Mapping(source = "birthday", target = "birthday", ignore = true)
     User toUser(CreateUserCmd cmd);
 
+    @Mapping(source = "birthday", target = "birthday", ignore = true)
     void updateUser(UpdateUserCmd cmd, @MappingTarget User user);
 }
