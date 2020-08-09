@@ -28,5 +28,9 @@ public class CreateWalkCmd {
 
     private String location;
 
+    private String address;
+
+    private String coords;
+
     private String description;
 }

@@ -54,9 +54,11 @@
                             placeholder="Type an address or click on the map."
                     ></b-form-input>
                 </b-form-group>
-                                
-                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2827" lng="-123.1207" width="100%" height="500px" v-bind:newAddress="newAddress" v-bind:selectLocations="true" />
-                
+
+                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2827"
+                         lng="-123.1207" width="100%" height="500px" v-bind:newAddress="newAddress"
+                         v-bind:selectLocations="true"/>
+
 
                 <b-form-group label="Description (Provide short description)" label-for="input-6" label-class="mt-3">
                     <b-form-textarea
@@ -121,6 +123,8 @@
                     this.form.time,
                     this.form.duration,
                     this.form.location,
+                    this.form.address,
+                    this.form.coords,
                     this.form.description,
                     this
                 );
@@ -129,15 +133,15 @@
                 this.form.location = cityName;
             },
             newLocation: function (address) {
-              this.form.address = address;
-              document.getElementById("location-label").style.fontWeight = "bold";
-              document.getElementById("input-5").style.fontWeight = "bold";
-              setTimeout(() => {
-                var locationLabel = document.getElementById("location-label")
-                var locationInput = document.getElementById("input-5")
-                locationInput.style.fontWeight = "normal";
-                locationLabel.style.fontWeight = "normal";
-              }, 1500);
+                this.form.address = address;
+                document.getElementById("location-label").style.fontWeight = "bold";
+                document.getElementById("input-5").style.fontWeight = "bold";
+                setTimeout(() => {
+                    const locationLabel = document.getElementById("location-label");
+                    const locationInput = document.getElementById("input-5");
+                    locationInput.style.fontWeight = "normal";
+                    locationLabel.style.fontWeight = "normal";
+                }, 1500);
             },
             newCoords: function (coords) {
 //                console.log("parent: " + coords);
@@ -159,6 +163,8 @@
         time,
         duration,
         location,
+        address,
+        coords,
         description,
         that
     ) {
@@ -168,6 +174,8 @@
             time: time,
             duration: duration,
             location: location,
+            address: address,
+            coords: coords,
             description: description
         })
             .then(res => {
