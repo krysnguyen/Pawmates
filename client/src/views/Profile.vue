@@ -244,6 +244,7 @@
     }
 </script>
 <style>
+    @import url(https://cdn.syncfusion.com/ej2/material.css);
     .Profile {
         margin-top: 40px;
     }
@@ -349,5 +350,5 @@
     .img-wrapp span.delete-img:hover{
     cursor: pointer;
     }
-    @import url(https://cdn.syncfusion.com/ej2/material.css);
+    
 </style>
