@@ -223,8 +223,9 @@
                 that.email = res.data.email;
                 that.birthday = res.data.birthday;
                 that.bio = res.data.bio;
+                that.pet_name = res.data.dogName;
                 // TODO: Return the array and have a table of dogs
-                that.dog_types = res.data.dog_types[0];
+                that.dog_types = res.data.dogTypes[0];
                 that.walk_types = res.data.walkTypes[0];
                 console.log("first name " + that.first_name)
             })
@@ -236,6 +237,7 @@
             lastName: that.last_name,
             birthday: that.birthday,
             bio: that.bio,
+            dogName: that.pet_name,
             dogTypes: [that.dog_types],
             walkTypes: [that.walk_types],
         })

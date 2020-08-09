@@ -11,15 +11,15 @@
                 img-top
                 tag="article"
                 style="max-width: 40rem;"
-                class="mb-2"
+                class="text-center"
                 v-else-if="this.loading === false"
         >
             <b-card-title>
                 {{this.potential_match.firstName + ' ' + this.potential_match.lastName}}
             </b-card-title>
 
-            <b-card-text>
-                Has {{this.potential_match.numberOfDogs}} dogs and looking for people to walk their dogs with.
+            <b-card-text style="color:rgb(112, 112, 112);">
+                {{this.potential_match.bio}}
             </b-card-text>
             <b-button v-on:click="viewProfile()">View Profile</b-button>
             <b-button v-on:click="like()">Like</b-button>

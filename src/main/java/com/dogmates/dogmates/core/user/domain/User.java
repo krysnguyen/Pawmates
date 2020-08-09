@@ -25,6 +25,8 @@ public class User {
 
     private List<String> walkTypes;
 
+    private String dogName;
+
     private List<String> liked = new ArrayList<>();
 
     private List<String> disliked = new ArrayList<>();
