@@ -47,11 +47,8 @@
                     <div class="row">
                         <!-- TODO: change to date picker -->
                         <div class="form-group col-md-6">
-                            <label class="col-form-label col-form-label-lg">My age </label>
-                            <div class="inputWithIcon">
-                                <input type="text" class="form-control" v-model="age" name="age"/>
-                                <i class="far fa-calendar-times fa-lg fa-lw"></i>
-                            </div>
+                            <label class="col-form-label-lg">Birthday 'YYYY-MM-DD'</label>
+                            <date-picker v-model="birthDate" type="date"></date-picker>
                         </div>
                     </div>
                     <h1>MY PET PROFILE</h1>
@@ -60,13 +57,6 @@
                             <label class="col-form-label col-form-label-lg">My pet's name is</label>
                             <div class="inputWithIcon">
                                 <input type="text" class="form-control" v-model="pet_name" name="petName"/>
-                                <i class="fas fa-dog fa-lg fa-lw"></i>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="col-form-label col-form-label-lg">My pet's age is</label>
-                            <div class="inputWithIcon">
-                                <input type="text" class="form-control" v-model="pet_age" name="petAge"/>
                                 <i class="fas fa-dog fa-lg fa-lw"></i>
                             </div>
                         </div>
@@ -99,7 +89,15 @@
                 </div>
                 <div class="form-group col-12">
                     <label class="col-form-label-lg">Photo Upload</label>
-                    <input type="file" @change="onFileSelected">
+                    <Button @click="onPickFile">Upload Image</Button>
+                    <input type="file" ref="fileInput" accept="image/*" @change="onFileSelected">
+                    <img :src="imageUrl" height ="150">
+                </div>
+                <div class="form-group d-flex">
+                    <div class="p-1" v-for="image in this.images" v-bind:key="image">
+                        <img :src="image" alt="" width="80px">
+                        <span class="delete-img" @click="deleteImage(image,index)">X</span>
+                    </div>
                 </div>
                 <div class="col-12 form-group text-center">
                     <button type="button" v-on:click="updateUser()">Save</button>
@@ -115,6 +113,9 @@
     import axios from 'axios';
     import * as dog_data from '../dogs.json';
     import firebase from "firebase";
+    import {db,fb} from '../main';
+    import DatePicker from 'vue2-datepicker';
+    import 'vue2-datepicker/index.css';
 
     Vue.use(DropDownListPlugin);
 
@@ -126,6 +127,7 @@
     export default {
         name: 'Profile',
         components: {
+            DatePicker
         },
         data() {
             return {
@@ -146,7 +148,10 @@
                 pet_name: '',
                 walk_types: '',
                 bio: '',
-                user_id: ''
+                user_id: '',
+                images:[],
+                birthDate:'',
+                file:null
             };
 
         },
@@ -156,15 +161,58 @@
                 serverGetUser(this);
             });
         },
+        firestore(){
+            return {
+                users: db.collection('users'),
+            }
+        },
         methods: {
             updateUser: function () {
                 serverUpdateUser(this)
             },
+            onPickFile(){
+                this.$refs.fileInput.click()
+            },
             onFileSelected(event){
-                let file = event.target.files[0];
-                var storageRef = fb.storage().ref('users/'+file.name);
-                storageRef.put(file);
-            }
+                const files = event.target.files;
+                let filename = files[0].name;
+                if (filename.lastIndexOf('.') <= 0){
+                    return alert('Please add a valid file!')
+                }
+                const fileReader = new FileReader()
+                fileReader.addEventListener('load',() => {
+                    this.imageUrl = fileReader.result
+                })
+                fileReader.readAsDataURL(files[0])
+                this.image = files[0] 
+            },
+            onUpload(event){
+                if(event.target.files[0]){
+                    var storageRef = fb.storage().ref('users/'+ this.file.name);
+                    let uploadTask  = storageRef.put(this.file);
+                    uploadTask.on('state_changed', () => {
+                    }, (error) => {
+                        console.log(error);
+                    }, () => {
+                        // eslint-disable-line no-unused-vars
+                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        // eslint-disable-line no-unused-vars
+                        console.log(downloadURL);
+                        this.images.push(downloadURL);
+                        });
+                    });
+                }
+            },
+            deleteImage(img,index){
+                let image = fb.storage().refFromURL(img);
+                this.images.splice(index,1);
+                image.delete().then(function() {
+                    console.log('image deleted');
+                }).catch(function(error) {
+                    // Uh-oh, an error occurred!
+                    console.log('an error occurred')+error;
+                });
+            },
         }
     }
     function serverGetUser(that) {
@@ -247,8 +295,7 @@
 
     .wrapper {
         position: absolute;
-        z-index: -1;
-        top: 100%;
+        top: 700px;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 950px;
@@ -291,58 +338,16 @@
     .wrapper .right .projects {
         margin-bottom: 25px;
     }
-
-    .wrapper .right .info h3,
-    .wrapper .right .projects h3 {
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #e0e0e0;
-        color: #353c4e;
-        text-transform: uppercase;
-        letter-spacing: 5px;
+    .img-wrapp{
+    position: relative;
     }
-
-    .wrapper .right .info_data,
-    .wrapper .right .projects_data {
-        display: flex;
-        justify-content: space-between;
+    .img-wrapp span.delete-img{
+        position: absolute;
+        top: -14px;
+        left: -2px;
     }
-
-    .wrapper .right .info_data .data,
-    .wrapper .right .projects_data .data {
-        width: 45%;
+    .img-wrapp span.delete-img:hover{
+    cursor: pointer;
     }
-
-    .wrapper .right .info_data .data h4,
-    .wrapper .right .projects_data .data h4 {
-        color: #353c4e;
-        margin-bottom: 5px;
-    }
-
-    .wrapper .right .info_data .data p,
-    .wrapper .right .projects_data .data p {
-        font-size: 13px;
-        margin-bottom: 10px;
-        color: #919aa3;
-    }
-
-    .wrapper .social_media ul {
-        display: flex;
-    }
-
-    .wrapper .social_media ul li {
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(to right, #01a9ac, #01dbdf);
-        margin-right: 10px;
-        border-radius: 5px;
-        text-align: center;
-        line-height: 45px;
-    }
-
-    .wrapper .social_media ul li a {
-        color: #fff;
-        display: block;
-        font-size: 18px;
-    }
+    @import url(https://cdn.syncfusion.com/ej2/material.css);
 </style>
