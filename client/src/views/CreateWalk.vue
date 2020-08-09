@@ -55,7 +55,7 @@
                     ></b-form-input>
                 </b-form-group>
                                 
-                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2827" lng="-123.1207" width="100%" height="500px" v-bind:newAddress="newAddress" />
+                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2827" lng="-123.1207" width="100%" height="500px" v-bind:newAddress="newAddress" v-bind:selectLocations="true" />
                 
 
                 <b-form-group label="Description (Provide short description)" label-for="input-6" label-class="mt-3">
@@ -94,7 +94,7 @@
                     duration: '15',
                     location: '', // this field holds the city name (e.g. Burnaby)
                     address: "", // this field holds the full address (e.g. 4500 Pender St., Burnaby, BC, Canada)
-                    coords: "",
+                    coords: "", // this field has latitude and longitude in one string
                     description: ''
                 },
                 newAddress: ""
@@ -110,8 +110,8 @@
                 evt.preventDefault()
             },
             createWalk: function () {
-                if (this.form.location == "That location could not be found.") {
-                    alert("Please enter a valid location.");
+                if (this.form.address == "That address could not be found.") {
+                    alert("Please enter a valid address.");
                     return;
                 }
                 serverCreateWalk(

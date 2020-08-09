@@ -6,7 +6,7 @@
 
 <script>
     
-    // much of this code has been adapted from tutorials found on the HERE api docs
+    // some of this code has been adapted from tutorials found on the HERE api docs
     // one such tutorial is found here: 
     // https://developer.here.com/documentation/examples/maps-js/events/position-on-mouse-click
     export default {
@@ -25,10 +25,17 @@
             lng: String,
             width: String,
             height: String,
-            newAddress: String
+            newAddress: String,
+            selectLocations: {
+              type: Boolean,
+              default: false
+            }
         },
         watch: {
             newAddress(newAddr) {
+                if (!this.selectLocations) {
+                    return;
+                }
 //                console.log("child: " + newAddr);
                 this.geocoder.geocode({ searchText: newAddr }, data => {
                     if(data.Response.View.length > 0) {
@@ -41,19 +48,19 @@
                             this.$emit('new-city', data.Response.View[0].Result[0].Location.Address.City);
                             this.$emit('new-coords', coords.Latitude + "," + coords.Longitude);
                         } else {
-                            badLocation();
+                            badLocation(this);
                         }
                     } else {
-                        badLocation();
+                        badLocation(this);
                     }
                 }, error => {
                     console.error(error);
-                    badLocation();
+                    badLocation(this);
                 });
-              function badLocation() {
-                  this.$emit('new-coords', "");
-                  this.$emit('new-location', "That location could not be found.");
-                  this.$emit('new-city', "");
+              function badLocation(self) {
+                  self.$emit('new-coords', "");
+                  self.$emit('new-location', "That address could not be found.");
+                  self.$emit('new-city', "");
               }
             }  
         },
@@ -63,11 +70,17 @@
                 app_id: "ui9WRGl7eFkoMFuGEed3",
                 apikey: "_pbd0lc2y8nctrFKjEfiXs4I3-E611GPNW7rYcmkamA"
             });
+            if (!this.selectLocations) {
+                    return;
+            }
             this.geocoder = this.platform.getGeocodingService();
             this.service = this.platform.getSearchService();
         },
         methods: {
             setUpClickListener: function (map) {
+              if (!this.selectLocations) {
+                    return;
+              }
               let _this = this;
               // Attach an event listener to map display
               // obtain the coordinates and display in an alert box.

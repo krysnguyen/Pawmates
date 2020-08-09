@@ -50,10 +50,13 @@
 <script>
     import axios from 'axios';
     import firebase from "firebase";
+//    import HereMap from "../components/HereMap.vue"
 
     export default {
         name: 'WalkPage',
-        components: {},
+        components: {
+//          HereMap
+        },
         data() {
             return {
                 user_id: '',
