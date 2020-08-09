@@ -19,7 +19,7 @@
                 <b-col cols="12" md="8" class="mb-3">
                 
                     <b-card class="map-card mb-0">
-                        <HereMap :lat="lat" :lng="long" width="100%" height="550px" />
+                        <HereMap :lat="lat" :lng="lng" width="100%" height="550px" />
                     </b-card>
                 
                 </b-col>
@@ -30,7 +30,7 @@
                         </b-card-img>
                         <b-card-title :title="walk.title">
                         </b-card-title>
-                        <b-card-sub-title :sub-title="address" class="mb-3 mb-md-4"></b-card-sub-title>
+                        <b-card-sub-title :sub-title="walk.address" class="mb-3 mb-md-4"></b-card-sub-title>
                         <div class="details">
                             {{ walk.date }} <br/>
                             {{ walk.time }} <br/>
