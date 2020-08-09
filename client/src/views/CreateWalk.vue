@@ -144,11 +144,9 @@
                 }, 1500);
             },
             newCoords: function (coords) {
-//                console.log("parent: " + coords);
                 this.form.coords = coords;
             },
             updateAddress: function (event) {
-//                console.log("parent: " + event);
                 if (event != "") {
                     this.newAddress = event;
                 }

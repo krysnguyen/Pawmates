@@ -1,6 +1,5 @@
 package com.dogmates.dogmates.core.walk.service;
 
-import com.dogmates.dogmates.core.user.port.GetUserPort;
 import com.dogmates.dogmates.core.walk.domain.Walk;
 import com.dogmates.dogmates.core.walk.port.CreateWalkPort;
 import com.dogmates.dogmates.core.walk.usecase.create.CreateWalkCmd;
@@ -19,7 +18,6 @@ import static org.mapstruct.factory.Mappers.getMapper;
 @RequiredArgsConstructor
 public class CreateWalkService implements CreateWalkUseCase {
     private final CreateWalkPort createWalkPort;
-    private final GetUserPort getUserPort;
 
     private final WalkMapper mapper = getMapper(WalkMapper.class);
 
@@ -31,13 +29,9 @@ public class CreateWalkService implements CreateWalkUseCase {
         val expiryTime = cmd.getTime().plusMinutes(cmd.getDuration());
         val expiryTimeStamp = LocalDateTime.of(cmd.getDate(), expiryTime);
 
-        val user = getUserPort.getUser(userId);
-
         walk.setDate(date);
         walk.setTime(time);
         walk.setUserId(userId);
-        walk.setFirstName(user.getFirstName());
-        walk.setLastName(user.getLastName());
         walk.setExpiryTimeStamp(expiryTimeStamp.toEpochSecond(UTC));
 
         return createWalkPort.create(walk, userId);

@@ -19,7 +19,7 @@
                 <b-col cols="12" md="8" class="mb-3">
                 
                     <b-card class="map-card mb-0">
-                        <HereMap :lat="tempLocation.lat" :lng="tempLocation.lng" width="100%" height="550px" />
+                        <HereMap :lat="lat" :lng="long" width="100%" height="550px" />
                     </b-card>
                 
                 </b-col>
@@ -30,7 +30,7 @@
                         </b-card-img>
                         <b-card-title :title="walk.title">
                         </b-card-title>
-                        <b-card-sub-title :sub-title="tempLocation.address" class="mb-3 mb-md-4"></b-card-sub-title>
+                        <b-card-sub-title :sub-title="address" class="mb-3 mb-md-4"></b-card-sub-title>
                         <div class="details">
                             {{ walk.date }} <br/>
                             {{ walk.time }} <br/>
@@ -64,12 +64,8 @@
             return {
                 user_id: '',
                 walk: {},
-                tempLocation: {
-                    coords: "49.2057,-122.9110",
-                    lat: "",
-                    lng: "",
-                    address: "800 Carnarvon St, New Westminster, BC V3M 0G3, Canada"
-                }
+                lat: '',
+                long: ''
             };
         },
         created() {
@@ -77,10 +73,8 @@
                 this.user_id = user ? user.uid : null;
             });
             serverGetWalk(this.$route.params.userId, this.$route.params.walkId, this);
-            
-            var latlng = this.tempLocation.coords.split(",");
-            this.tempLocation.lat = latlng[0];
-            this.tempLocation.lng = latlng[1];
+
+
         },
         methods: {
             joinWalk: function () {
@@ -91,7 +85,12 @@
 
     function serverGetWalk(userId, walkId, that) {
         axios.get(`http://localhost:8090/api/v1/users/${userId}/walks/${walkId}`)
-            .then(res => that.walk = res.data)
+            .then(res => {
+                that.walk = res.data;
+                const latlng = that.walk.coords.split(",");
+                that.lat = latlng[0];
+                that.lng = latlng[1];
+            })
             .catch(err => alert(`Can't get walk from the database: ${err}`));
     }
 

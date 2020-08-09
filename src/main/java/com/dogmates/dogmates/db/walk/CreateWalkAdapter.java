@@ -1,5 +1,6 @@
 package com.dogmates.dogmates.db.walk;
 
+import com.dogmates.dogmates.core.user.domain.User;
 import com.dogmates.dogmates.core.walk.domain.Walk;
 import com.dogmates.dogmates.core.walk.port.CreateWalkPort;
 import com.google.cloud.firestore.Firestore;
@@ -25,7 +26,11 @@ public class CreateWalkAdapter implements CreateWalkPort {
     public Walk create(Walk walk, String userId) throws ExecutionException, InterruptedException {
         val entity = mapper.toEntity(walk);
         entity.setJoinedUsers(List.of());
-        val walkRef = firestore.document(format(USER_PATH, userId))
+        val userRef = firestore.document(format(USER_PATH, userId));
+        val user = userRef.get()
+                .get()
+                .toObject(User.class);
+        val walkRef = userRef
                 .collection("walks")
                 .add(entity)
                 .get();
@@ -33,6 +38,8 @@ public class CreateWalkAdapter implements CreateWalkPort {
 
         val createdWalk = walkRef.get().get().toObject(Walk.class);
         createdWalk.setId(walkRef.getId());
+        createdWalk.setFirstName(user.getFirstName());
+        createdWalk.setLastName(user.getLastName());
 
         return createdWalk;
     }

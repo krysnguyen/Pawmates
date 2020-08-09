@@ -23,17 +23,18 @@ public class GetWalkAdapter implements GetWalkPort {
     private final Firestore firestore;
 
     private static String USER_PATH = "users/%s";
-    private static String WALK_PATH = "users/%s/walks/%s";
 
     @Override
     public Walk getWalk(String userId, String walkId) throws ExecutionException, InterruptedException {
-        val walkRef = firestore.document(format(WALK_PATH, userId, walkId))
+        val userRef = firestore.document(format(USER_PATH, userId));
+        val walkRef = userRef.collection("walks").document(walkId)
                 .get()
                 .get();
-
+        val user = userRef.get().get().toObject(User.class);
         val walk = walkRef.toObject(Walk.class);
         walk.setId(walkRef.getId());
-
+        walk.setFirstName(user.getFirstName());
+        walk.setLastName(user.getLastName());
         return walk;
     }
 
@@ -70,20 +71,23 @@ public class GetWalkAdapter implements GetWalkPort {
     }
 
     private List<Walk> getWalksLessThanSevenDays(DocumentReference userRef) throws ExecutionException, InterruptedException {
+        val user = userRef.get().get().toObject(User.class);
         return userRef.collection("walks")
                 .whereGreaterThanOrEqualTo("expiryTimeStamp", now().toEpochDay())
                 .get()
                 .get()
                 .getDocuments()
                 .stream()
-                .map(this::createWalk)
+                .map(walkRef -> createWalk(walkRef, user))
                 .filter(this::filterLessThanSevenDays)
                 .collect(toList());
     }
 
-    private Walk createWalk(QueryDocumentSnapshot walkRef) {
+    private Walk createWalk(QueryDocumentSnapshot walkRef, User user) {
         val walk = walkRef.toObject(Walk.class);
         walk.setId(walkRef.getId());
+        walk.setFirstName(user.getFirstName());
+        walk.setLastName(user.getLastName());
         return walk;
     }
 
