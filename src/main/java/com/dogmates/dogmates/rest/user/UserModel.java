@@ -26,5 +26,7 @@ public class UserModel extends RepresentationModel<UserModel> {
     @NotEmpty
     private List<String> dogTypes;
 
+    private String dogName;
+
     private List<String> walkTypes;
 }

@@ -24,6 +24,8 @@ public class UpdateUserCmd {
 
     private String bio;
 
+    private String dogName;
+
     private List<String> dogTypes;
 
     private List<String> walkTypes;
