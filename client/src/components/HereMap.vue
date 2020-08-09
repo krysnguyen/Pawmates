@@ -112,19 +112,31 @@
         },
         mounted() {
             var defaultLayers = this.platform.createDefaultLayers();
+            
+            var zoomLevel = 12;
+            if (!this.selectLocations) {
+                // eslint-disable-next-line
+                zoomLevel = 13;
+            }
+            
             // eslint-disable-next-line
             this.map = new H.Map(
                 this.$refs.map,
                 defaultLayers.vector.normal.map,
                 {
-                    zoom: 12,
+                    zoom: zoomLevel,
                     center: { lng: this.lng, lat: this.lat },
                     pixelRatio: window.devicePixelRatio || 1
                 }
             );
   
             window.addEventListener('resize', () => this.map.getViewPort().resize());
-  
+            
+            if (!this.selectLocations) {
+                // eslint-disable-next-line
+                this.map.addObject(new H.map.Marker({lat: this.lat, lng: this.lng }));
+            }
+            
             // eslint-disable-next-line
             var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
             
