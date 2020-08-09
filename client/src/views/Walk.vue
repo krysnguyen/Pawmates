@@ -51,6 +51,7 @@
                     v-bind:last_name="walk.user.lastName"
             />
         </b-container>
+        <b-button v-on:click="searchForWalks">Search for new walks</b-button>
     </div>
 </template>
 
@@ -81,7 +82,11 @@
                 serverGetWalks(this);
             });
         },
-        methods: {}
+        methods: {
+            searchForWalks: function () {
+                serverGetWalks(this);
+            }
+        }
     }
 
     function serverGetWalks(that) {
