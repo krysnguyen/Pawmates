@@ -133,6 +133,7 @@
             lastName: that.last_name,
             email: that.email,
             birthday: that.birthday,
+            dogName: that.pet_name,
             dogTypes: [that.dog_type],
             userId: userId
         })
