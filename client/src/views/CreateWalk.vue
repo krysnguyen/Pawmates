@@ -1,5 +1,6 @@
 <template>
     <b-container fluid class="create-walk mb-4">
+        <HereMap lat="37.7397" lng="-121.4252" width="100%" height="835px" />
         <b-container class="mt-4">
             <b-form @submit="onSubmit">
                 <b-form-group
@@ -33,7 +34,7 @@
                     ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Duration (in minutes & minimum 1 minute)" label-for="input-4">
+                <b-form-group label="Duration (in minutes, must be at least 1 minute)" label-for="input-4">
                     <b-form-input
                             id="input-4"
                             v-model="form.duration"
@@ -72,10 +73,13 @@
 <script>
     import axios from 'axios';
     import firebase from "firebase";
+    import HereMap from "../components/HereMap.vue"
 
     export default {
         name: 'CreateWalk',
-        components: {},
+        components: {
+            HereMap
+        },
         data() {
             return {
                 user_id: '',
@@ -83,7 +87,7 @@
                     title: '',
                     date: '',
                     time: '',
-                    duration: '',
+                    duration: '15',
                     location: '',
                     description: ''
                 }
@@ -97,7 +101,6 @@
         methods: {
             onSubmit(evt) {
                 evt.preventDefault()
-                alert(JSON.stringify(this.form))
             },
             createWalk: function () {
                 serverCreateWalk(
