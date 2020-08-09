@@ -1,7 +1,7 @@
 <template>
     <b-container fluid class="create-walk mb-4">
-        <HereMap lat="37.7397" lng="-121.4252" width="100%" height="835px" />
-        <b-container class="mt-4">
+        <b-container class="second-container mt-3 mb-3 pb-3 bg-light">
+            <b-card-title title-tag="h2" class="pt-3 mb-4">Create a Walk</b-card-title>
             <b-form @submit="onSubmit">
                 <b-form-group
                         label="Walk Title"
@@ -44,17 +44,21 @@
                     ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Location" label-for="input-5">
+                <b-form-group id="location-label" label="Location" label-for="input-5">
                     <b-form-input
+                            @change="updateAddress"
                             id="input-5"
-                            v-model="form.location"
+                            v-model="form.address"
                             type="text"
                             required
-                            placeholder="to do. maybe use here API."
+                            placeholder="Type an address or click on the map."
                     ></b-form-input>
                 </b-form-group>
+                                
+                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2827" lng="-123.1207" width="100%" height="500px" v-bind:newAddress="newAddress" />
+                
 
-                <b-form-group label="Description (Provide short description)" label-for="input-6">
+                <b-form-group label="Description (Provide short description)" label-for="input-6" label-class="mt-3">
                     <b-form-textarea
                             id="input-6"
                             v-model="form.description"
@@ -88,9 +92,12 @@
                     date: '',
                     time: '',
                     duration: '15',
-                    location: '',
+                    location: '', // this field holds the city name (e.g. Burnaby)
+                    address: "", // this field holds the full address (e.g. 4500 Pender St., Burnaby, BC, Canada)
+                    coords: "",
                     description: ''
-                }
+                },
+                newAddress: ""
             };
         },
         created() {
@@ -103,6 +110,10 @@
                 evt.preventDefault()
             },
             createWalk: function () {
+                if (this.form.location == "That location could not be found.") {
+                    alert("Please enter a valid location.");
+                    return;
+                }
                 serverCreateWalk(
                     this.user_id,
                     this.form.title,
@@ -113,6 +124,30 @@
                     this.form.description,
                     this
                 );
+            },
+            newCity: function (cityName) {
+                this.form.location = cityName;
+            },
+            newLocation: function (address) {
+              this.form.address = address;
+              document.getElementById("location-label").style.fontWeight = "bold";
+              document.getElementById("input-5").style.fontWeight = "bold";
+              setTimeout(() => {
+                var locationLabel = document.getElementById("location-label")
+                var locationInput = document.getElementById("input-5")
+                locationInput.style.fontWeight = "normal";
+                locationLabel.style.fontWeight = "normal";
+              }, 1500);
+            },
+            newCoords: function (coords) {
+//                console.log("parent: " + coords);
+                this.form.coords = coords;
+            },
+            updateAddress: function (event) {
+//                console.log("parent: " + event);
+                if (event != "") {
+                    this.newAddress = event;
+                }
             }
         }
     }
@@ -145,6 +180,6 @@
 
 <style scoped>
     .create-walk {
-        max-width: 550px;
+        max-width: 600px;
     }
 </style>
