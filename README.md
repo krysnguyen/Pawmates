@@ -47,5 +47,5 @@ https://xd.adobe.com/view/a80ad18b-0783-464b-9eae-38fa800c634b-fd59/
 
 ## Photo attribution/licensing
 
-All static photos used in PawMates are from Unsplash, who requires no permission for using photos.\
+All static photos used in PawMates are from Unsplash, who requires no permission or attribution to use photos.\
 Link to Unsplash license: https://unsplash.com/license
