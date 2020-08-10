@@ -18,8 +18,8 @@
             <b-row class="walk-row">
                 <b-col cols="12" md="8" class="mb-3">
                 
-                    <b-card class="map-card mb-0">
-                        <HereMap :lat="lat" :lng="lng" width="100%" height="550px" />
+                    <b-card class="map-card mb-0" style="height: 100%">
+                        <HereMap v-if="dataReady" :lat="lat" :lng="lng" width="100%" height="550px" />
                     </b-card>
                 
                 </b-col>
@@ -63,9 +63,16 @@
         data() {
             return {
                 user_id: '',
-                walk: {},
+                walk: {
+                    user: {
+                        firstName: "",
+                        lastName: "",
+                        userId: ""
+                    }
+                },
                 lat: '',
-                long: ''
+                lng: '',
+                dataReady: false
             };
         },
         created() {
@@ -73,8 +80,6 @@
                 this.user_id = user ? user.uid : null;
             });
             serverGetWalk(this.$route.params.userId, this.$route.params.walkId, this);
-
-
         },
         methods: {
             joinWalk: function () {
@@ -90,6 +95,7 @@
                 const latlng = that.walk.coords.split(",");
                 that.lat = latlng[0];
                 that.lng = latlng[1];
+                that.dataReady = true;
             })
             .catch(err => alert(`Can't get walk from the database: ${err}`));
     }

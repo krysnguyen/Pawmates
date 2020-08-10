@@ -27,9 +27,9 @@
                                 <!--                https://unsplash.com/photos/NqNa_ZlYTHM-->
                             </b-col>
                             <b-col align-self="center" md="6">
-                                <b-card-body title="Upload and share photos of your dog">
+                                <b-card-body title="Make an account for you and your dog">
                                     <b-card-text>
-                                        Lorem ipsum dolor sit amet, consectetur.
+                                        Share about yourself and upload your dog photos!
                                     </b-card-text>
                                 </b-card-body>
                             </b-col>
@@ -45,7 +45,7 @@
                             <b-col align-self="center" md="6">
                                 <b-card-body title="Find other dog owners who want to hang out">
                                     <b-card-text>
-                                        Lorem ipsum dolor sit amet.
+                                        Like and dislike profiles in order to match with people!
                                     </b-card-text>
                                 </b-card-body>
                             </b-col>
@@ -67,9 +67,9 @@
                                 <!--                https://unsplash.com/photos/1tlUy6TBHW0-->
                             </b-col>
                             <b-col align-self="center" md="6">
-                                <b-card-body title="Go on walks together!">
+                                <b-card-body title="Go on walks together">
                                     <b-card-text>
-                                        Lorem ipsum dolor sit amet, consectetur.
+                                        Make or join walks with people you've matched with!
                                     </b-card-text>
                                 </b-card-body>
                             </b-col>
