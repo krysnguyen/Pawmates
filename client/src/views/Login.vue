@@ -1,12 +1,11 @@
 <template>
-    <div class="login">
+    <div class="login" v-on:keyup.enter="login">
         <h1>Login</h1>
             <input type="text" v-model="email" placeholder="Email"><br>
             <input type="password" v-model="password" placeholder="Password"><br>
             <b-button @click="login">Login</b-button>
-        <p><br> You don't have an account? You can
-            <b-link to="/sign-up">create</b-link>
-            one
+        <p><br> Don't have an account?
+            <b-link to="/sign-up">Create one.</b-link>
         </p>
     </div>
 </template>
