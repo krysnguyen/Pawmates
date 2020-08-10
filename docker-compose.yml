@@ -21,7 +21,10 @@ services:
     container_name: pawmates-client
     image: pawmates-client
     ports:
-      -  8080:8080
+      # PRODUCTION
+      -  8080:80
+      # DEVELOPMENT
+#      -  8080:8080
     depends_on:
       - server
     networks:
