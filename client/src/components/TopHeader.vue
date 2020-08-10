@@ -20,7 +20,7 @@
                         <router-link to="/login">Login</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user == null" to="/sign-up">
-                        <router-link to="/sign-up">Sign-Up</router-link>
+                        <router-link to="/sign-up">Sign Up</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/mymatches">
                         <router-link to="/my-matches">My Matches</router-link>
@@ -70,7 +70,9 @@
         created: function () {
             firebase.auth().onAuthStateChanged(user => {
                 this.user = user ? user : null;
-                serverGetUser(this.user.uid, this);
+                if (this.user !== null) {
+                    serverGetUser(this.user.uid, this);
+                }
             });
         }
     }

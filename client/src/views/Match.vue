@@ -46,8 +46,9 @@
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                serverGetPotentialMatches(this);
-
+                if (this.user_id !== null) {
+                    serverGetPotentialMatches(this);
+                }
             });
 
         },

@@ -1,6 +1,6 @@
 <template>
 <div class="SignUp">
-    <h1>CREATE ACCOUNT</h1>
+    <h1>Create Account</h1>
     <div class="container-sm h-100 text-left ">
         <!-- <div class="col-md-8 order-md-1"> -->
         <form>
