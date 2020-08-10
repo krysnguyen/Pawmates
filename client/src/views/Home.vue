@@ -19,7 +19,7 @@
 
         <b-container class="home-cards">
             <b-row align-h="start">
-                <b-col sm="12" md="8">
+                <b-col xs="12" sm="9" md="8">
                     <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right">
                         <b-row no-gutters>
                             <b-col md="6">
@@ -38,7 +38,7 @@
                 </b-col>
             </b-row>
             <b-row align-h="end">
-                <b-col sm="12" md="8">
+                <b-col xs="12" sm="9" md="8">
                     <b-card no-body class="overflow-hidden mb-3 float-right" style="max-width: 565px;"
                             data-aos="fade-left" data-aos-offset="155">
                         <b-row no-gutters>
@@ -58,7 +58,7 @@
                 </b-col>
             </b-row>
             <b-row align-h="start">
-                <b-col sm="12" md="8">
+                <b-col xs="12" sm="9" md="8">
                     <b-card no-body class="overflow-hidden mb-3" style="max-width: 565px;" data-aos="fade-right"
                             data-aos-offset="170">
                         <b-row no-gutters>
