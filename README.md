@@ -18,7 +18,7 @@
 
 1. Keep ports `8080` and `8090` available
 
-1. Project uses `Java 8` (subject to change)
+1. Project uses `Java 11`
 
 ## What state is project at?
 
