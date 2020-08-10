@@ -4,21 +4,17 @@
 
         <b-list-group v-for="match in this.matches" :key="match.userId">
             <b-list-group-item>
-                <b-card no-body class="overflow-hidden" bg-variant="dark" text-variant="white">
-                    <b-row no-gutters>
-                        <b-col md="2">
-                            <b-card-img src="https://picsum.photos/400/400/?image=5" alt="Image"
-                                        class="rounded-0"></b-card-img>
+                <b-card header-border-variant="dark" :header="match.firstName + ' ' + match.lastName" align="center" style="max-width: 770px; border-radius: 36px;">
+                    <b-row class="row-in-card" no-gutters>
+                        <b-col cols="2" align-self="center">
+                            <b-card-img src="https://picsum.photos/400/400/?image=5" alt="Profile image"
+                                        class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
                         </b-col>
-                        <b-col md="7">
-                            <b-card-body>
-                                <b-card-title>
-                                    {{match.firstName + ' ' + match.lastName}}
-                                </b-card-title>
+                        <b-col cols="10">
+                            <b-card-body >
                                 <b-card-text>
                                     {{match.bio}}
                                 </b-card-text>
-
                                 <router-link :to="{ name: 'User', params: {id: match.userId}}">
                                     <b-button variant="primary">
                                         View Profile
@@ -79,3 +75,15 @@
     }
 
 </script>
+
+<style>
+.card-header {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.button {
+    font-weight: bold;
+    text-align: center;
+}
+</style>
