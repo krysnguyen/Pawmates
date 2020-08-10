@@ -43,7 +43,7 @@
                             data-aos="fade-left" data-aos-offset="155">
                         <b-row no-gutters>
                             <b-col align-self="center" md="6">
-                                <b-card-body title="Find other dog owners who want to hang out">
+                                <b-card-body title="Find dog owners who want to hang out">
                                     <b-card-text>
                                         Like and dislike profiles in order to match with people!
                                     </b-card-text>
