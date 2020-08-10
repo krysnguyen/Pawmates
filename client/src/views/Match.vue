@@ -6,7 +6,7 @@
         </b-button>
 
         <b-card
-                img-src="https://picsum.photos/600/300/?image=25"
+                :img-src="[potential_match.images.length > 0 ? potential_match.images[0] : defaultImage]"
                 img-alt="Image"
                 img-top
                 tag="article"
@@ -40,7 +40,8 @@
                 potential_matches: [],
                 potential_match: {},
                 user_id: '',
-                loading: true
+                loading: true,
+                defaultImage: 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=7ee37f7b-bc88-47ed-8db0-ee256beaf906'
             };
         },
         created() {

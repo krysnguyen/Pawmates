@@ -18,6 +18,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
+                        v-bind:image="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]"
                         happening="now"
                 />
             </div>
@@ -37,6 +38,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
+                        v-bind:image="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]"
                 />
             </div>
             <div class="pt-2 mb-3">
@@ -55,6 +57,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
+                        v-bind:image="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]"
                 />
             </div>
         </b-container>
@@ -80,6 +83,7 @@
                 current_walks: [],
                 my_future_walks: [],
                 my_matches_walks: [],
+                defaultImage: 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=7ee37f7b-bc88-47ed-8db0-ee256beaf906'
 
             };
         },

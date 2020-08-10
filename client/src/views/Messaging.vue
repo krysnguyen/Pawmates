@@ -20,8 +20,9 @@
                         <div class="chat_list" v-for="match in this.matches" :key="match.userId">
                             <b-link v-on:click="fetchMessages(match)">
                                 <div class="chat_people">
-                                    <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                               alt="sunil"></div>
+                                    <b-avatar class="chat_img"><img
+                                            :src="[match.images.length > 0 ? match.images[0] : defaultImage]"
+                                            alt="sunil"></b-avatar>
                                     <div class="chat_ib">
                                         <h5>{{match.firstName + ' ' + match.lastName}}<span
                                                 class="chat_date">Dec 25</span></h5>
@@ -34,7 +35,7 @@
                 <div v-if="messages.length == 0">
                     <p>This is the start of your conversation with {{recipientName}} </p>
                 </div>
-                <div  v-if="messages.length > 0" id="messages">
+                <div v-if="messages.length > 0" class="messages">
                     <div class="msg_history">
 
                         <div v-for="message in messages" v-bind:key="message.id">
@@ -75,7 +76,8 @@
                 userName: '',
                 matches: [],
                 recipientId: '',
-                recipientName: ''
+                recipientName: '',
+                defaultImage: 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=7ee37f7b-bc88-47ed-8db0-ee256beaf906'
             }
         },
         methods: {
@@ -112,6 +114,7 @@
                     this.authUser = user;
                     serverGetMyMatches(this)
                         .then(res => {
+                            console.log(res.data);
                             this.matches = res.data;
                             if (this.matches.length > 0) {
                                 this.fetchMessages(this.matches[0].userId);

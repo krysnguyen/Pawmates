@@ -31,4 +31,6 @@ public class CreateUserCmd {
 
     @NotBlank
     private String userId;
+
+    private List<String> images;
 }

@@ -34,7 +34,9 @@ public class WalkModelAssembler extends RepresentationModelAssemblerSupport<Walk
         userModel.setUserId(walk.getUserId());
         userModel.setFirstName(walk.getFirstName());
         userModel.setLastName(walk.getLastName());
+        userModel.setImages(walk.getImages());
         model.setUser(userModel);
+
         return model;
     }
 

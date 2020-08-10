@@ -29,4 +29,6 @@ public class UpdateUserCmd {
     private List<String> dogTypes;
 
     private List<String> walkTypes;
+
+    private List<String> images;
 }
