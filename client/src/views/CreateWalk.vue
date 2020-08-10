@@ -88,7 +88,8 @@
 
 <script>
     import axios from 'axios';
-    import firebase from "firebase";
+    import firebase from 'firebase/app';
+    import 'firebase/auth';
     import HereMap from "../components/HereMap.vue"
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';

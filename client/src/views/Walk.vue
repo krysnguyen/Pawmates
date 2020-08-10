@@ -69,7 +69,8 @@
     import axios from 'axios';
     import WalkListing from '../components/WalkListing.vue'
     import CreateWalkCard from '../components/CreateWalkCard.vue'
-    import firebase from "firebase";
+    import firebase from 'firebase/app';
+    import 'firebase/auth';
 
     export default {
         name: 'Walk',

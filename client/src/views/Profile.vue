@@ -112,7 +112,8 @@
     import {DropDownListPlugin} from '@syncfusion/ej2-vue-dropdowns';
     import axios from 'axios';
     import * as dog_data from '../dogs.json';
-    import firebase from "firebase";
+    import firebase from 'firebase/app';
+    import 'firebase/auth';
     import {db, fb} from '../main';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
