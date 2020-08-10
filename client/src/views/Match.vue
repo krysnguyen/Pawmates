@@ -21,7 +21,7 @@
             <b-card-text style="color:rgb(112, 112, 112);">
                 {{this.potential_match.bio}}
             </b-card-text>
-            <b-button v-on:click="viewProfile()">View Profile</b-button>
+            <b-button variant="primary" v-on:click="viewProfile()">View Profile</b-button>
             <b-button v-on:click="like()">Like</b-button>
             <b-button v-on:click="dislike()">Dislike</b-button>
         </b-card>

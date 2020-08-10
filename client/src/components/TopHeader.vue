@@ -1,7 +1,7 @@
 <template>
     <div class="topnavbar">
         <b-navbar toggleable="md" type="dark" variant="info">
-            <b-navbar-brand to="/" class="brand">Pawmates</b-navbar-brand>
+            <b-navbar-brand to="/" class="brand">PawMates</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
