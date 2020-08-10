@@ -34,6 +34,7 @@ export {fb,db};
 fb.auth().onAuthStateChanged(() => {
   if (!app) {  
     new Vue({
+      el: '#app',
       created () {
         AOS.init()
       },

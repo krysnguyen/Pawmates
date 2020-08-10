@@ -2,8 +2,9 @@
     <div class="Profile">
         <div class="wrapper">
             <div class="left">
+                <img src="../assets/puppy.jpg" width="100"/>
                 <h4>{{this.first_name + ' ' + this.last_name}}</h4>
-                <h4>&</h4>
+                <h4 v-if="this.pet_name !== null">&</h4>
                 <h4>{{ this.pet_name }}</h4>
                 <div class="p-1" v-for="image in this.images" v-bind:key="image">
                     <img :src="image" alt="" width="250px" height="250px">
