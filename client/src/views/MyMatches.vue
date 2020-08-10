@@ -67,7 +67,6 @@
         axios.get(`http://localhost:8090/api/v1/matches/${that.user_id}`)
             .then(response => {
                 that.matches = response.data;
-                console.log(that.matches);
                 that.loading = false;
 
             })
