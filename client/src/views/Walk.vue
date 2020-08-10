@@ -18,6 +18,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
+                        happening="now"
                 />
             </div>
             <div class="pt-2 mb-3">

@@ -17,12 +17,22 @@
                 </b-form-group>
 
                 <b-form-group label="Date" label-for="input-2">
+<!--
                     <b-form-input
                             id="input-2"
                             v-model="form.date"
                             type="date"
                             required
                     ></b-form-input>
+-->
+                    <date-picker 
+                        id="input-2" 
+                        v-model="form.date" 
+                        type="date" 
+                        required
+                        class="w-100 custom-date-picker"
+                        >
+                    </date-picker>
                 </b-form-group>
 
                 <b-form-group label="Time" label-for="input-3">
@@ -80,11 +90,14 @@
     import axios from 'axios';
     import firebase from "firebase";
     import HereMap from "../components/HereMap.vue"
+    import DatePicker from 'vue2-datepicker';
+    import 'vue2-datepicker/index.css';
 
     export default {
         name: 'CreateWalk',
         components: {
-            HereMap
+            HereMap,
+            DatePicker
         },
         data() {
             return {
@@ -145,7 +158,7 @@
                 serverCreateWalk(
                     this.user_id,
                     this.form.title.trim(),
-                    this.form.date.trim(),
+                    this.form.date,
                     this.form.time.trim(),
                     this.form.duration.trim(),
                     this.form.location.trim(),
@@ -213,5 +226,8 @@
 <style scoped>
     .create-walk {
         max-width: 600px;
+    }
+    .create-walk .custom-date-picker {
+        height: 38px;
     }
 </style>
