@@ -4,9 +4,6 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 
 import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import 'firebase/storage'
 
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -19,7 +16,7 @@ Vue.config.productionTip = false
 let app = '';
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCXDcQ_HiZUXI4YtsgV6Y2X6zvTgtGjau4",
   authDomain: "pawmates-71be7.firebaseapp.com",
   databaseURL: "https://pawmates-71be7.firebaseio.com",
@@ -34,7 +31,7 @@ const fb = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 export {fb,db};
-firebase.auth().onAuthStateChanged(() => {
+fb.auth().onAuthStateChanged(() => {
   if (!app) {  
     new Vue({
       created () {

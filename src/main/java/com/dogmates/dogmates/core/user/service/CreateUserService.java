@@ -22,6 +22,8 @@ public class CreateUserService implements CreateUserUseCase {
     @Override
     public User create(CreateUserCmd cmd) throws ExecutionException, InterruptedException {
         val user = mapper.toUser(cmd);
+        val birthday = cmd.getBirthday().toEpochDay();
+        user.setBirthday(birthday);
         return createUserPort.create(user);
     }
 }

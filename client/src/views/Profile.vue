@@ -45,10 +45,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- TODO: change to date picker -->
                         <div class="form-group col-md-6">
+                            <p>Age: {{age}}</p>
                             <label class="col-form-label-lg">Birthday 'YYYY-MM-DD'</label>
-                            <date-picker v-model="birthDate" type="date"></date-picker>
+                            <date-picker v-bind:date="birthday" v-model="birthday" type="date"></date-picker>
                         </div>
                     </div>
                     <h1>MY PET PROFILE</h1>
@@ -91,7 +91,7 @@
                     <label class="col-form-label-lg">Photo Upload</label>
                     <Button @click="onPickFile">Upload Image</Button>
                     <input type="file" ref="fileInput" accept="image/*" @change="onFileSelected">
-                    <img :src="imageUrl" height ="150">
+                    <img  height ="150">
                 </div>
                 <div class="form-group d-flex">
                     <div class="p-1" v-for="image in this.images" v-bind:key="image">
@@ -150,7 +150,7 @@
                 bio: '',
                 user_id: '',
                 images:[],
-                birthDate:'',
+                birthday:'',
                 file:null
             };
 
@@ -210,9 +210,9 @@
                     console.log('image deleted');
                 }).catch(function(error) {
                     // Uh-oh, an error occurred!
-                    console.log('an error occurred')+error;
+                    console.log('an error occurred' + error);
                 });
-            },
+            }
         }
     }
     function serverGetUser(that) {
@@ -221,6 +221,7 @@
                 that.first_name = res.data.firstName;
                 that.last_name = res.data.lastName;
                 that.email = res.data.email;
+                that.age = res.data.age;
                 that.birthday = res.data.birthday;
                 that.bio = res.data.bio;
                 that.pet_name = res.data.dogName;
