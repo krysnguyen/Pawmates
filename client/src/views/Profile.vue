@@ -114,6 +114,8 @@
     import * as dog_data from '../dogs.json';
     import firebase from 'firebase/app';
     import 'firebase/auth';
+    import 'firebase/firestore';
+    import 'firebase/storage';
     import {db, fb} from '../main';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
