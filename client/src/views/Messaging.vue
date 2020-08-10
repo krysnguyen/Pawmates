@@ -20,7 +20,7 @@
                         <div class="chat_list" v-for="match in this.matches" :key="match.userId">
                             <b-link v-on:click="fetchMessages(match)">
                                 <div class="chat_people">
-                                    <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
+                                    <div class="chat_img"><img :src="[match.images.length > 0 ? match.images[0] : this.$defaultImage]"
                                                                alt="sunil"></div>
                                     <div class="chat_ib">
                                         <h5>{{match.firstName + ' ' + match.lastName}}<span

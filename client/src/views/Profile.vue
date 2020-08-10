@@ -2,13 +2,13 @@
     <div class="Profile">
         <div class="wrapper">
             <div class="left">
-                <img src="../assets/puppy.jpg" width="100"/>
+                <img :src="[images.length > 0 ? images[0] : this.$defaultImage]" width="100"/>
                 <h4>{{this.first_name + ' ' + this.last_name}}</h4>
                 <h4 v-if="this.pet_name !== null">&</h4>
                 <h4>{{ this.pet_name }}</h4>
                 <div class="p-1" v-for="image in this.images" v-bind:key="image">
                     <img :src="image" alt="" width="250px" height="250px">
-                    <span class="delete-img" @click="deleteImage(image,index)">X</span>
+                    <span class="delete-img" @click="deleteImage(image,images.indexOf(image))">X</span>
                 </div>
             </div>
             <div class="right">
@@ -94,9 +94,9 @@
                     <input type="file" @change="onUpload" accept="image/*">
                 </div>
                 <div class="form-group d-flex">
-                    <div class="p-1" v-for="image in this.images" v-bind:key="image">
+                    <div class="p-1" v-for="image in images" v-bind:key="image">
                         <img :src="image" alt="" width="80px">
-                        <span class="delete-img" @click="deleteImage(image,index)">X</span>
+                        <span class="delete-img" @click="deleteImage(image,images.indexOf(image))">X</span>
                     </div>
                 </div>
                 <div class="col-12 form-group text-center">
@@ -113,7 +113,7 @@
     import axios from 'axios';
     import * as dog_data from '../dogs.json';
     import firebase from "firebase";
-    import {db,fb} from '../main';
+    import {db, fb} from '../main';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
 
@@ -149,9 +149,9 @@
                 walk_types: '',
                 bio: '',
                 user_id: '',
-                images:[],
-                birthday:'',
-                file:null
+                images: [],
+                birthday: '',
+                file: null
             };
 
         },
@@ -161,7 +161,7 @@
                 serverGetUser(this);
             });
         },
-        firestore(){
+        firestore() {
             return {
                 users: db.collection('users'),
             }
@@ -170,36 +170,29 @@
             updateUser: function () {
                 serverUpdateUser(this)
             },
-            onUpload(event){
-                if(event.target.files[0]){
+            onUpload(event) {
+                if (event.target.files[0]) {
                     this.file = event.target.files[0];
-                    var storageRef = fb.storage().ref('users/'+ this.file.name);
-                    let uploadTask  = storageRef.put(this.file);
-                    uploadTask.on('state_changed', () => {
-                    }, (error) => {
-                        console.log(error);
-                    }, () => {
-                        // eslint-disable-line no-unused-vars
-                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        // eslint-disable-line no-unused-vars
-                        console.log(downloadURL);
-                        this.images.push(downloadURL);
-                        });
-                    });
+                    const storageRef = fb.storage().ref(`users/${this.user_id}/${this.file.name}`);
+                    storageRef.put(this.file)
+                        .then(snapshot => snapshot.ref.getDownloadURL()
+                            .then(url => this.images.push(url)))
+                        .catch(err => console.log("Image upload failed " + err));
                 }
             },
-            deleteImage(img,index){
+            deleteImage(img, index) {
                 let image = fb.storage().refFromURL(img);
-                this.images.splice(index,1);
-                image.delete().then(function() {
+                this.images.splice(index, 1);
+                image.delete().then(function () {
                     console.log('image deleted');
-                }).catch(function(error) {
+                }).catch(function (error) {
                     // Uh-oh, an error occurred!
                     console.log('an error occurred' + error);
                 });
             }
         }
     }
+
     function serverGetUser(that) {
         axios.get(`http://localhost:8090/api/v1/users/${that.user_id}`)
             .then(res => {
@@ -210,10 +203,9 @@
                 that.birthday = res.data.birthday;
                 that.bio = res.data.bio;
                 that.pet_name = res.data.dogName;
-                // TODO: Return the array and have a table of dogs
                 that.dog_types = res.data.dogTypes[0];
                 that.walk_types = res.data.walkTypes[0];
-                console.log("first name " + that.first_name)
+                that.images = res.data.images;
             })
     }
 
@@ -226,13 +218,18 @@
             dogName: that.pet_name,
             dogTypes: [that.dog_types],
             walkTypes: [that.walk_types],
+            images: that.images
         })
-            .then(() => alert("Profile updated"))
+            .then(() => {
+                console.log("Profile updated");
+                console.log(that.images)
+            })
             .catch(err => alert("Failed to update " + err))
     }
 </script>
 <style>
     @import url(https://cdn.syncfusion.com/ej2/material.css);
+
     .Profile {
         margin-top: 40px;
     }
@@ -329,15 +326,18 @@
     .wrapper .right .projects {
         margin-bottom: 25px;
     }
-    .img-wrapp{
-    position: relative;
+
+    .img-wrapp {
+        position: relative;
     }
-    .img-wrapp span.delete-img{
+
+    .img-wrapp span.delete-img {
         position: absolute;
         top: -14px;
         left: -2px;
     }
-    .img-wrapp span.delete-img:hover{
-    cursor: pointer;
+
+    .img-wrapp span.delete-img:hover {
+        cursor: pointer;
     }
 </style>

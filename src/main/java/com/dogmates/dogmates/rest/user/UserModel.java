@@ -31,4 +31,6 @@ public class UserModel extends RepresentationModel<UserModel> {
     private String dogName;
 
     private List<String> walkTypes;
+
+    private List<String> images;
 }

@@ -12,7 +12,7 @@ import App from './App.vue'
 import router from './router'
 
 Vue.config.productionTip = false
-
+Vue.prototype.$defaultImage = 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=0ff53e8a-faa0-48a8-8469-abc7a88f4a43';
 let app = '';
 
 // Your web app's Firebase configuration
