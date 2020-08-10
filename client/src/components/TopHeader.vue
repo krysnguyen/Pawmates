@@ -1,7 +1,7 @@
 <template>
     <div class="topnavbar">
         <b-navbar toggleable="md" type="dark" variant="info">
-            <b-navbar-brand href="/">Pawmates</b-navbar-brand>
+            <b-navbar-brand to="/" class="brand">Pawmates</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -95,5 +95,8 @@
     }
     #nav .topnavbar a:hover {
         color: white;
+    }
+    #nav .topnavbar .brand {
+        color: #2c3e50;
     }
 </style>
