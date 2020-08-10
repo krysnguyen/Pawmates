@@ -1,6 +1,6 @@
 <template>
     <div class="listing-card">
-        <b-card no-body class="overflow-hidden mb-3" style="max-height: 150px;">
+        <b-card no-body class="overflow-hidden mb-3" style="max-height: 150px;" ref="listingcard">
             <b-link v-on:click="$router.push(`walks/${user_id}/${walk_id}`)" class="stretched-link card-link">
                 <b-row class="row-in-card" no-gutters>
                     <b-col cols="2" align-self="center">
@@ -29,7 +29,12 @@
 <script>
     export default {
         name: 'WalkListing',
-        props: ['walk_id', 'title', 'date', 'time', 'duration', 'location', 'description', 'user_id', 'first_name', 'last_name']
+        props: ['walk_id', 'title', 'date', 'time', 'duration', 'location', 'description', 'user_id', 'first_name', 'last_name', 'happening'],
+        mounted() {
+            if (this.happening === "now") {
+                this.$refs.listingcard.style.backgroundColor = "#b5f4b5";
+            }
+        }
     }
 
 

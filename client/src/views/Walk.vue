@@ -1,57 +1,64 @@
 <template>
     <div class="walk">
-        <b-container fluid="md" class="mt-4">
-            <CreateWalkCard/>
-            <b-card-title>Current Walks</b-card-title>
-            <hr>
-            <WalkListing
-                    v-for="walk in current_walks"
-                    v-bind:key="walk.id"
-                    v-bind:walk_id="walk.id"
-                    v-bind:title="walk.title"
-                    v-bind:date="walk.date"
-                    v-bind:time="walk.time"
-                    v-bind:duration="walk.duration"
-                    v-bind:location="walk.location"
-                    v-bind:description="walk.description"
-                    v-bind:user_id="walk.user.userId"
-                    v-bind:first_name="walk.user.firstName"
-                    v-bind:last_name="walk.user.lastName"
-            />
-            <b-card-title>Future Walks I joined</b-card-title>
-            <hr>
-            <WalkListing
-                    v-for="walk in my_future_walks"
-                    v-bind:key="walk.id"
-                    v-bind:walk_id="walk.id"
-                    v-bind:title="walk.title"
-                    v-bind:date="walk.date"
-                    v-bind:time="walk.time"
-                    v-bind:duration="walk.duration"
-                    v-bind:location="walk.location"
-                    v-bind:description="walk.description"
-                    v-bind:user_id="walk.user.userId"
-                    v-bind:first_name="walk.user.firstName"
-                    v-bind:last_name="walk.user.lastName"
-            />
-            <b-card-title>Walks hosted by my matches</b-card-title>
-            <hr>
-            <WalkListing
-                    v-for="walk in my_matches_walks"
-                    v-bind:key="walk.id"
-                    v-bind:walk_id="walk.id"
-                    v-bind:title="walk.title"
-                    v-bind:date="walk.date"
-                    v-bind:time="walk.time"
-                    v-bind:duration="walk.duration"
-                    v-bind:location="walk.location"
-                    v-bind:description="walk.description"
-                    v-bind:user_id="walk.user.userId"
-                    v-bind:first_name="walk.user.firstName"
-                    v-bind:last_name="walk.user.lastName"
-            />
+        <b-container fluid="md" class="mt-3">
+            <CreateWalkCard class="mb-3" />
+            <div class="pt-2 mb-3">
+                <b-card-title class="mb-2">My Walks Happening Now</b-card-title>
+                <hr>
+                <WalkListing
+                        v-for="walk in current_walks"
+                        v-bind:key="walk.id"
+                        v-bind:walk_id="walk.id"
+                        v-bind:title="walk.title"
+                        v-bind:date="walk.date"
+                        v-bind:time="walk.time"
+                        v-bind:duration="walk.duration"
+                        v-bind:location="walk.location"
+                        v-bind:description="walk.description"
+                        v-bind:user_id="walk.user.userId"
+                        v-bind:first_name="walk.user.firstName"
+                        v-bind:last_name="walk.user.lastName"
+                        happening="now"
+                />
+            </div>
+            <div class="pt-2 mb-3">
+                <b-card-title class="mb-2">Future Walks I've Joined</b-card-title>
+                <hr>
+                <WalkListing
+                        v-for="walk in my_future_walks"
+                        v-bind:key="walk.id"
+                        v-bind:walk_id="walk.id"
+                        v-bind:title="walk.title"
+                        v-bind:date="walk.date"
+                        v-bind:time="walk.time"
+                        v-bind:duration="walk.duration"
+                        v-bind:location="walk.location"
+                        v-bind:description="walk.description"
+                        v-bind:user_id="walk.user.userId"
+                        v-bind:first_name="walk.user.firstName"
+                        v-bind:last_name="walk.user.lastName"
+                />
+            </div>
+            <div class="pt-2 mb-3">
+                <b-card-title class="mb-2">Walks Hosted By My Matches</b-card-title>
+                <hr>
+                <WalkListing
+                        v-for="walk in my_matches_walks"
+                        v-bind:key="walk.id"
+                        v-bind:walk_id="walk.id"
+                        v-bind:title="walk.title"
+                        v-bind:date="walk.date"
+                        v-bind:time="walk.time"
+                        v-bind:duration="walk.duration"
+                        v-bind:location="walk.location"
+                        v-bind:description="walk.description"
+                        v-bind:user_id="walk.user.userId"
+                        v-bind:first_name="walk.user.firstName"
+                        v-bind:last_name="walk.user.lastName"
+                />
+            </div>
         </b-container>
-        <b-button v-on:click="searchForWalks">Search for new walks</b-button>
+        <b-button v-on:click="searchForWalks" class="mt-1 mb-4">Refresh Walk Listings</b-button>
     </div>
 </template>
 
@@ -109,5 +116,9 @@
     .walk >>> .card {
         border-radius: 36px;
         max-width: 770px;
+    }
+    .walk hr {
+        margin-top: 0;
+        margin-bottom: 1em;
     }
 </style>
