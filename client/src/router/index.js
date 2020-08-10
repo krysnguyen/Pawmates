@@ -14,7 +14,7 @@ import Walk from '../views/Walk.vue'
 import CreateWalk from '../views/CreateWalk.vue'
 import User from "../views/User";
 import WalkPage from "../views/WalkPage.vue"
-
+import Messaging from "../views/Messaging.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -96,6 +96,15 @@ const routes = [
         path: '/sign-up',
         name: 'SignUp',
         component: SignUp
+
+    },
+    {
+        path: '/messaging',
+        name: 'Messaging',
+        component: Messaging,
+        meta: {
+            requiresAuth: true
+        }
 
     }
 ]

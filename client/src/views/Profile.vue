@@ -2,12 +2,13 @@
     <div class="Profile">
         <div class="wrapper">
             <div class="left">
-                <img src="../assets/puppy.jpg" width="100"/>
-                <h4>Alex William</h4>
+                <h4>{{this.first_name + ' ' + this.last_name}}</h4>
                 <h4>&</h4>
-                <h4>Rocky</h4>
-                <p>UI Developer</p>
-                <p>alex@gmail.com</p>
+                <h4>{{ this.pet_name }}</h4>
+                <div class="p-1" v-for="image in this.images" v-bind:key="image">
+                    <img :src="image" alt="" width="250px" height="250px">
+                    <span class="delete-img" @click="deleteImage(image,index)">X</span>
+                </div>
             </div>
             <div class="right">
                 <h1>MY PROFILE</h1>
@@ -87,11 +88,9 @@
                     <textarea class="form-control" rows="5" type="text" name="aboutyourself"
                               v-model="bio"></textarea>
                 </div>
-                <div class="form-group col-12">
+                <div class="form-group">
                     <label class="col-form-label-lg">Photo Upload</label>
-                    <Button @click="onPickFile">Upload Image</Button>
-                    <input type="file" ref="fileInput" accept="image/*" @change="onFileSelected">
-                    <img :src="imageUrl" height ="150">
+                    <input type="file" @change="onUpload" accept="image/*">
                 </div>
                 <div class="form-group d-flex">
                     <div class="p-1" v-for="image in this.images" v-bind:key="image">
@@ -149,9 +148,10 @@
                 walk_types: '',
                 bio: '',
                 user_id: '',
-                images:[],
                 birthDate:'',
-                file:null
+                image:null,
+                images:[],
+                file:''
             };
 
         },
@@ -170,24 +170,9 @@
             updateUser: function () {
                 serverUpdateUser(this)
             },
-            onPickFile(){
-                this.$refs.fileInput.click()
-            },
-            onFileSelected(event){
-                const files = event.target.files;
-                let filename = files[0].name;
-                if (filename.lastIndexOf('.') <= 0){
-                    return alert('Please add a valid file!')
-                }
-                const fileReader = new FileReader()
-                fileReader.addEventListener('load',() => {
-                    this.imageUrl = fileReader.result
-                })
-                fileReader.readAsDataURL(files[0])
-                this.image = files[0] 
-            },
             onUpload(event){
                 if(event.target.files[0]){
+                    this.file = event.target.files[0];
                     var storageRef = fb.storage().ref('users/'+ this.file.name);
                     let uploadTask  = storageRef.put(this.file);
                     uploadTask.on('state_changed', () => {
@@ -209,7 +194,6 @@
                 image.delete().then(function() {
                     console.log('image deleted');
                 }).catch(function(error) {
-                    // Uh-oh, an error occurred!
                     console.log('an error occurred')+error;
                 });
             },
@@ -306,7 +290,7 @@
 
     .wrapper .left {
         width: 35%;
-        background: linear-gradient(to right, #01a9ac, #01dbdf);
+        background: linear-gradient(to right, #ffcce6, #99ddff);
         padding: 30px 25px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
@@ -321,6 +305,8 @@
 
     .wrapper .left h4 {
         margin-bottom: 10px;
+        font-weight: 900;
+        font-size: 35px;
     }
 
     .wrapper .left p {
