@@ -1,6 +1,8 @@
-# PawMates Application
+# PawMates
 
-## For development setup:
+## Setup
+
+### For production:
 
 1. Clone project: `git clone https://csil-git1.cs.surrey.sfu.ca/cmalla/dogmates.git`
 
@@ -8,15 +10,13 @@
 
 1. Run `docker-compose up --build`
 
-1. Test everything went fine by going to `http://localhost:8080` and you should see a demo Vue application
-
-1. Test the backend by going to `http://localhost:8090` and you should see `Hello World`
+1. Go to `http://localhost:8080` for the PawMates homepage
 
 ## Dependencies:
 
 1. Have docker installed
 
-1. Keep port `8080`, `8090` and `5432` available
+1. Keep ports `8080` and `8090` available
 
 1. Project uses `Java 8` (subject to change)
 
