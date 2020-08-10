@@ -35,6 +35,7 @@ public class GetWalkAdapter implements GetWalkPort {
         walk.setId(walkRef.getId());
         walk.setFirstName(user.getFirstName());
         walk.setLastName(user.getLastName());
+        walk.setImages(user.getImages());
         return walk;
     }
 
@@ -88,6 +89,7 @@ public class GetWalkAdapter implements GetWalkPort {
         walk.setId(walkRef.getId());
         walk.setFirstName(user.getFirstName());
         walk.setLastName(user.getLastName());
+        walk.setImages(user.getImages());
         return walk;
     }
 

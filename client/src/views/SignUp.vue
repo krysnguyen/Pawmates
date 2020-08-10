@@ -2,7 +2,6 @@
 <div class="SignUp">
     <h1>Create Account</h1>
     <div class="container-sm h-100 text-left ">
-        <!-- <div class="col-md-8 order-md-1"> -->
         <form>
             <div class="row">
                 <div class="col-md-6">
@@ -48,10 +47,6 @@
                         <input type="text" class ="form-control" v-model="pet_name" name="petName"/>
                         <i class="fas fa-dog fa-lg fa-lw"></i>
                     </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="col-form-label-lg">Profile Photo</label>
-                    <input type="file" @change="onFileSelected">
                 </div>
             </div>
             <div class="row">
@@ -117,13 +112,7 @@
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                     .then(res => serverCreateUser(this, res.user.uid))
                     .catch(err => alert('Sign up not successful' + err.message));
-            },
-            onFileSelected(event) {
-                let file = event.target.files[0];
-                const storageRef = fb.storage().ref('users/' + file.name);
-                storageRef.put(file);
             }
-
         }
     }
 

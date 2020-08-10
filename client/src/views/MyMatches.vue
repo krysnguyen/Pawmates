@@ -4,14 +4,16 @@
 
         <b-list-group v-for="match in this.matches" :key="match.userId">
             <b-list-group-item>
-                <b-card header-border-variant="dark" :header="match.firstName + ' ' + match.lastName" align="center" style="max-width: 770px; border-radius: 36px;">
+                <b-card header-border-variant="dark" :header="match.firstName + ' ' + match.lastName" align="center"
+                        style="max-width: 770px; border-radius: 36px;">
                     <b-row class="row-in-card" no-gutters>
                         <b-col cols="2" align-self="center">
-                            <b-card-img src="https://picsum.photos/400/400/?image=5" alt="Profile image"
+                            <b-card-img :src="[match.images.length > 0 ? match.images[0] : defaultImage]"
+                                        alt="Profile image"
                                         class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
                         </b-col>
                         <b-col cols="7">
-                            <b-card-body >
+                            <b-card-body>
                                 <b-card-text>
                                     {{match.bio}}
                                 </b-card-text>
@@ -40,7 +42,8 @@
             return {
                 user_id: null,
                 matches: [],
-                loading: true
+                loading: true,
+                defaultImage: 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=7ee37f7b-bc88-47ed-8db0-ee256beaf906'
             }
         },
         created() {
@@ -76,9 +79,9 @@
 </script>
 
 <style>
-.card-header {
-    font-size: 30px;
-    font-weight: bold;
-}
+    .card-header {
+        font-size: 30px;
+        font-weight: bold;
+    }
 
 </style>

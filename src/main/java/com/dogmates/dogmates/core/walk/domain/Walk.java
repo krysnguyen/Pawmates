@@ -34,4 +34,6 @@ public class Walk {
     private long expiryTimeStamp;
 
     private List<String> joinedUsers;
+
+    private List<String> images;
 }

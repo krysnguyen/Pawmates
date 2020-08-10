@@ -6,6 +6,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -27,5 +28,6 @@ public class WalkModel extends RepresentationModel<WalkModel> {
         private String userId;
         private String firstName;
         private String lastName;
+        private List<String> images;
     }
 }

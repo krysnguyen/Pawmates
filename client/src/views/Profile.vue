@@ -2,7 +2,7 @@
     <div class="Profile">
         <div class="wrapper">
             <div class="left">
-                <img :src="[images.length > 0 ? images[0] : this.$defaultImage]" width="100"/>
+                <img :src="[images.length > 0 ? images[0] : defaultImage]" width="100"/>
                 <h4>{{this.first_name + ' ' + this.last_name}}</h4>
                 <h4 v-if="this.pet_name !== null">&</h4>
                 <h4>{{ this.pet_name }}</h4>
@@ -151,7 +151,8 @@
                 user_id: '',
                 images: [],
                 birthday: '',
-                file: null
+                file: null,
+                defaultImage: 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=7ee37f7b-bc88-47ed-8db0-ee256beaf906'
             };
 
         },
