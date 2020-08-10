@@ -16,6 +16,8 @@ public class WalkModel extends RepresentationModel<WalkModel> {
     private LocalTime time;
     private int duration;
     private String location;
+    private String address;
+    private String coords;
     private String description;
     private UserModel user;
 

@@ -27,6 +27,8 @@ public class CreateUserCmd {
 
     private List<String> dogTypes;
 
+    private String dogName;
+
     @NotBlank
     private String userId;
 }

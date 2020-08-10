@@ -16,13 +16,13 @@ public class WalkEntity {
 
     private String location;
 
+    private String address;
+
+    private String coords;
+
     private String description;
 
     private String userId;
-
-    private String firstName;
-
-    private String lastName;
 
     private long expiryTimeStamp;
 

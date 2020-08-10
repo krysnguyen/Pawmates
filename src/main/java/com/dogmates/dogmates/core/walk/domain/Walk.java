@@ -3,7 +3,6 @@ package com.dogmates.dogmates.core.walk.domain;
 
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,6 +18,10 @@ public class Walk {
     private int duration;
 
     private String location;
+
+    private String address;
+
+    private String coords;
 
     private String description;
 

@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label class="col-form-label-lg">Birthday 'YYYY-MM-DD'</label>
-                    <date-picker v-model="birthDate" type="date"></date-picker>
+                    <date-picker v-model="birthday" type="date"></date-picker>
                 </div>
             </div>
             <div class="row">
@@ -133,6 +133,7 @@
             lastName: that.last_name,
             email: that.email,
             birthday: that.birthday,
+            dogName: that.pet_name,
             dogTypes: [that.dog_type],
             userId: userId
         })

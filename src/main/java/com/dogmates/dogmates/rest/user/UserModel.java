@@ -19,12 +19,16 @@ public class UserModel extends RepresentationModel<UserModel> {
 
     private String email;
 
+    private int age;
+
     private LocalDate birthday;
 
     private String bio;
 
     @NotEmpty
     private List<String> dogTypes;
+
+    private String dogName;
 
     private List<String> walkTypes;
 }

@@ -46,10 +46,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- TODO: change to date picker -->
                         <div class="form-group col-md-6">
+                            <p>Age: {{age}}</p>
                             <label class="col-form-label-lg">Birthday 'YYYY-MM-DD'</label>
-                            <date-picker v-model="birthDate" type="date"></date-picker>
+                            <date-picker v-bind:date="birthday" v-model="birthday" type="date"></date-picker>
                         </div>
                     </div>
                     <h1>MY PET PROFILE</h1>
@@ -148,10 +148,9 @@
                 walk_types: '',
                 bio: '',
                 user_id: '',
-                birthDate:'',
-                image:null,
                 images:[],
-                file:''
+                birthday:'',
+                file:null
             };
 
         },
@@ -194,9 +193,10 @@
                 image.delete().then(function() {
                     console.log('image deleted');
                 }).catch(function(error) {
-                    console.log('an error occurred')+error;
+                    // Uh-oh, an error occurred!
+                    console.log('an error occurred' + error);
                 });
-            },
+            }
         }
     }
     function serverGetUser(that) {
@@ -205,10 +205,12 @@
                 that.first_name = res.data.firstName;
                 that.last_name = res.data.lastName;
                 that.email = res.data.email;
+                that.age = res.data.age;
                 that.birthday = res.data.birthday;
                 that.bio = res.data.bio;
+                that.pet_name = res.data.dogName;
                 // TODO: Return the array and have a table of dogs
-                that.dog_types = res.data.dog_types[0];
+                that.dog_types = res.data.dogTypes[0];
                 that.walk_types = res.data.walkTypes[0];
                 console.log("first name " + that.first_name)
             })
@@ -220,6 +222,7 @@
             lastName: that.last_name,
             birthday: that.birthday,
             bio: that.bio,
+            dogName: that.pet_name,
             dogTypes: [that.dog_types],
             walkTypes: [that.walk_types],
         })

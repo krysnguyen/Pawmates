@@ -17,8 +17,11 @@
             </b-row>
             <b-row class="walk-row">
                 <b-col cols="12" md="8" class="mb-3">
-                    <b-img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_314,c_limit/GoogleMapTA.jpg"
-                           fluid-grow thumbnail alt="Map image" class="map"></b-img>
+                
+                    <b-card class="map-card mb-0">
+                        <HereMap :lat="lat" :lng="lng" width="100%" height="550px" />
+                    </b-card>
+                
                 </b-col>
                 <b-col class="pl-2 mb-3">
                     <b-card class="details-card pt-md-4 pr-md-3 pb-md-3 pl-md-3 h-100">
@@ -27,7 +30,7 @@
                         </b-card-img>
                         <b-card-title :title="walk.title">
                         </b-card-title>
-                        <b-card-sub-title :sub-title="walk.location" class="mb-3 mb-md-4"></b-card-sub-title>
+                        <b-card-sub-title :sub-title="walk.address" class="mb-3 mb-md-4"></b-card-sub-title>
                         <div class="details">
                             {{ walk.date }} <br/>
                             {{ walk.time }} <br/>
@@ -50,14 +53,19 @@
 <script>
     import axios from 'axios';
     import firebase from "firebase";
+    import HereMap from "../components/HereMap.vue"
 
     export default {
         name: 'WalkPage',
-        components: {},
+        components: {
+          HereMap
+        },
         data() {
             return {
                 user_id: '',
-                walk: {}
+                walk: {},
+                lat: '',
+                long: ''
             };
         },
         created() {
@@ -65,6 +73,8 @@
                 this.user_id = user ? user.uid : null;
             });
             serverGetWalk(this.$route.params.userId, this.$route.params.walkId, this);
+
+
         },
         methods: {
             joinWalk: function () {
@@ -75,7 +85,12 @@
 
     function serverGetWalk(userId, walkId, that) {
         axios.get(`http://localhost:8090/api/v1/users/${userId}/walks/${walkId}`)
-            .then(res => that.walk = res.data)
+            .then(res => {
+                that.walk = res.data;
+                const latlng = that.walk.coords.split(",");
+                that.lat = latlng[0];
+                that.lng = latlng[1];
+            })
             .catch(err => alert(`Can't get walk from the database: ${err}`));
     }
 
@@ -108,5 +123,13 @@
 
     .walk-page .details-card {
         font-size: 1.1em;
+    }
+    
+    .walk-page .map-card .card-body {
+        padding: 0;
+    }
+    
+    .walk-page .card {
+        box-shadow: 0px 0px 15px #bbb;
     }
 </style>

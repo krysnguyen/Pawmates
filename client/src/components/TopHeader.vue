@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="topnavbar">
         <b-navbar toggleable="md" type="dark" variant="info">
             <b-navbar-brand href="/">Pawmates</b-navbar-brand>
 
@@ -23,7 +23,7 @@
                         <router-link to="/sign-up">Sign-Up</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/mymatches">
-                        <router-link to="/my-matches">My-Matches</router-link>
+                        <router-link to="/my-matches">My Matches</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/messaging">
                       <router-link to="/messaging">Messaging</router-link>
@@ -86,6 +86,12 @@
 
 <style lang="scss" scoped>
     #nav a.router-link-exact-active {
+        color: white;
+    }
+    #nav .topnavbar a {
+        text-decoration: none;
+    }
+    #nav .topnavbar a:hover {
         color: white;
     }
 </style>
