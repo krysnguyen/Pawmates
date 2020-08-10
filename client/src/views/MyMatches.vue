@@ -10,19 +10,19 @@
                             <b-card-img src="https://picsum.photos/400/400/?image=5" alt="Profile image"
                                         class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
                         </b-col>
-                        <b-col cols="10">
+                        <b-col cols="7">
                             <b-card-body >
                                 <b-card-text>
                                     {{match.bio}}
                                 </b-card-text>
-                                <router-link :to="{ name: 'User', params: {id: match.userId}}">
-                                    <b-button variant="primary">
-                                        View Profile
-                                    </b-button>
-                                </router-link>
                             </b-card-body>
                         </b-col>
                     </b-row>
+                    <router-link :to="{ name: 'User', params: {id: match.userId}}">
+                        <b-button variant="primary" style="font-weight: bold; text-align: center;">
+                            View Profile
+                        </b-button>
+                    </router-link>
                 </b-card>
             </b-list-group-item>
         </b-list-group>
@@ -82,8 +82,4 @@
     font-weight: bold;
 }
 
-.button {
-    font-weight: bold;
-    text-align: center;
-}
 </style>
