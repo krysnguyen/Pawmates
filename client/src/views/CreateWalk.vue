@@ -55,8 +55,8 @@
                     ></b-form-input>
                 </b-form-group>
 
-                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2827"
-                         lng="-123.1207" width="100%" height="500px" v-bind:newAddress="newAddress"
+                <HereMap @new-city="newCity" @new-location="newLocation" @new-coords="newCoords" lat="49.2350"
+                         lng="-123.0557" width="100%" height="500px" v-bind:newAddress="newAddress"
                          v-bind:selectLocations="true"/>
 
 
@@ -112,20 +112,46 @@
                 evt.preventDefault()
             },
             createWalk: function () {
-                if (this.form.address == "That address could not be found.") {
+                function validateInput(inputStr) {
+                    if (/\S/.test(inputStr)) { // check if non-whitespace exists
+                        return true;
+                    } 
+                    return false;
+                }
+                if (this.form.address == "That address could not be found." || !validateInput(this.form.address)) {
                     alert("Please enter a valid address.");
+                    return;
+                }
+                if (!validateInput(this.form.title)) {
+                    alert("Please enter a title.");
+                    return;
+                }
+                if (!validateInput(this.form.time)) {
+                    alert("Please enter a time.");
+                    return;
+                }
+                if (!validateInput(this.form.date)) {
+                    alert("Please enter a date.");
+                    return;
+                }
+                if (!validateInput(this.form.duration)) {
+                    alert("Please enter a duration.");
+                    return;
+                }
+                if (!validateInput(this.form.location) || !validateInput(this.form.coords)) {
+                    alert("Please enter a valid location.");
                     return;
                 }
                 serverCreateWalk(
                     this.user_id,
-                    this.form.title,
-                    this.form.date,
-                    this.form.time,
-                    this.form.duration,
-                    this.form.location,
-                    this.form.address,
-                    this.form.coords,
-                    this.form.description,
+                    this.form.title.trim(),
+                    this.form.date.trim(),
+                    this.form.time.trim(),
+                    this.form.duration.trim(),
+                    this.form.location.trim(),
+                    this.form.address.trim(),
+                    this.form.coords.trim(),
+                    this.form.description.trim(),
                     this
                 );
             },

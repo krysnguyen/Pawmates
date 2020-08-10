@@ -113,7 +113,7 @@
         mounted() {
             var defaultLayers = this.platform.createDefaultLayers();
             
-            var zoomLevel = 12;
+            var zoomLevel = 11;
             if (!this.selectLocations) {
                 // eslint-disable-next-line
                 zoomLevel = 13;
