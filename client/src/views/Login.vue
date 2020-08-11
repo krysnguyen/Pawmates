@@ -1,8 +1,18 @@
 <template>
     <div class="login" v-on:keyup.enter="login">
         <h1>Login</h1>
-            <input type="text" v-model="email" placeholder="Email"><br>
-            <input type="password" v-model="password" placeholder="Password"><br>
+        <div class="container-sm h-100">
+            <label class="col-form-label-lg">Email Address</label>
+            <div class="inputWithIcon">
+                <input type="text" class ="form-control" v-model="email" name="userEmail"/>
+                <i class="fas fa-envelope fa-lg fa-lw"></i>
+            </div>
+            <label class="col-form-label-lg">Password</label>
+            <div class="inputWithIcon">
+                <input type="password" class ="form-control" v-model="password" name="password"/>
+                <i class="fas fa-key fa-lg fa-lw"></i>
+            </div>
+        </div>
             <b-button @click="login">Login</b-button>
         <p><br> Don't have an account?
             <b-link to="/sign-up">Create one.</b-link>
