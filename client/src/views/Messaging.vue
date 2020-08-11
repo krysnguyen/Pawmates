@@ -115,13 +115,14 @@
                     this.authUser = user;
                     serverGetMyMatches(this)
                         .then(res => {
-                            console.log(res.data);
                             this.matches = res.data;
                             if (this.matches.length > 0) {
                                 this.fetchMessages(this.matches[0]);
                             }
 
                         })
+
+
 
                 } else {
                     this.authUser = {};

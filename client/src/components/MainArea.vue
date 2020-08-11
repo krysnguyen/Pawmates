@@ -12,7 +12,7 @@
     }
 </script>
 
-<style type="scss">
+<style type="scss" scoped>
     #main-div {
         background-color: #42b983;
     }
