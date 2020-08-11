@@ -6,7 +6,7 @@
         </b-button>
 
         <b-card
-                :img-src="[potential_match.images.length > 0 ? potential_match.images[0] : defaultImage]"
+                :img-src="potential_match.images.length > 0 ? potential_match.images[0] : defaultImage"
                 img-alt="Image"
                 img-top
                 tag="article"
