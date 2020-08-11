@@ -40,7 +40,8 @@
                                 <div class="received_withd_msg">
                                     <span class="time_date">{{message.author}}</span>
                                     <p>{{message.message}}</p>
-                                    <span class="time_date">{{(message.createdAt.toDate())}}</span></div>
+                                    <span class="time_date">{{(message.createdAt.toDate())}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,7 +117,7 @@
                             console.log(res.data);
                             this.matches = res.data;
                             if (this.matches.length > 0) {
-                                this.fetchMessages(this.matches[0].userId);
+                                this.fetchMessages(this.matches[0]);
                             }
 
                         })
