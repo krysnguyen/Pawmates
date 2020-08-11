@@ -1,7 +1,7 @@
 <template>
     <div class="user-card">
         <b-card
-                :img-src="[images.length > 0 ? images[0] : this.$defaultImage]"
+                :img-src="images.length > 0 ? images[0] : defaultImage"
                 img-alt="Image"
                 img-top
                 tag="article"
@@ -20,7 +20,7 @@
                 <h4>{{this.dog_name + ', ' + this.dog_types[0]}}</h4>
                 <p 
                 style="color:rgb(112, 112, 112);"
-                v-if="this.walk_types[0]!=null && this.walk_types[0]!=''"> 
+                v-if="this.walk_types != null && this.walk_types.length > 0">
                     Walk preference: {{this.walk_types[0]}}
                 </p>
             </div> 
@@ -50,7 +50,8 @@
                 age: '',
                 dog_types: '',
                 walk_types: '',
-                images: []
+                images: [],
+                defaultImage: 'https://firebasestorage.googleapis.com/v0/b/pawmates-71be7.appspot.com/o/puppy.jpg?alt=media&token=7ee37f7b-bc88-47ed-8db0-ee256beaf906',
             }
         },
         created() {
