@@ -124,7 +124,7 @@
     }
 
     function serverGetUser(userId, that) {
-        console.log(userId);
+//        console.log(userId);
         axios.get('http://localhost:8090/api/v1/users/' + userId)
             .then(res => {
                 that.images = res.data.images;

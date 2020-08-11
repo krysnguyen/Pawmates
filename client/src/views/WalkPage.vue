@@ -25,10 +25,10 @@
                 </b-col>
                 <b-col class="pl-2 mb-3">
                     <b-card class="details-card pt-md-4 pr-md-3 pb-md-3 pl-md-3 h-100">
-                        <b-card-img :src="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]" alt="Profile image"
+                        <b-card-img :src="walk.user.images.length > 0 ? walk.user.images[0] : defaultImage" alt="Profile image"
                                     class="profile-image rounded-circle pb-3 mb-md-4">
                         </b-card-img>
-                        <b-card-title :title="walk.title">
+                        <b-card-title :title="walk.title" class="mb-3">
                         </b-card-title>
                         <b-card-sub-title :sub-title="walk.address" class="mb-3 mb-md-4"></b-card-sub-title>
                         <div class="details">
@@ -64,7 +64,14 @@
         data() {
             return {
                 user_id: '',
-                walk: {},
+                walk: {
+                    user: {
+                        firstName: "",
+                        lastName: "",
+                        userId: "",
+                        images: []
+                    }
+                },
                 lat: '',
                 lng: '',
                 dataReady: false,
