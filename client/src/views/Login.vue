@@ -7,15 +7,19 @@
         <h1>Login</h1>
         <div class="container-sm h-100 text-center">
             <label class="col-form-label-lg">Email Address</label>
-            <div class="inputWithIcon">
-                <input type="text" class ="form-control" v-model="email" name="userEmail"/>
-                <i class="fas fa-envelope fa-lg fa-lw"></i>
-            </div>
+            <b-row align-h='center' class="mb-2">
+                <div class="inputWithIcon">
+                    <input type="text" class ="form-control" v-model="email" name="userEmail"/>
+                    <i class="fas fa-envelope fa-lg fa-lw"></i>
+                </div>
+            </b-row>
             <label class="col-form-label-lg">Password</label>
-            <div class="inputWithIcon">
-                <input type="password" class ="form-control" v-model="password" name="password"/>
-                <i class="fas fa-key fa-lg fa-lw"></i>
-            </div>
+            <b-row align-h='center' class="mb-3">
+                <div class="inputWithIcon">
+                    <input type="password" class ="form-control" v-model="password" name="password"/>
+                    <i class="fas fa-key fa-lg fa-lw"></i>
+                </div>
+            </b-row>
         </div>
         <b-button @click="login">Login</b-button>
         <p><br> Don't have an account?
@@ -51,9 +55,13 @@
     .login {
         margin-top: 40px;
     }
+    
+    .login .form-control {
+        width: 225px;
+    }
 
     .inputWithIcon input[type=text] {
-        padding-left: 40px;
+/*        padding-left: 40px;*/
     }
 
     .inputWithIcon {
@@ -69,8 +77,8 @@
     }
 
     input {
-        margin: 10px 0;
-        width: 25%;
+/*        margin: 10px 0;*/
+        width: 100%;
         padding: 15px;
     }
 
