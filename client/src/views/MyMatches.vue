@@ -1,34 +1,35 @@
 <template>
     <div class="myMatches">
-        <h1>Welcome to the My Matches page</h1>
-
-        <b-list-group v-for="match in this.matches" :key="match.userId">
-            <b-list-group-item class="list-item-card">
-                <b-card header-border-variant="dark" :header="match.firstName + ' ' + match.lastName" align="center"
-                        style="max-width: 770px; border-radius: 36px;">
-                    <b-row class="row-in-card" no-gutters>
-                        <b-col cols="2" align-self="center">
-                            <b-card-img :src="match.images.length > 0 ? match.images[0] : defaultImage"
-                                        alt="Profile image"
-                                        class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
-                        </b-col>
-                        <b-col cols="7">
-                            <b-card-body>
+        <b-container class="mt-4 mb-4">
+            <b-list-group v-for="match in this.matches" :key="match.userId">
+                <b-list-group-item class="list-item-card">
+                    <b-card header-border-variant="dark" :header="match.firstName + ' ' + match.lastName" align="center"
+                            style="max-width: 770px; border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;">
+                        <b-row class="row-in-card" no-gutters align-v="center">
+                            <b-col cols="3" align-self="center">
+                                <b-card-img :src="match.images.length > 0 ? match.images[0] : defaultImage"
+                                            alt="Profile image"
+                                            class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
+                            </b-col>
+                            <b-col cols="9">
                                 <b-card-text>
                                     {{match.bio}}
                                 </b-card-text>
-                            </b-card-body>
-                        </b-col>
-                    </b-row>
-                    <router-link :to="{ name: 'User', params: {id: match.userId}}">
-                        <b-button variant="primary" style="font-weight: bold; text-align: center;">
-                            View Profile
-                        </b-button>
-                    </router-link>
-                </b-card>
-            </b-list-group-item>
-        </b-list-group>
-        <b-button v-on:click="loadMatches()">Search for new matches</b-button>
+                                <b-row align-h="center">
+                                    <router-link :to="{ name: 'User', params: {id: match.userId}}">
+                                        <b-button variant="primary" style="font-weight: bold; text-align: center;">
+                                            View Profile
+                                        </b-button>
+                                    </router-link>
+                                </b-row>
+                            </b-col>
+                        </b-row>
+                        
+                    </b-card>
+                </b-list-group-item>
+            </b-list-group>
+            <b-button v-on:click="loadMatches()">Search for new matches</b-button>
+        </b-container>
     </div>
 </template>
 
@@ -82,14 +83,18 @@
 </script>
 
 <style scoped>
-    .card-header {
+    .myMatches .card-header {
         font-size: 30px;
         font-weight: bold;
     }
-    .list-item-card {
-/*
-        margin: auto;
-        width: 70%;
-*/
+    .myMatches .list-item-card {
+        width: 100%;
+        padding: 10px;
+        border: 10px;
+        margin: 0 auto 10px; 
+        background-color: inherit;
+    }
+    .myMatches .card-body {
+/*        padding-top: 0;*/
     }
 </style>
