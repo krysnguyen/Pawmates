@@ -110,7 +110,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     div {
         align-content: center;
     }

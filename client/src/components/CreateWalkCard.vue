@@ -40,7 +40,8 @@
     color: inherit;
   }
   .create-walk-card .card {
-        padding: 10px;
-        border: 10px;
-    }
+    padding: 10px;
+    border: 10px;
+    margin: 0 auto 10px; 
+  }
 </style>

@@ -231,7 +231,7 @@
             .catch(err => alert("Failed to update " + err))
     }
 </script>
-<style>
+<style scoped>
     @import url(https://cdn.syncfusion.com/ej2/material.css);
 
     .Profile {

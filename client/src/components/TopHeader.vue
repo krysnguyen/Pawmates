@@ -23,7 +23,7 @@
                         <router-link to="/sign-up">Sign Up</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/mymatches">
-                        <router-link to="/my-matches">My Matches</router-link>
+                        <router-link to="/my-matches">My PawMates</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="this.user !== null" to="/messaging">
                       <router-link to="/messaging">Messaging</router-link>

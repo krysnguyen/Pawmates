@@ -91,7 +91,9 @@
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                serverGetWalks(this);
+                if (this.user_id !== null) {
+                    serverGetWalks(this);
+                }
             });
         },
         methods: {
