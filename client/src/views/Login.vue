@@ -61,7 +61,10 @@
     }
 
     .inputWithIcon input[type=text] {
-/*        padding-left: 40px;*/
+        padding-left: 40px;
+    }
+    .inputWithIcon input[type=password] {
+        padding-left: 40px;
     }
 
     .inputWithIcon {
