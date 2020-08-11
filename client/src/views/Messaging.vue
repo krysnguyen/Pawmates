@@ -18,17 +18,18 @@
                     </div>
                     <div class="inbox_chat">
                         <div class="chat_list" v-for="match in this.matches" :key="match.userId">
+                          <b-button block variant="light">
                             <b-link v-on:click="fetchMessages(match)">
                                 <div class="chat_people">
                                     <b-avatar class="chat_img"><img
                                             :src="[match.images.length > 0 ? match.images[0] : defaultImage]"
                                             alt="sunil"></b-avatar>
                                     <div class="chat_ib">
-                                        <h5>{{match.firstName + ' ' + match.lastName}}<span
-                                                class="chat_date">Dec 25</span></h5>
+                                        <h5>{{match.firstName + ' ' + match.lastName}}</h5>
                                     </div>
                                 </div>
                             </b-link>
+                          </b-button>
                         </div>
                     </div>
                 </div>
