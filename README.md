@@ -8,7 +8,7 @@ Our project has several different features as promised in our project proposal.
 * The "My Pawmates" page is where users can view their matches. In other words, people that they have liked and are interested in hanging out with.
 
 * The "Walk" page is where users can view walks created by their matches, users can join walks and create walks. We also implemented a maps feature which
-  shows the path of the walk. 
+  shows the starting point of the walk. 
 
 * The user can click on their name on the top right hand corner and go to their profile. The "profile" page allows the user to update and edit their profile. 
 
