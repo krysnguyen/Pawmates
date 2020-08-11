@@ -5,10 +5,9 @@
                 img-alt="Image"
                 img-top
                 tag="article"
-                style="max-width: 40rem;"
-
+                style="max-width: 400px; border-radius: 36px;"
                 bg-variant="light"
-                class="text-left">
+                class="text-left mt-3 mb-3">
 
             <div class="card-body">
                 <h3>{{this.first_name + ' ' + this.last_name + ', ' + this.age}}</h3>
@@ -82,3 +81,17 @@
             })
     }
 </script>
+
+<style scoped>
+    .user-card .card {
+        padding: 10px;
+        border: 10px;
+        margin: 0 auto 10px; 
+      }
+    .user-card .card-img-top {
+/*
+        max-height: 100px;
+        width: auto;
+*/
+    }
+</style>
