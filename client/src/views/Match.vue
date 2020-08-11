@@ -119,7 +119,8 @@
         border: 10px;
         margin: 0 auto 10px;
         border-bottom-left-radius: 36px;
-        border-bottom-right-radius: 36px
+        border-bottom-right-radius: 36px;
+        box-shadow: 0 3px 2px 3px #ddd;
     }
     .match .card-img-top {
         max-width: 350px;
