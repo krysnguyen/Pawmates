@@ -47,7 +47,7 @@
                     </div>
                     <div class="type_msg">
                         <div class="input_msg_write">
-                            <input @keyup.enter="saveMessage" v-model="message" type="text" class="write_msg"
+                            <input @keyup.enter="saveMessage(recipientId)" v-model="message" type="text" class="write_msg"
                                    placeholder="Type a message"/>
                             <button class="msg_send_btn" type="button" v-on:click="saveMessage(recipientId)"><i
                                     class="fa fa-paper-plane-o" aria-hidden="true"></i></button>

@@ -1,6 +1,6 @@
 <template>
     <div class="myMatches">
-        <h1>Welcome to the My Matches page</h1>
+        <h1>Welcome to the My Pawmates page</h1>
 
         <b-list-group v-for="match in this.matches" :key="match.userId">
             <b-list-group-item class="list-item-card">
