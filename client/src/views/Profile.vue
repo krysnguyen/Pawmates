@@ -208,7 +208,9 @@
                 that.bio = res.data.bio;
                 that.pet_name = res.data.dogName;
                 that.dog_types = res.data.dogTypes[0];
-                that.walk_types = res.data.walkTypes[0];
+                if (res.data.walkTypes !== null) {
+                    that.walk_types = res.data.walkTypes[0];
+                }
                 that.images = res.data.images;
             })
     }
