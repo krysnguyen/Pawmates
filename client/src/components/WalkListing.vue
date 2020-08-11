@@ -60,5 +60,11 @@
     .listing-card .card-link:hover {
         color: inherit;
     }
+  
+    .listing-card .card {
+      padding: 10px;
+      border: 10px;
+      margin: 0 auto 10px; 
+    }
 
 </style>

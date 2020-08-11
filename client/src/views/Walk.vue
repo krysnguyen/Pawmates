@@ -1,7 +1,9 @@
 <template>
     <div class="walk">
         <b-container fluid="md" class="mt-3">
-            <CreateWalkCard class="mb-3" />
+            <CreateWalkCard class="mb-3" 
+                :image="imageurl"
+            />
             <div class="pt-2 mb-3">
                 <b-card-title class="mb-2">My Walks Happening Now</b-card-title>
                 <hr>
