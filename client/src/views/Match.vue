@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="match">
         <b-button v-if="this.loading === true" variant="primary" disabled>
             <b-spinner small type="grow"></b-spinner>
             Searching for your next pawmate...
@@ -119,5 +119,19 @@
 <style scoped>
     div {
         align-content: center;
+    }
+    .match .card {
+        padding: 20px;
+        border: 10px;
+        margin: 0 auto 10px;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
+        box-shadow: 0 3px 2px 3px #ddd;
+    }
+    .match .card-img-top {
+        max-width: 350px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

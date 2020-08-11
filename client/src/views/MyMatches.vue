@@ -1,8 +1,8 @@
 <template>
     <div class="myMatches">
-        <b-container class="mt-4 mb-4">
+        <b-container class="mt-2 mb-4">
             <b-list-group v-for="match in this.matches" :key="match.userId">
-                <b-list-group-item class="list-item-card">
+                <b-list-group-item class="list-item-card mb-0">
                     <b-card header-border-variant="dark" :header="match.firstName + ' ' + match.lastName" align="center"
                             style="max-width: 770px; border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;">
                         <b-row class="row-in-card" no-gutters align-v="center">

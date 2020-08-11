@@ -9,15 +9,14 @@
                 bg-variant="light"
                 class="text-left mt-3 mb-3">
 
-            <div class="card-body">
+            <div class="card-body pt-2 pb-2">
                 <h3>{{this.first_name + ' ' + this.last_name + ', ' + this.age}}</h3>
                 <p 
                 style="color:rgb(112, 112, 112);" 
                 v-if="this.bio!=null && this.bio!=''">
                     {{this.bio}}
                 </p>
-            </div> 
-            <div class="card-body">
+
                 <h4>{{this.dog_name + ', ' + this.dog_types[0]}}</h4>
                 <p 
                 style="color:rgb(112, 112, 112);"
@@ -89,9 +88,10 @@
         margin: 0 auto 10px; 
       }
     .user-card .card-img-top {
-/*
-        max-height: 100px;
-        width: auto;
-*/
+        max-width: 325px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 10px;
     }
 </style>
