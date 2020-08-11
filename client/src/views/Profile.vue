@@ -160,7 +160,9 @@
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                serverGetUser(this);
+                if (this.user_id !== null) {
+                    serverGetUser(this);
+                }
             });
         },
         firestore() {

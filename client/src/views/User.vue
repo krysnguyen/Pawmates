@@ -55,7 +55,9 @@
             }
         },
         created() {
-            serverGetUser(this.$route.params.id, this);
+            if (this.$route.params.id !== null) {
+                serverGetUser(this.$route.params.id, this);
+            }
         },
         methods: {
             goBack() {
