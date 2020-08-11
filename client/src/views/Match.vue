@@ -21,7 +21,7 @@
             <b-card-text style="color:rgb(112, 112, 112);">
                 {{this.potential_match.bio}}
             </b-card-text>
-            <b-button variant="primary" v-on:click="viewProfile()">View Profile</b-button>
+            <b-button variant="primary" v-on:click="viewProfile()">View Profile</b-button><br><br>
             <b-button v-on:click="like()">Like</b-button>
             <b-button v-on:click="dislike()">Dislike</b-button>
         </b-card>
@@ -71,9 +71,15 @@
                 }
 
             },
-            like: function () {
-                serverLikeUser(this.user_id, this.potential_matches[0].userId);
-                this.updateNextMatch();
+            like: function () { 
+                serverLikeUser(this.user_id, this.potential_matches[0].userId)
+                .then(response => {
+
+                    if ((response.data.matches.indexOf(this.potential_matches[0].userId))!= -1){
+                        alert("It's a match! Go to My PawMates to view matched profiles or Messaging to chat.");
+                    }
+                    this.updateNextMatch();
+                })
             },
 
             dislike: function () {
@@ -97,7 +103,7 @@
 
     function serverLikeUser(userId, likedUserId) {
         const path = `http://localhost:8090/api/v1/users/${userId}/likes`;
-        axios.put(path, {
+        return axios.put(path, {
             id: likedUserId
         })
     }

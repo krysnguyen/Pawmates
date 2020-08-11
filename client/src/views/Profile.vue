@@ -219,6 +219,7 @@
             lastName: that.last_name,
             birthday: that.birthday,
             bio: that.bio,
+            age: that.age,
             dogName: that.pet_name,
             dogTypes: [that.dog_types],
             walkTypes: [that.walk_types],

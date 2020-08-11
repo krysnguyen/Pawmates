@@ -33,4 +33,6 @@ public class UserModel extends RepresentationModel<UserModel> {
     private List<String> walkTypes;
 
     private List<String> images;
+
+    private List<String> matches;
 }
