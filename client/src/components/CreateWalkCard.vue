@@ -39,4 +39,8 @@
   .create-walk-card .card-link:hover {
     color: inherit;
   }
+  .create-walk-card .card {
+        padding: 10px;
+        border: 10px;
+    }
 </style>
