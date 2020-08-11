@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h3 class=" text-center">Messaging</h3>
+        <h1 class=" text-center">Messaging</h1>
         <div class="messaging">
             <div class="inbox_msg">
                 <div class="inbox_people">
@@ -22,7 +22,7 @@
                             <b-link v-on:click="fetchMessages(match)">
                                 <div class="chat_people">
                                     <b-avatar class="chat_img"><img
-                                            :src="[match.images.length > 0 ? match.images[0] : defaultImage]"
+                                            :src="match.images.length > 0 ? match.images[0] : defaultImage"
                                             alt="sunil"></b-avatar>
                                     <div class="chat_ib">
                                         <h5>{{match.firstName + ' ' + match.lastName}}</h5>
@@ -37,7 +37,7 @@
                     <div class="msg_history">
 
                         <div v-for="message in messages" v-bind:key="message.id">
-                            <div :class="[message.userId==authUser.uid?'received_msg':'sent_msg']">
+                            <div :class="message.userId==authUser.uid?'received_msg':'sent_msg'">
                                 <div class="received_withd_msg">
                                     <span class="time_date">{{message.author}}</span>
                                     <p>{{message.message}}</p>
@@ -82,6 +82,10 @@
             }
         },
         methods: {
+            scrollToBottom(){
+            let box = document.querySelector('.msg_history');
+            box.scrollTop = box.scrollHeight;
+            },
             saveMessage(recipientId) {
                 this.recipientId = recipientId;
                 db.collection('users').doc(this.authUser.uid).collection('chats').doc(this.recipientId).collection("messages").add({
@@ -89,6 +93,7 @@
                     message: this.message,
                     createdAt: new Date()
                 }).then(() => {
+                    this.scrollToBottom();
                     db.collection('users').doc(this.recipientId).collection('chats').doc(this.authUser.uid).collection("messages").add({
                         userId: this.authUser.uid,
                         message: this.message,
@@ -106,6 +111,9 @@
                     let allMessages = [];
                     querySnapshot.forEach(doc => allMessages.push(doc.data()));
                     this.messages = allMessages;
+                    setTimeout(()=>{
+                      this.scrollToBottom();
+                    },1000);
                 })
             }
         },

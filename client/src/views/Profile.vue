@@ -257,18 +257,6 @@
         color: #aaa;
     }
 
-    .inputWithIcon {
-        position: relative;
-    }
-
-    .inputWithIcon i {
-        position: absolute;
-        left: 5px;
-        top: 5px;
-        padding: 9px 8px;
-        color: #aaa;
-    }
-
     input {
         width: 60%;
         height: 45px;
