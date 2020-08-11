@@ -21,7 +21,8 @@
     "vue-dropdowns": "^1.1.1",
     "vue-router": "^3.3.4",
     "vue2-datepicker": "^3.6.1",
-    "vuejs-logger": "^1.5.4"
+    "vuejs-logger": "^1.5.4",
+    "vue-simple-alert": "^1.1.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
