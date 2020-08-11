@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <h1 class=" text-center">Messaging</h1>
-        <div class="messaging">
+<!--        <h1 class=" text-center">Messaging</h1>-->
+        <div class="messaging mt-3">
             <div class="inbox_msg">
                 <div class="inbox_people">
                     <div class="headind_srch">
@@ -196,6 +196,7 @@
         color: #05728f;
         font-size: 21px;
         margin: auto;
+        line-height: 45px;
     }
 
     .srch_bar input {
