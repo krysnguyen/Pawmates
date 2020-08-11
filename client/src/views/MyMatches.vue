@@ -12,7 +12,7 @@
                                             class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
                             </b-col>
                             <b-col cols="9">
-                                <b-card-text>
+                                <b-card-text class="ml-3">
                                     {{match.bio}}
                                 </b-card-text>
                                 <b-row align-h="center">
