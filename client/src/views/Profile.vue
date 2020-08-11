@@ -2,7 +2,7 @@
     <div class="Profile">
         <div class="wrapper">
             <div class="left">
-                <img :src="[images.length > 0 ? images[0] : defaultImage]" width="100"/>
+                <img :src="images.length > 0 ? images[0] : defaultImage" width="100"/>
                 <h4>{{this.first_name + ' ' + this.last_name}}</h4>
                 <h4 v-if="this.pet_name !== null">&</h4>
                 <h4>{{ this.pet_name }}</h4>
@@ -241,18 +241,6 @@
 
     .inputWithIcon input[type=text] {
         padding-left: 40px;
-    }
-
-    .inputWithIcon {
-        position: relative;
-    }
-
-    .inputWithIcon i {
-        position: absolute;
-        left: 5px;
-        top: 5px;
-        padding: 9px 8px;
-        color: #aaa;
     }
 
     .inputWithIcon {
