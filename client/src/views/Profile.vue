@@ -232,7 +232,7 @@
             .catch(err => alert("Failed to update " + err))
     }
 </script>
-<style scoped>
+<style>
     @import url(https://cdn.syncfusion.com/ej2/material.css);
 
     .Profile {
@@ -286,7 +286,7 @@
 
     .wrapper {
         position: absolute;
-        top: 700px;
+        top: 660px;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 950px;
