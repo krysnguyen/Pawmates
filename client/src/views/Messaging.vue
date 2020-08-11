@@ -32,10 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="messages.length == 0">
-                    <p>This is the start of your conversation with {{recipientName}} </p>
-                </div>
-                <div v-if="messages.length > 0" class="messages">
+                <div class="messages">
                     <div class="msg_history">
 
                         <div v-for="message in messages" v-bind:key="message.id">
