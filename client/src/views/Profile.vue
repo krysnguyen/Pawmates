@@ -2,13 +2,11 @@
     <div class="Profile">
         <div class="wrapper">
             <div class="left">
-                <img :src="images.length > 0 ? images[0] : defaultImage" width="100"/>
                 <h4>{{this.first_name + ' ' + this.last_name}}</h4>
                 <h4 v-if="this.pet_name !== null">&</h4>
                 <h4>{{ this.pet_name }}</h4>
                 <div class="p-1" v-for="image in this.images" v-bind:key="image">
                     <img :src="image" alt="" width="250px" height="250px">
-                    <span class="delete-img" @click="deleteImage(image,images.indexOf(image))">X</span>
                 </div>
             </div>
             <div class="right">
@@ -96,11 +94,11 @@
                 <div class="form-group d-flex">
                     <div class="p-1" v-for="image in images" v-bind:key="image">
                         <img :src="image" alt="" width="80px">
-                        <span class="delete-img" @click="deleteImage(image,images.indexOf(image))">X</span>
+                        <b-button @click="deleteImage(image,images.indexOf(image))" variant="danger">Delete</b-button>
                     </div>
                 </div>
                 <div class="col-12 form-group text-center">
-                    <button type="button" v-on:click="updateUser()">Save</button>
+                    <b-button variant="success" pill v-on:click="updateUser()">Save</b-button>
                 </div>
             </div>
         </div>
@@ -162,7 +160,9 @@
         created() {
             firebase.auth().onAuthStateChanged(user => {
                 this.user_id = user ? user.uid : null;
-                serverGetUser(this);
+                if (this.user_id !== null) {
+                    serverGetUser(this);
+                }
             });
         },
         firestore() {
@@ -208,7 +208,9 @@
                 that.bio = res.data.bio;
                 that.pet_name = res.data.dogName;
                 that.dog_types = res.data.dogTypes[0];
-                that.walk_types = res.data.walkTypes[0];
+                if (res.data.walkTypes !== null) {
+                    that.walk_types = res.data.walkTypes[0];
+                }
                 that.images = res.data.images;
             })
     }
@@ -232,7 +234,7 @@
             .catch(err => alert("Failed to update " + err))
     }
 </script>
-<style scoped>
+<style>
     @import url(https://cdn.syncfusion.com/ej2/material.css);
 
     .Profile {

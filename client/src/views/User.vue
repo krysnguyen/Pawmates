@@ -55,7 +55,9 @@
             }
         },
         created() {
-            serverGetUser(this.$route.params.id, this);
+            if (this.$route.params.id !== null) {
+                serverGetUser(this.$route.params.id, this);
+            }
         },
         methods: {
             goBack() {
@@ -65,7 +67,7 @@
     }
 
     function serverGetUser(userId, that) {
-        console.log(userId);
+//        console.log(userId);
         axios.get('http://localhost:8090/api/v1/users/' + userId)
             .then(res => {
                 that.first_name = res.data.firstName;

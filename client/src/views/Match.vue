@@ -30,9 +30,13 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     import axios from 'axios';
     import firebase from 'firebase/app';
     import 'firebase/auth';
+    import VueSimpleAlert from "vue-simple-alert";
+
+    Vue.use(VueSimpleAlert);
 
     export default {
         name: 'Match',
@@ -60,7 +64,9 @@
                 this.$router.push(path)
             },
             loadMatches: function () {
-              serverGetPotentialMatches(this);
+                if (this.user_id !== null) {
+                    serverGetPotentialMatches(this);
+                }
             },
             updateNextMatch: function () {
                 if (this.potential_matches.length > 1) {
@@ -74,9 +80,8 @@
             like: function () { 
                 serverLikeUser(this.user_id, this.potential_matches[0].userId)
                 .then(response => {
-
                     if ((response.data.matches.indexOf(this.potential_matches[0].userId))!= -1){
-                        alert("It's a match! Go to My PawMates to view matched profiles or Messaging to chat.");
+                        this.$alert("It's a match! Go to My PawMates to view matched profiles or Messaging to chat.");
                     }
                     this.updateNextMatch();
                 })

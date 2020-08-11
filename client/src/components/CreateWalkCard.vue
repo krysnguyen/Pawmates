@@ -19,8 +19,12 @@
 <script>
   export default {
     name: 'CreateWalkCard',
-    props: ['image']
-//    old placeholder image: "https://placedog.net/150/150?id=15"
+    props: {
+        image: {
+            type: String,
+            default: "https://placedog.net/150/150?id=15"
+        }
+    }
   }
 </script>
 
