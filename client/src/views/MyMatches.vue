@@ -8,7 +8,7 @@
                         style="max-width: 770px; border-radius: 36px;">
                     <b-row class="row-in-card" no-gutters>
                         <b-col cols="2" align-self="center">
-                            <b-card-img :src="[match.images.length > 0 ? match.images[0] : defaultImage]"
+                            <b-card-img :src="match.images.length > 0 ? match.images[0] : defaultImage"
                                         alt="Profile image"
                                         class="rounded-circle" style="max-height: 200px; max-width: 200px"></b-card-img>
                         </b-col>

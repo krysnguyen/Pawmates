@@ -18,7 +18,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
-                        v-bind:image="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]"
+                        v-bind:image="walk.user.images.length > 0 ? walk.user.images[0] : defaultImage"
                         happening="now"
                 />
             </div>
@@ -38,7 +38,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
-                        v-bind:image="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]"
+                        v-bind:image="walk.user.images.length > 0 ? walk.user.images[0] : defaultImage"
                 />
             </div>
             <div class="pt-2 mb-3">
@@ -57,7 +57,7 @@
                         v-bind:user_id="walk.user.userId"
                         v-bind:first_name="walk.user.firstName"
                         v-bind:last_name="walk.user.lastName"
-                        v-bind:image="[walk.user.images.length > 0 ? walk.user.images[0] : defaultImage]"
+                        v-bind:image="walk.user.images.length > 0 ? walk.user.images[0] : defaultImage"
                 />
             </div>
         </b-container>
