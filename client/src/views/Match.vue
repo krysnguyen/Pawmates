@@ -64,7 +64,9 @@
                 this.$router.push(path)
             },
             loadMatches: function () {
-              serverGetPotentialMatches(this);
+                if (this.user_id !== null) {
+                    serverGetPotentialMatches(this);
+                }
             },
             updateNextMatch: function () {
                 if (this.potential_matches.length > 1) {
