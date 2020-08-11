@@ -9,7 +9,6 @@
           <b-col cols="10" align-self="center">
             <b-card-title class="mb-0" title="Create a walk">
             </b-card-title>
-            <b-card-sub-title sub-title="(should have user's image to the left, and then delete this text)"></b-card-sub-title>
           </b-col>
         </b-row>
       </b-link>
