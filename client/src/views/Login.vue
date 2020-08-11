@@ -5,7 +5,7 @@
             <input type="password" v-model="password" placeholder="Password"><br>
             <b-button @click="login">Login</b-button> -->
         <h1>Login</h1>
-        <div class="container-sm h-100 text-center">
+        <div class="container-sm h-100">
             <label class="col-form-label-lg">Email Address</label>
             <div class="inputWithIcon">
                 <input type="text" class ="form-control" v-model="email" name="userEmail"/>
@@ -70,7 +70,7 @@
 
     input {
         margin: 10px 0;
-        width: 25%;
+        width: 30%;
         padding: 15px;
     }
 
